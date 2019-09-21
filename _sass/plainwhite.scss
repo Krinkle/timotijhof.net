@@ -1,11 +1,17 @@
 @import 'ext/fonts';
 @import 'ext/solarized-light';
 
-$linkColor: #0A59B0;
+$linkColorRoot: #000;
+$linkColorContent: #085bb5;
+$linkColorShade: #ddedfd;
+
+$textColorRoot: #222;
+$textColorContent: #333;
+$textColorMuted: #aaa;
 
 $breakMobileSmall: 480px;
-$breakMobile: 768px;
-$breakWide: 1245px;
+$breakMobile: 770px;
+$breakWide: 1000px;
 
 $leftWidth: 220px;
 
@@ -22,6 +28,7 @@ body {
 	font-size: 16px;
 	line-height: 1.2;
 	margin: 0;
+	color: $textColorRoot;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -31,7 +38,7 @@ h1 {
 	margin: 0.67em 0;
 }
 
-h2 {
+h2, h3 {
 	font-family: 'Avenir', sans-serif;
 	margin: 0.7em 0;
 }
@@ -41,16 +48,15 @@ img, embed, object, video {
 }
 
 a {
-	color: #000;
-	transition: color 0.3s;
+	color: $linkColorRoot;
 	&:hover {
-		color: $linkColor;
+		color: $linkColorContent;
 	}
 }
 
 hr {
 	border: 0;
-	background: #E3E3E3;
+	background: #e3e3e3;
 	margin: 2em auto;
 	width: 80%;
 	height: 1px;
@@ -76,7 +82,7 @@ code.highlighter-rouge {
 	background-color: #f2f2f2;
 	padding: 0.3em 0.4em;
 	font-family: Menlo, Monaco, monospace;
-	font-size: 1em;
+	font-size: 0.8em;
 }
 
 main {
@@ -85,8 +91,14 @@ main {
 	height: 100%;
 	max-width: $breakWide;
 
-	@media screen and (max-width: $breakWide + 80px) {
-		margin: 0 35px;
+	@media screen and (max-width: $breakWide + 50px) {
+		margin: 0 2vw;
+	}
+
+	@media screen and (min-width: $breakMobile) {
+		.content {
+		    max-width: calc(100% - 220px);
+		}
 	}
 
 	@media screen and (max-width: $breakMobile) {
@@ -99,33 +111,31 @@ main {
 	display: flex;
 	flex: 0;
 	height: 100vh;
-	padding-bottom: 15vh;
-	min-width: $leftWidth;
+	width: $leftWidth;
 	justify-content: flex-start;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	margin: 10vh auto 0 auto;
 	h2 {
 		font-size: 22px;
 		margin-top: 25px;
 		margin-bottom: 0;
-		color: #222222;
 		font-weight: normal;
 	}
 	img {
-		margin-top: 30px;
 		max-width: 150px;
 	}
 	@media screen and (max-width: $breakMobile) {
 		height: auto;
-		padding: 10vh 0;
+		margin-top: 5vh;
 	}
 }
 
 .tagline {
 	font-size: 22px;
 	margin-top: 17px;
-	color: #aaa;
+	color: $textColorMuted;
 	@media screen and (min-width: $breakMobile + 1) {
 		font-size: 20px;
 	}
@@ -137,10 +147,48 @@ main {
 	margin-top: 0;
 	li {
 		float: left;
-		i {
-			font-size: 34px;
-		}
 	}
+	i {
+		font-size: 34px;
+	}
+	a:hover i {
+		/* Approximate $linkColorContent */
+		filter: contrast(0.2) sepia(1) saturate(4) hue-rotate(180deg);
+	}
+}
+
+.footer {
+	color: $textColorMuted;
+}
+
+.posts,
+.post-container {
+	margin: 45px 30px;
+	@media screen and (max-width: $breakMobileSmall) {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	@media screen and (max-width: $breakMobile) {
+		padding: 0 !important;
+		margin-top: 0;
+	}
+}
+.posts-label {
+	border-bottom: 1px solid #eee;
+	font-size: 15px;
+	color: #777;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	padding-bottom: 10px;
+	font-weight: normal;
+}
+.post-link {
+	text-decoration: none;
+}
+.posts .post-link:hover {
+	/* On listings (home, tag) */
+	text-decoration-line: underline;
+	text-decoration-color: $linkColorContent;
 }
 
 .post-meta {
@@ -156,7 +204,6 @@ main {
 }
 .post-tags {
 	float: left;
-	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	a {
@@ -166,56 +213,46 @@ main {
 		background-color: #f2f2f2;
 		padding: 5px 20px;
 		border-radius: 2px;
-		@media screen and (max-width: $breakMobile) {
-			margin-top: 5px;
-		}
 		margin-right: 10px;
 	}
-}
-.post-link {
-	text-decoration: none;
+	a:hover {
+		background-color: $linkColorShade;
+		text-decoration-line: underline;
+		text-decoration-color: $linkColorContent;
+	}
 }
 .post-title {
 	line-height: 1.2em;
 	font-size: 28px;
 }
-.posts, .post-container {
-	list-style-type: none;
-	margin: 45px 30px;
-	@media screen and (max-width: $breakMobileSmall) {
-		margin-left: 20px;
-		margin-right: 20px;
-	}
-	@media screen and (max-width: $breakMobile) {
-		padding: 0 !important;
-		margin-top: 0;
-	}
-}
-.post-container {
-	padding-left: 40px;
-}
-.posts-label {
-	border-bottom: 1px solid #eee;
-	font-size: 15px;
-	color: #777;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
-	padding-bottom: 10px;
-	font-weight: normal;
-}
+
 .post {
 	font-family: 'Georgia', sans-serif;
-	font-weight: 300;
-	line-height: 1.9em;
-	color: #222;
-	letter-spacing: 0.1px;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1.7;
+	letter-spacing: -0.1px;
+	color: $textColorContent;
 	a {
-		color: $linkColor;
+		color: $linkColorContent;
 		text-decoration: none;
-		transition: border-bottom 0.4s;
+		border-bottom: 0.5px solid $linkColorContent;
 		&:hover {
-			border-bottom: 0.5px solid $linkColor;
+			border-bottom: 3px solid $linkColorContent;
+			background-color: $linkColorShade;
+			outline: 2px solid $linkColorShade;
 		}
+	}
+	li {
+		margin-top: 1em;
+	}
+
+	@media screen and (min-width: $breakWide) {
+		font-size: 21px;
+	}
+
+	@media screen and (max-width: $breakMobile) {
+		font-size: 17px;
 	}
 }
 
@@ -227,7 +264,30 @@ a[data-tip] {
 a[data-tip]:hover {
 	border-bottom-style: solid;
 }
-a[data-tip]:hover:after {
+a[data-tip].tip-active {
+	background: $linkColorShade;
+	outline: 2px solid $linkColorShade;
+}
+
+a[data-tip]:hover:before,
+a[data-tip].tip-active:before {
+	display: block;
+	content: "";
+	position: absolute;
+	bottom: 95%;
+	// Align with center of link
+	left: 70%;
+	border-top: 10px solid rgba(0, 0, 0, 0.7);
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+}
+a[data-tip].tip-active:before {
+	// Align with tip-handle
+	left: calc(100% + 0.5em);
+}
+
+a[data-tip]:hover:after,
+a[data-tip].tip-active:after {
 	display: block;
 	content: attr(data-tip);
 	position: absolute;
@@ -237,17 +297,30 @@ a[data-tip]:hover:after {
 	background: rgba(0, 0, 0, 0.7);
 	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.54));
 	border-radius: 4px;
-	padding: 8px;
+	padding: 0.5em 1em;
+	font-size: 0.9em;
 	color: #fff;
+	@media screen and (max-width: $breakMobile) {
+		width: 80vw;
+		padding: 5vw;
+	}
 }
-a[data-tip]:hover:before {
-	display: block;
-	content: "";
-	position: absolute;
-	bottom: 95%;
-	left: 70%;
-	border-top: 10px solid rgba(0, 0, 0, 0.7);
-	border-left: 9px solid transparent;
-	border-right: 9px solid transparent;
+
+a[data-tip] + .tip-handle {
+	display: inline-block;
+	margin-left: 0.5em;
+	background: #fff;
+	border: 1px solid $textColorMuted;
+	border-radius: 2em;
+	width: 1em;
+	line-height: 1em;
+	text-align: center;
+}
+a[data-tip].tip-active + .tip-handle {
+	border-color: $linkColorContent;
+	box-shadow: 0px 0px 0px 15px $linkColorShade;
+}
+a[data-tip] + .tip-handle:before {
+	content: "i";
 }
 

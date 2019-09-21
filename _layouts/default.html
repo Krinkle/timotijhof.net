@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	{%- include head.html -%}
-</head>
-<body>
-	<main class="container">
-		<header class="about"role="banner">
-			<a href="{{ "/" | relative_url }}" class="sitelink" title="Visit the home page">
-				<img src="{{ "/assets/profile.png" | relative_url }}" alt="{{ site.plainwhite.name }}">
-				<h2>{{ site.plainwhite.name }}</h2>
-			</a>
-			<p class="tagline">{{ site.plainwhite.tagline }}</p>
-			<ul class="social">
-				<li><a href="https://github.com/{{ site.plainwhite.social_links.github }}" title="{{ site.plainwhite.social_links.github }} on GitHub"><i class="icon-github-circled"></i></a></li>
-				<li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter }}" title="@{{ site.plainwhite.social_links.twitter }} on Twitter"><i class="icon-twitter-squared"></i></a></li>
-			</ul>
-			<p>&copy; 2019</p>
-		</header>
-		<section class="content">
-			{{ content }}
-		</section>
-	</main>
-</body>
+<meta charset="UTF-8">
+<title>{{ page.title | default: site.title | escape }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
+{% seo %}
+{%- comment -%}
+<!--
+	The 'seo' tag handles various things, including:
+	* <link rel="canonical">
+	* <meta name="description">
+	* <meta property="og:…"> for OpenGraph (e.g. Twitter Cards)
+-->
+{%- endcomment -%}
+<main class="container">
+	<header class="about"role="banner">
+		<a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
+			<img src="{{ '/assets/profile.png' | relative_url }}" alt="{{ site.plainwhite.name | escape }}">
+			<h2>{{ site.plainwhite.name | escape }}</h2>
+		</a>
+		<p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
+		<ul class="social">
+			<li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="{{ site.plainwhite.social_links.github | escape }} on GitHub"><i class="icon-github-circled"></i></a></li>
+			<li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="@{{ site.plainwhite.social_links.twitter | escape }} on Twitter"><i class="icon-twitter-squared"></i></a></li>
+		</ul>
+		<p class="footer">&copy; 2019</p>
+	</header>
+	<section class="content">
+		{{ content }}
+	</section>
+	<script>
+		function handleTip(e) {
+			if (e.target.previousSibling && e.target.previousSibling.classList)
+				e.target.previousSibling.classList.toggle('tip-active');
+		}
+		function init() {
+			var nodes, i, handle;
+			nodes = document.querySelectorAll('[data-tip]');
+			i = nodes.length;
+			while (i--) {
+				handle = document.createElement('span');
+				handle.className = 'tip-handle';
+				handle.addEventListener('click', handleTip);
+				nodes[i].parentNode.insertBefore(handle, nodes[i].nextSibling);
+			}
+		}
+		if ('ontouchstart' in window) init();
+	</script>
+</main>
 </html>

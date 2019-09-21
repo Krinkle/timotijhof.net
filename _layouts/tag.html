@@ -2,10 +2,10 @@
 layout: default
 ---
 
-<h1 class="page-heading">Tag: {{ page.tag }}</h1>
+<h1 class="page-heading">Tag: {{ page.tag | escape }}</h1>
 
 <div class="posts">
-  <h1 class="posts-label">{%- if site.posts.size == 1 -%} 1 post {%- else -%} {{site.posts.size}} posts {%- endif -%}</h1>
+  <h1 class="posts-label">{%- if site.posts.size == 1 -%} 1 post {%- else -%} {{ site.posts.size }} posts {%- endif -%}</h1>
 
   {%- for post in site.tags[page.tag] -%}
   <div>
