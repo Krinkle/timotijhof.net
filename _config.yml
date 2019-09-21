@@ -1,34 +1,51 @@
-title: Your awesome title
-author: GitHub User
-email: your-email@domain.com
-description: > # this means to ignore newlines until "show_exerpts:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-show_excerpts: true # set to true to show excerpts on the homepage
+##
+# Jekyll
+# https://jekyllrb.com/docs/configuration/
+##
 
-# Minima date format
-# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
-sass:
-  sass_dir: _sass
-plainwhite:
-  name: Adam Denisov
-  tagline: Developer. Designer
-  date_format: "%b %-d, %Y"
-  sitemap: true # set to true to generate sitemap.xml content
+## Jekyll / Configuration
+permalink: /posts/:title/
+exclude:
+  - LICENSE.txt
+  - README.md
+timezone: Europe/London
 
-  # generate social links in footer
-  social_links:
-    twitter: thelehhman
-    github:  thelehhman
-    linkedIn: in/thelehhman
-    rss: rss
-
-# If you want to link only specific pages in your header, uncomment
-# this and add the path to the pages in order as they should show up
-#header_pages:
-# - about.md
-
+## Jekyll / Plugins
 plugins:
   - jekyll-seo-tag
-#  - jekyll-feed
+  - jekyll-feed
+
+sass:
+  style: compressed
+
+##
+# Theme configuration
+##
+
+title: Timo Tijhof
+description: >
+  Software updates, inner musings, and (hopefully) educational findings.
+# Excerpts on the homepage
+
+plainwhite:
+  # Title in sidebar
+  name: Timo Tijhof
+  # Caption in sidebar
+  tagline: Principal Engineer, Wikimedia Foundation.
+  date_format: "%b %-d, %Y"
+  # Except on Home and Tag pages
+  show_excerpts: true
+  social_links:
+    github:  Krinkle
+    twitter: TimoTijhof
+
+# ## Theme configuration / License
+# licenses:
+#   CC-BY-4.0:
+#     name: Creative Commons
+#     url: https://creativecommons.org/licenses/by/4.0/
+#     image: https://i.creativecommons.org/l/by/4.0/88x31.png
+#   CC-BY-ND-4.0:
+#     name: Creative Commons
+#     url: https://creativecommons.org/licenses/by-nd/4.0/
+#     image: https://i.creativecommons.org/l/by-nd/4.0/88x31.png

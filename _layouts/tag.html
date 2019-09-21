@@ -2,17 +2,12 @@
 layout: default
 ---
 
-{%- if page.title -%}
-<h1 class="page-heading">{{ page.title }}</h1>
-{%- endif -%}
+<h1 class="page-heading">Tag: {{ page.tag }}</h1>
 
-{{ content }}
-
-{%- if site.posts.size > 0 -%}
 <div class="posts">
-  <h1 class="posts-label">posts</h1>
+  <h1 class="posts-label">{%- if site.posts.size == 1 -%} 1 post {%- else -%} {{site.posts.size}} posts {%- endif -%}</h1>
 
-  {%- for post in site.posts -%}
+  {%- for post in site.tags[page.tag] -%}
   <div>
     {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
     <a class="post-link" href="{{ post.url | relative_url }}">
@@ -29,5 +24,3 @@ layout: default
   </div>
   {%- endfor -%}
 </div>
-
-{%- endif -%}
