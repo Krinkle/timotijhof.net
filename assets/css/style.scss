@@ -15,4 +15,4 @@
 	background-image: url("data:image/svg+xml, {{ _icon_twitter_svg | remove_first: '<?xml version="1.0" encoding="utf-8"?>' | strip_newlines | uri_escape | replace: '%20', ' ' }}");
 }
 
-@import "plain";
+@import "plainwhite";

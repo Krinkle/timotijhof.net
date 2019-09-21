@@ -1,5 +1,4 @@
 @import 'ext/fonts';
-@import 'ext/normalize';
 @import 'ext/solarized-light';
 
 $linkColor: #0A59B0;
@@ -14,6 +13,14 @@ $leftWidth: 220px;
 	box-sizing: border-box;
 }
 
+html {
+	// 1. Set default font family to sans-serif.
+	// 2. Prevent iOS text size adjust after orientation change, without disabling user zoom.
+	font-family: sans-serif; // 1
+	-ms-text-size-adjust: 100%; // 2
+	-webkit-text-size-adjust: 100%; // 2
+}
+
 body {
 	font-family: 'Avenir', sans-serif;
 	font-size: 16px;
@@ -21,6 +28,11 @@ body {
 	margin: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
 }
 
 h2 {
@@ -40,11 +52,24 @@ a {
 	}
 }
 
+hr {
+	border: 0;
+	background: #E3E3E3;
+	margin: 2em auto;
+	width: 80%;
+	height: 1px;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
 a.sitelink {
 	text-decoration: none;
 }
 
 pre.highlight {
+	overflow: auto;
 	background-color: #f4f4f4;
 	padding: 1em 1.5em;
 	font-family: Menlo, Monaco, monospace;
@@ -55,6 +80,7 @@ code.highlighter-rouge {
 	background-color: #f2f2f2;
 	padding: 0.3em 0.4em;
 	font-family: Menlo, Monaco, monospace;
+	font-size: 1em;
 }
 
 main {
@@ -195,14 +221,6 @@ main {
 			border-bottom: 0.5px solid $linkColor;
 		}
 	}
-}
-
-hr {
-	border: 0;
-	background: #E3E3E3;
-	margin: 2em auto;
-	width: 80%;
-	height: 1px;
 }
 
 a[data-tip] {
