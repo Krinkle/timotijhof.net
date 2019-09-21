@@ -1,13 +1,19 @@
-@import 'ext/fonts';
 @import 'ext/solarized-light';
 
 $linkColorRoot: #000;
 $linkColorContent: #085bb5;
 $linkColorShade: #ddedfd;
 
+$textBackShade: #f4f4f4;
+
 $textColorRoot: #222;
 $textColorContent: #333;
+$textColorContentOnShade: #222;
+$textColorMinor: #555;
+$textColorMutedOnShade: #777;
 $textColorMuted: #aaa;
+
+$lineShade: #eee;
 
 $breakMobileSmall: 480px;
 $breakMobile: 770px;
@@ -54,16 +60,31 @@ a {
 	}
 }
 
+blockquote {
+	margin: 1em;
+	border-left: 5px solid $lineShade;
+	padding: 0.5em 1em;
+	color: $textColorMinor;
+	font-size: 0.8em;
+}
+
 hr {
 	border: 0;
-	background: #e3e3e3;
+	background: $lineShade;
 	margin: 2em auto;
 	width: 80%;
 	height: 1px;
 }
 
-abbr[title] {
-	border-bottom: 1px dotted;
+// See also assets/css/style.scss
+[class^="icon-"], [class*=" icon-"] {
+  speak: none;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: .2em;
+  margin-right: .2em;
+  background-size: contain;
 }
 
 a.sitelink {
@@ -72,14 +93,14 @@ a.sitelink {
 
 pre.highlight {
 	overflow: auto;
-	background-color: #f4f4f4;
+	background-color: $textBackShade;
 	padding: 1em 1.5em;
 	font-family: Menlo, Monaco, monospace;
 	line-height: 1.4em;
 	tab-size: 4;
 }
 code.highlighter-rouge {
-	background-color: #f2f2f2;
+	background-color: $textBackShade;
 	padding: 0.3em 0.4em;
 	font-family: Menlo, Monaco, monospace;
 	font-size: 0.8em;
@@ -94,16 +115,27 @@ main {
 	@media screen and (max-width: $breakWide + 50px) {
 		margin: 0 2vw;
 	}
-
-	@media screen and (min-width: $breakMobile) {
-		.content {
-		    max-width: calc(100% - 220px);
-		}
-	}
-
 	@media screen and (max-width: $breakMobile) {
 		margin: 0 10px;
 		flex-direction: column;
+	}
+}
+.content {
+	// Use border-box to make it easy to add padding
+	// inside, within the given width/max-width.
+	box-sizing: border-box;
+	padding: 35px 30px;
+
+	@media screen and (min-width: $breakMobile) {
+		max-width: calc(100% - 220px);
+	}
+	@media screen and (max-width: $breakMobile) {
+		// Remove top padding
+		padding: 0 30px;
+	}
+	@media screen and (max-width: $breakMobileSmall) {
+		// Reduce side padding
+		padding: 0 20px;
 	}
 }
 
@@ -152,7 +184,7 @@ main {
 		font-size: 34px;
 	}
 	a:hover i {
-		/* Approximate $linkColorContent */
+		// Approximate $linkColorContent
 		filter: contrast(0.2) sepia(1) saturate(4) hue-rotate(180deg);
 	}
 }
@@ -161,32 +193,27 @@ main {
 	color: $textColorMuted;
 }
 
-.posts,
-.post-container {
-	margin: 45px 30px;
-	@media screen and (max-width: $breakMobileSmall) {
-		margin-left: 20px;
-		margin-right: 20px;
-	}
-	@media screen and (max-width: $breakMobile) {
-		padding: 0 !important;
-		margin-top: 0;
-	}
-}
 .posts-label {
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid $lineShade;
 	font-size: 15px;
-	color: #777;
+	color: $textColorMinor;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 	padding-bottom: 10px;
 	font-weight: normal;
 }
+.posts-row {
+	border-bottom: 1px solid $lineShade;
+}
+.posts-readmore {
+	font-size: 0.8em;
+	text-align: center;
+}
 .post-link {
 	text-decoration: none;
 }
-.posts .post-link:hover {
-	/* On listings (home, tag) */
+.posts-row .post-link:hover {
+	// On listings (home, tag)
 	text-decoration-line: underline;
 	text-decoration-color: $linkColorContent;
 }
@@ -197,9 +224,13 @@ main {
 .post-date {
 	float: right;
 	margin-right: 10px;
-	color: #555;
+	color: $textColorMinor;
 	i {
+		// Approximate text color
 		opacity: 0.7;
+	}
+	a {
+		text-decoration: none;
 	}
 }
 .post-tags {
@@ -210,7 +241,7 @@ main {
 		font-size: 14px;
 		text-decoration: none;
 		float: left;
-		background-color: #f2f2f2;
+		background-color: $textBackShade;
 		padding: 5px 20px;
 		border-radius: 2px;
 		margin-right: 10px;
@@ -221,6 +252,7 @@ main {
 		text-decoration-color: $linkColorContent;
 	}
 }
+.page-heading,
 .post-title {
 	line-height: 1.2em;
 	font-size: 28px;
@@ -238,9 +270,11 @@ main {
 		text-decoration: none;
 		border-bottom: 0.5px solid $linkColorContent;
 		&:hover {
-			border-bottom: 3px solid $linkColorContent;
+			outline: 1px solid $linkColorShade;
 			background-color: $linkColorShade;
-			outline: 2px solid $linkColorShade;
+			border-bottom: 3px solid $linkColorContent;
+			// Approximate $linkColorShade
+			box-shadow: 0px 0px 0px 5px hsla(211, 92%, 37%, 0.12);
 		}
 	}
 	li {
@@ -253,6 +287,25 @@ main {
 
 	@media screen and (max-width: $breakMobile) {
 		font-size: 17px;
+	}
+}
+
+.post .md-dictdef {
+	background-color: $textBackShade;
+	line-height: 1;
+	color: $textColorContentOnShade;
+
+	.md-dicteg {
+		color: $textColorMutedOnShade;
+	}
+}
+.posts-row .md-dictdef {
+	margin-top: 0;
+	background-color: transparent;
+	color: inherit;
+
+	.md-dicteg {
+		color: $textColorMuted;
 	}
 }
 
@@ -324,3 +377,10 @@ a[data-tip] + .tip-handle:before {
 	content: "i";
 }
 
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+}

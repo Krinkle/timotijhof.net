@@ -4,7 +4,7 @@
 ##
 
 ## Jekyll / Configuration
-permalink: /posts/:title/
+permalink: /posts/:year/:title/
 exclude:
   - LICENSE.txt
   - README.md
@@ -12,9 +12,16 @@ timezone: Europe/London
 
 ## Jekyll / Plugins
 plugins:
-  - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-seo-tag
 
+## Jekyll / Posts
+## https://jekyllrb.com/docs/posts/#post-excerpts
+excerpt_separator: <!--more-->
+
+## Jekyll / Sass
+## https://jekyllrb.com/docs/assets/#sassscss
 sass:
   style: compressed
 
@@ -25,27 +32,23 @@ sass:
 title: Timo Tijhof
 description: >
   Software updates, inner musings, and (hopefully) educational findings.
-# Excerpts on the homepage
 
 plainwhite:
   # Title in sidebar
   name: Timo Tijhof
   # Caption in sidebar
   tagline: Principal Engineer, Wikimedia Foundation.
-  date_format: "%b %-d, %Y"
-  # Except on Home and Tag pages
+  date_format: "%e %b %Y"
+  # Excerpts on Home and Tag pages
   show_excerpts: true
+  # Tag filter for Home page
+  exclude_tag: wiki-tools
   social_links:
     github:  Krinkle
     twitter: TimoTijhof
 
-# ## Theme configuration / License
-# licenses:
-#   CC-BY-4.0:
-#     name: Creative Commons
-#     url: https://creativecommons.org/licenses/by/4.0/
-#     image: https://i.creativecommons.org/l/by/4.0/88x31.png
-#   CC-BY-ND-4.0:
-#     name: Creative Commons
-#     url: https://creativecommons.org/licenses/by-nd/4.0/
-#     image: https://i.creativecommons.org/l/by-nd/4.0/88x31.png
+defaults:
+  - scope:
+      path: ""
+    values:
+      author: "Timo Tijhof"

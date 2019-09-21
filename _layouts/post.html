@@ -2,41 +2,39 @@
 layout: default
 ---
 {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
-<div class="post-container">
-  <a class="post-link" href="{{ page.url | relative_url }}">
-    <h2 class="post-title">{{ page.title | escape }}</h2>
-  </a>
-  <div class="post-meta">
-    <div class="post-tags">
-      {%- for tag in page.tags -%}
-      <a href="{% link {{ tag | prepend: 'tag/' | append: '.md' }} %}">{{ tag | escape }}</a>
-      {%- endfor -%}
-    </div>
-    <div class="post-date"><i class="icon-calendar"></i>{{ page.date | date: date_format }}</div>
+<a class="post-link" href="{{ page.url | relative_url }}">
+  <h2 class="post-title">{{ page.title | escape }}</h2>
+</a>
+<div class="post-meta">
+  <div class="post-tags">
+    {%- for tag in page.tags -%}
+    <a rel="tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
+    {%- endfor -%}
   </div>
-  <div class="post">
-    {{ content }}
-  </div>
-  <hr>
-  {%- if page.plainwhite.original_url or page.plainwhite.also_url -%}
-  <p>
-    {% if page.plainwhite.original_url -%}
-    Originally published {% if page.plainwhite.original_label -%}
-    on <a href="{{ page.plainwhite.original_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.original_label | escape }}</a>
-    {%- else -%}
-    at <a href="{{ page.plainwhite.original_url | escape }}" target="_blank" rel="noopener">{{ page.plainwhite.original_url | url_origin | escape }}</a>
-    {%- endif -%}
-    .
-    {%- endif %}
-    {% if page.plainwhite.also_url -%}
-    Also published {% if page.plainwhite.also_label -%}
-    on <a href="{{ page.plainwhite.also_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.also_label | escape }}</a>
-    {%- else -%}
-    at <a href="{{ page.plainwhite.also_url | escape }}" target="_blank" rel="noopener">{{ page.plainwhite.also_url | url_origin | escape }}</a>
-    {%- endif -%}
-    .
-    {%- endif -%}
-  </p>
-  {%- endif -%}
-  <p><a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" data-tip="Except where otherwise noted, this work is licensed under a Creative Commons license (CC BY 4.0)" target="_blank">Some rights reserved</a>.</p>
+  <div class="post-date"><i class="icon-calendar"></i><time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></div>
 </div>
+<div class="post">
+  {{ content }}
+</div>
+<hr>
+{%- if page.plainwhite.original_url or page.plainwhite.also_url -%}
+<p>
+  {% if page.plainwhite.original_url -%}
+  Originally published {% if page.plainwhite.original_label -%}
+  on <a href="{{ page.plainwhite.original_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.original_label | escape }}</a>
+  {%- else -%}
+  at <a href="{{ page.plainwhite.original_url | escape }}" target="_blank" rel="noopener">{{ page.plainwhite.original_url | url_origin | escape }}</a>
+  {%- endif -%}
+  .
+  {%- endif %}
+  {% if page.plainwhite.also_url -%}
+  Also published {% if page.plainwhite.also_label -%}
+  on <a href="{{ page.plainwhite.also_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.also_label | escape }}</a>
+  {%- else -%}
+  at <a href="{{ page.plainwhite.also_url | escape }}" target="_blank" rel="noopener">{{ page.plainwhite.also_url | url_origin | escape }}</a>
+  {%- endif -%}
+  .
+  {%- endif -%}
+</p>
+{%- endif -%}
+<p><a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" data-tip="Except where otherwise noted, this work is licensed under a Creative Commons license (CC BY 4.0)" target="_blank">Some rights reserved</a>. Written by <span rel="author">{{ page.author | escape }}<span>. Published on <time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%e %B %Y' }}</time>.</p>
