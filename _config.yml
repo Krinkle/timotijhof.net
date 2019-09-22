@@ -26,6 +26,7 @@ excerpt_separator: <!--more-->
 ## https://jekyllrb.com/docs/assets/#sassscss
 sass:
   style: compressed
+  sourcemap: never
 
 ##
 # Theme configuration

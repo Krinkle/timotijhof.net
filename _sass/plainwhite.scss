@@ -59,6 +59,9 @@ a {
 		color: $linkColorContent;
 	}
 }
+a.sitelink {
+	text-decoration: none;
+}
 
 blockquote {
 	margin: 1em;
@@ -85,10 +88,6 @@ hr {
   margin-left: .2em;
   margin-right: .2em;
   background-size: contain;
-}
-
-a.sitelink {
-	text-decoration: none;
 }
 
 pre.highlight {
@@ -149,18 +148,44 @@ main {
 	align-items: center;
 	text-align: center;
 	margin: 10vh auto 0 auto;
+	img {
+		max-width: 150px;
+	}
 	h2 {
 		font-size: 22px;
 		margin-top: 25px;
 		margin-bottom: 0;
 		font-weight: normal;
 	}
-	img {
-		max-width: 150px;
-	}
 	@media screen and (max-width: $breakMobile) {
 		height: auto;
 		margin-top: 5vh;
+	}
+}
+.about-sm {
+	@media screen and (max-width: $breakMobile) {
+		display: block;
+		flex: none;
+		width: auto;
+		margin: 0;
+		padding: 10px 0;
+		border-bottom: 1px solid $lineShade;
+		.sitelink {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+		}
+		img {
+			max-width: 50px;
+		}
+		h2 {
+			margin: 0 0 0 10px;
+		}
+		.tagline,
+		.social,
+		.footer {
+			display: none;
+		}
 	}
 }
 
@@ -220,10 +245,11 @@ main {
 
 .post-meta {
 	overflow: hidden;
+	// Undo last non-collapsed post-tags margin-bottom
+	margin-bottom: -10px;
 }
 .post-date {
 	float: right;
-	margin-right: 10px;
 	color: $textColorMinor;
 	i {
 		// Approximate text color
@@ -244,7 +270,7 @@ main {
 		background-color: $textBackShade;
 		padding: 5px 20px;
 		border-radius: 2px;
-		margin-right: 10px;
+		margin: 0 10px 10px 0;
 	}
 	a:hover {
 		background-color: $linkColorShade;

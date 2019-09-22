@@ -21,7 +21,7 @@
 -->
 {%- endcomment -%}
 <main>
-	<header class="about" role="banner">
+	<header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
 		<a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
 			<img src="{{ '/assets/profile.png' | relative_url }}" alt="{{ site.plainwhite.name | escape }}">
 			<h2>{{ site.plainwhite.name | escape }}</h2>
