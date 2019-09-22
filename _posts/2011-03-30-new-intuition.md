@@ -3,7 +3,8 @@ layout: post
 title: "New: Intuition"
 tags: wiki-tools
 redirect_from:
-- /2011/new-intuition/ # former WordPress site
+- /2011/new-intuition/ # former WordPress site (imported)
+- /2011/new-toolserver-intuition/ # former WordPress site (renamed)
 ---
 
 Last couple of weeks I’ve been working on a new project, based on an ad-hoc i18n solution I had in some of my tools.

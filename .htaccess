@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Enforce canonical domain
+RewriteCond %{HTTP_HOST} ^www.timotijhof.net [NC]
+RewriteRule ^(.*)$ https://timotijhof.net/$1 [R=301,L]
+
+# Enforce HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://timotijhof.net/$1 [R=301,L]
+
+# Compatibility with former WordPress site
+Redirect 301 /category/tools/feed/ https://timotijhof.net/feed.xml
+Redirect 301 /category/toolserver/feed/ https://timotijhof.net/feed.xml
+Redirect 301 /feed/ https://timotijhof.net/feed.xml

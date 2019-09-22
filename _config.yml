@@ -9,6 +9,8 @@ exclude:
   - LICENSE.txt
   - README.md
 timezone: Europe/London
+# Used by 'jekyll build'. Ignored by 'jekyll serve'.
+url: https://timotijhof.net
 
 ## Jekyll / Plugins
 plugins:
