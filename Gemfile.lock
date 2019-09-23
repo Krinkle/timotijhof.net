@@ -29,8 +29,6 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 1.8)
-    jekyll-feed (0.12.1)
-      jekyll (>= 3.7, < 5.0)
     jekyll-redirect-from (0.15.0)
       jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (2.0.0)
@@ -68,7 +66,6 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (= 4.0.0)
-  jekyll-feed (= 0.12.1)
   jekyll-redirect-from (= 0.15.0)
   jekyll-seo-tag (= 2.6.1)
 

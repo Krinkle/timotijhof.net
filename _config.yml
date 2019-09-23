@@ -14,7 +14,6 @@ url: https://timotijhof.net
 
 ## Jekyll / Plugins
 plugins:
-  - jekyll-feed
   - jekyll-redirect-from
   - jekyll-seo-tag
 
@@ -27,6 +26,11 @@ excerpt_separator: <!--more-->
 sass:
   style: compressed
   sourcemap: never
+
+##
+# Unofficial site vars that various plugins consider.
+##
+author: Timo Tijhof
 
 ##
 # Theme configuration
@@ -49,7 +53,9 @@ plainwhite:
   social_links:
     github:  Krinkle
     twitter: TimoTijhof
-  stat_url: https://stats.timotijhof.net/matomo.php?idsite=8&rec=1
+  matomo:
+    url: https://stats.timotijhof.net
+    idsite: 8
 
 defaults:
   - scope:
