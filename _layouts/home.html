@@ -34,8 +34,15 @@ layout: default
 {%- if site.tags.size > 0 -%}
 <h1 class="posts-label">tags</h1>
 <div class="post-tags">
+{%- capture tags_str -%}
 {%- for tag in site.tags -%}
-  <a href="{% link {{ tag | first | prepend: 'tags/' | append: '.md' }} %}">{{ tag | first | escape }}</a>
+  {{ tag[0] }}
+  {%- unless forloop.last %}|{% endunless -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- assign tags = tags_str | split: '|' | sort -%}
+{%- for tag in tags -%}
+  <a href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
 {%- endfor -%}
 </div>
 {%- endif -%}

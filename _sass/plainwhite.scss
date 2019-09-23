@@ -49,10 +49,6 @@ h2, h3 {
 	margin: 0.7em 0;
 }
 
-img, embed, object, video {
-	max-width: 100%;
-}
-
 a {
 	color: $linkColorRoot;
 	&:hover {
@@ -306,6 +302,13 @@ main {
 	li {
 		margin-top: 1em;
 	}
+	img {
+		object-fit: scale-down;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 100vh;
+	}
 
 	@media screen and (min-width: $breakWide) {
 		font-size: 21px;
@@ -316,20 +319,25 @@ main {
 	}
 }
 
-.post .md-dictdef {
-	background-color: $textBackShade;
-	line-height: 1;
-	color: $textColorContentOnShade;
-
+.post {
+	.md-dictdef {
+		background-color: $textBackShade;
+		line-height: 1;
+		color: $textColorContentOnShade;
+	}
 	.md-dicteg {
 		color: $textColorMutedOnShade;
 	}
+	.md-center {
+		text-align: center;
+	}
 }
-.posts-row .md-dictdef {
-	margin-top: 0;
-	background-color: transparent;
-	color: inherit;
-
+.posts-row {
+	.md-dictdef {
+		margin-top: 0;
+		background-color: transparent;
+		color: inherit;
+	}
 	.md-dicteg {
 		color: $textColorMuted;
 	}
