@@ -10,10 +10,9 @@ layout: default
 
 {%- if site.posts.size > 0 -%}
 <h1 class="posts-label">posts</h1>
-
 {%- for post in site.posts -%}
   {% if post.tags contains site.plainwhite.exclude_tag %}
-    {% continue %}
+    {%- continue -%}
   {%- endif -%}
 <div class="posts-row">
   {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
@@ -30,12 +29,10 @@ layout: default
   </div>
 </div>
 {%- endfor -%}
-
 {%- endif -%}
 
-{% if site.tags.size > 0 -%}
+{%- if site.tags.size > 0 -%}
 <h1 class="posts-label">tags</h1>
-
 <div class="post-tags">
 {%- for tag in site.tags -%}
   <a href="{% link {{ tag | first | prepend: 'tags/' | append: '.md' }} %}">{{ tag | first | escape }}</a>

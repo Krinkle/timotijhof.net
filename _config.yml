@@ -49,6 +49,7 @@ plainwhite:
   social_links:
     github:  Krinkle
     twitter: TimoTijhof
+  stat_url: https://stats.timotijhof.net/matomo.php?idsite=8&rec=1
 
 defaults:
   - scope:

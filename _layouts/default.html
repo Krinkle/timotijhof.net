@@ -39,20 +39,18 @@
 </main>
 <script>
 function handleTip(e) {
-	if (e.target.previousSibling && e.target.previousSibling.classList)
+	if (e.target.previousSibling)
 		e.target.previousSibling.classList.toggle('tip-active');
 }
 function init() {
-	var nodes, i, handle;
-	nodes = document.querySelectorAll('[data-tip]');
-	i = nodes.length;
+	var handle, nodes = document.querySelectorAll('[data-tip]'), i = nodes.length;
 	while (i--) {
-		handle = document.createElement('span');
-		handle.className = 'tip-handle';
+		handle = document.createElement('span'); handle.className = 'tip-handle';
 		handle.addEventListener('click', handleTip);
 		nodes[i].parentNode.insertBefore(handle, nodes[i].nextSibling);
 	}
 }
-if ('ontouchstart' in window) init();
+if ('ontouchstart' in window && document.querySelectorAll && 'classList' in document.body) init();
 </script>
+{%- if site.plainwhite.stat_url %}<img src="{{ site.plainwhite.stat_url | escape }}" alt="">{% endif -%}
 </html>
