@@ -31,7 +31,7 @@
 			<li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="{{ site.plainwhite.social_links.github | escape }} on GitHub"><i class="icon-github-circled"></i></a></li>
 			<li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="@{{ site.plainwhite.social_links.twitter | escape }} on Twitter"><i class="icon-twitter-squared"></i></a></li>
 		</ul>
-		<p class="footer">&copy; 2019</p>
+		<p class="footer">&copy; 2019{%- if site.plainwhite.stat_url %}<img src="{{ site.plainwhite.stat_url | escape }}" alt="">{% endif -%}</p>
 	</header>
 	<section class="content">
 		{{ content }}
@@ -52,5 +52,4 @@ function init() {
 }
 if ('ontouchstart' in window && document.querySelectorAll && 'classList' in document.body) init();
 </script>
-{%- if site.plainwhite.stat_url %}<img src="{{ site.plainwhite.stat_url | escape }}" alt="">{% endif -%}
 </html>
