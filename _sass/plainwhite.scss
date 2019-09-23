@@ -336,12 +336,7 @@ main {
 }
 
 a[data-tip] {
-	text-decoration: none;
 	position: relative;
-	border-bottom: 1px dotted currentColor;
-}
-a[data-tip]:hover {
-	border-bottom-style: solid;
 }
 a[data-tip].tip-active {
 	background: $linkColorShade;
