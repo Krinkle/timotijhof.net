@@ -6,6 +6,7 @@ redirect_from:
 - /2014/phantomjs-for-ci-anno-2014/ # former WordPress site (deleted page)
 plainwhite:
   original_url: https://codepen.io/Krinkle/post/phantomjs-anno-2014
+  original_label: CodePen
   also_url: https://medium.com/@timotijhof/phantomjs-for-ci-anno-2014-589a3f0dec6b
   also_label: Medium.com
 ---

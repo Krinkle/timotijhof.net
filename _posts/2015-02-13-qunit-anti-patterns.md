@@ -6,6 +6,7 @@ redirect_from:
 - /2015/qunit-anti-patterns/ # former WordPress site (deleted page)
 plainwhite:
   original_url: https://codepen.io/Krinkle/post/qunit-anti-patterns
+  original_label: CodePen
   also_url: https://medium.com/@timotijhof/qunit-anti-patterns-237ffef5e12f
   also_label: Medium.com
 ---

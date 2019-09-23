@@ -7,6 +7,8 @@ redirect_from:
 plainwhite:
   original_url: https://phabricator.wikimedia.org/phame/live/7/post/83/measuring_wikipedia_page_load_times/
   original_label: wikimedia.org
+  also_url: https://calendar.perfplanet.com/2018/measuring-wikipedia-page-load-times/
+  also_label: Performance Calendar 2018
 ---
 This post shows how we measure and interpret load times on Wikipedia. It also explains what real-user metrics are, and how percentiles work.
 
