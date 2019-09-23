@@ -3,4 +3,4 @@ RewriteEngine On
 # Thanks https://stackoverflow.com/a/8806785/319266
 RewriteCond %{QUERY_STRING} (^|&)v=
 RewriteRule .* - [E=IS_VERSIONED:1]
-Header set Cache-Control "max-age=2628000, public" env=IS_VERSIONED
+Header set Cache-Control "max-age=2628000, public, immutable" env=IS_VERSIONED
