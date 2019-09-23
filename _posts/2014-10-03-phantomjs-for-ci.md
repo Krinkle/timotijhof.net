@@ -53,3 +53,7 @@ Chromium has its abstraction layer at a higher level (platform independent). Whe
 * [Blink](https://en.wikipedia.org/wiki/Blink_(layout_engine)) on Wikipedia
 * [phantomjs.org](http://phantomjs.org/) (Official website)
 * [WebKit for Developers](https://www.paulirish.com/2013/webkit-for-developers/) by Paul Irish
+
+-------
+
+**Update (September 2018)**: If you found this interesting, you might also enjoy _[Creative Selection](http://creativeselection.io/)_ by Ken Kocienda. This book details the origin story of Apple Safari and iPhone from the engineer that worked on these projects at Apple.
