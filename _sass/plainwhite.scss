@@ -291,13 +291,16 @@ main {
 		color: $linkColorContent;
 		text-decoration: none;
 		border-bottom: 0.5px solid $linkColorContent;
-		&:hover {
-			outline: 1px solid $linkColorShade;
-			background-color: $linkColorShade;
-			border-bottom: 3px solid $linkColorContent;
-			// Approximate $linkColorShade
-			box-shadow: 0px 0px 0px 5px hsla(211, 92%, 37%, 0.12);
-		}
+	}
+	a:hover {
+		outline: 1px solid $linkColorShade;
+		background-color: $linkColorShade;
+		border-bottom: 3px solid $linkColorContent;
+		// Approximate $linkColorShade
+		box-shadow: 0px 0px 0px 5px hsla(211, 92%, 37%, 0.12);
+	}
+	a:hover > code {
+		background-color: transparent;
 	}
 	li {
 		margin-top: 1em;
