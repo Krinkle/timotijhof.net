@@ -15,7 +15,6 @@ url: https://timotijhof.net
 ## Jekyll / Plugins
 plugins:
   - jekyll-redirect-from
-  - jekyll-seo-tag
 
 ## Jekyll / Posts
 ## https://jekyllrb.com/docs/posts/#post-excerpts

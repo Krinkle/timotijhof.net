@@ -18,7 +18,7 @@ plainwhite:
   </div>
   <div class="post">
     {%- if site.plainwhite.show_excerpts -%}
-    {{ post.excerpt }}
+    {{- post.excerpt -}}
     {%- if post.excerpt != post.content -%}
     <div class="posts-readmore"><p><a href="{{ post.url | relative_url }}">Continue reading<span class="screen-reader-text"> {{ post.title | escape }}</span>…</a></p></div>
     {%- endif -%}

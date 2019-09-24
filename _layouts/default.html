@@ -3,62 +3,56 @@
 <meta charset="UTF-8">
 <title>
 {%- if page.title -%}
-	{{ page.title | escape }}   •   {{ site.title | escape }}
+  {{ page.title | escape }}   •   {{ site.title | escape }}
 {%- else -%}
-	{{ site.title | escape }}
+  {{ site.title | escape }}
 {%- endif -%}
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ '/assets/css/style.css?v=20190922' | relative_url }}">
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
-{% seo %}
-{%- comment -%}
-<!--
-	The 'seo' tag handles various things, including:
-	* <link rel="canonical">
-	* <meta name="description">
-	* <meta property="og:…"> for OpenGraph (e.g. Twitter Cards)
--->
-{%- endcomment -%}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+{%- capture opengraph %}{% include opengraph.html %}{% endcapture -%}
+{{ opengraph | strip_newlines }}
 <main>
-	<header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
-		<a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
-			<img src="{{ '/assets/profile.png?v=20190922' | relative_url }}" alt="{{ site.plainwhite.name | escape }}">
-			<h2>{{ site.plainwhite.name | escape }}</h2>
-		</a>
-		<p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
-		<ul class="social">
-			<li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="{{ site.plainwhite.social_links.github | escape }} on GitHub"><i class="icon-github-circled"></i></a></li>
-			<li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="@{{ site.plainwhite.social_links.twitter | escape }} on Twitter"><i class="icon-twitter-squared"></i></a></li>
-		</ul>
-		<p class="footer">&copy; 2019</p>
-	</header>
-	<section class="content">
-		{{ content }}
-	</section>
+  <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
+    <a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
+      <img src="{{ '/assets/profile.png?v=20190922' | relative_url }}" alt="{{ site.plainwhite.name | escape }}">
+      <h2>{{ site.plainwhite.name | escape }}</h2>
+    </a>
+    <p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
+    <ul class="social">
+      <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="{{ site.plainwhite.social_links.github | escape }} on GitHub"><i class="icon-github-circled"></i></a></li>
+      <li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="@{{ site.plainwhite.social_links.twitter | escape }} on Twitter"><i class="icon-twitter-squared"></i></a></li>
+    </ul>
+    <p class="footer">&copy; 2019</p>
+  </header>
+  <section class="content">
+    {{- content -}}
+  </section>
 </main>
 {%- if site.plainwhite.matomo.url and site.plainwhite.matomo.idsite -%}
-	{%- capture matomo_basic -%}
-	{{ site.plainwhite.matomo.url }}/matomo.php?idsite={{ site.plainwhite.matomo.idsite | url_encode }}&rec=1
-	{%- endcapture -%}
+  {%- capture matomo_basic -%}
+  {{ site.plainwhite.matomo.url }}/matomo.php?idsite={{ site.plainwhite.matomo.idsite | url_encode }}&rec=1
+  {%- endcapture -%}
 {%- endif -%}
 <script>
 function main() {
-	function handleTip(e) {
-		if (e.target.previousSibling)
-			e.target.previousSibling.classList.toggle('tip-active');
-	}
-	function initTouch() {
-		var handle, nodes = document.querySelectorAll('[data-tip]'), i = nodes.length;
-		while (i--) {
-			handle = document.createElement('span'); handle.className = 'tip-handle';
-			handle.addEventListener('click', handleTip);
-			nodes[i].parentNode.insertBefore(handle, nodes[i].nextSibling);
-		}
-	}
-	{% if matomo_basic -%}
-	if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | jsonify }} + '&send_image=0&url=' + encodeURIComponent(location.protocol + '//' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
-	{%- endif %}
-	if ('ontouchstart' in window) initTouch();
+  function handleTip(e) {
+    if (e.target.previousSibling)
+      e.target.previousSibling.classList.toggle('tip-active');
+  }
+  function initTouch() {
+    var handle, nodes = document.querySelectorAll('[data-tip]'), i = nodes.length;
+    while (i--) {
+      handle = document.createElement('span'); handle.className = 'tip-handle';
+      handle.addEventListener('click', handleTip);
+      nodes[i].parentNode.insertBefore(handle, nodes[i].nextSibling);
+    }
+  }
+  {% if matomo_basic -%}
+  if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | jsonify }} + '&send_image=0&url=' + encodeURIComponent(location.protocol + '//' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
+  {%- endif %}
+  if ('ontouchstart' in window) initTouch();
 }
 if (document.querySelectorAll && 'classList' in document.body) main();</script></html>

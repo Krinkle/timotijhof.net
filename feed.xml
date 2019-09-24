@@ -27,23 +27,22 @@ layout: null
 				{{ matomo_basic | xml_escape }}
 			{%- endif -%}
 		</content>
-
-		{% assign post_author = post.author | default: post.authors[0] | default: site.author %}
+		{% assign post_author = post.author | default: site.author %}
 		<author>
 			<name>{{ post_author | default: "" | xml_escape }}</name>
 		</author>
 
-		{% if post.category %}
+		{%- if post.category -%}
 		<category term="{{ post.category | xml_escape }}" />
 		{% endif %}
 
-		{% for tag in post.tags %}
+		{%- for tag in post.tags -%}
 		<category term="{{ tag | xml_escape }}" />
-		{% endfor %}
+		{%- endfor -%}
 
-		{% if post.excerpt and post.excerpt != empty %}
+		{%- if post.excerpt and post.excerpt != empty -%}
 		<summary type="html">{{ post.excerpt | strip_html | normalize_whitespace | xml_escape }}</summary>
-		{% endif %}
+		{%- endif -%}
 	</entry>
 	{% endfor %}
 </feed>

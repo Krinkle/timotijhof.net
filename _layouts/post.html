@@ -16,7 +16,7 @@ plainwhite:
   <div class="post-date"><i class="icon-calendar"></i><time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></div>
 </div>
 <div class="post">
-  {{ content }}
+  {{- content -}}
 </div>
 <hr>
 {%- if page.plainwhite.original_url or page.plainwhite.also_url -%}
