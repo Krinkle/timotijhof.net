@@ -39,8 +39,7 @@
 <script>
 function main() {
   function handleTip(e) {
-    if (e.target.previousSibling)
-      e.target.previousSibling.classList.toggle('tip-active');
+    if (e.target.previousSibling) e.target.previousSibling.classList.toggle('tip-active');
   }
   function initTouch() {
     var handle, nodes = document.querySelectorAll('[data-tip]'), i = nodes.length;
@@ -51,7 +50,7 @@ function main() {
     }
   }
   {% if matomo_basic -%}
-  if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | jsonify }} + '&send_image=0&url=' + encodeURIComponent(location.protocol + '//' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
+  if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
   {%- endif %}
   if ('ontouchstart' in window) initTouch();
 }
