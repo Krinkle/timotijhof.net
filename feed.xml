@@ -11,6 +11,7 @@ layout: null
 	<title type="html">{{ site.title | xml_escape }}</title>
 	<subtitle>{{ site.description | xml_escape }}</subtitle>
 
+	{%- assign matomo_cvar = '{"1":["Via","RSS"]}' -%}
 	{% assign posts = site.posts | sort: "date" | reverse %}
 	{% for post in posts limit: 15 %}
 	<entry{% if post.lang %}{{" "}}xml:lang="{{ post.lang }}"{% endif %}>
@@ -22,7 +23,7 @@ layout: null
 		<content type="html" xml:base="{{ post.url | absolute_url | xml_escape }}">{{ post.content | strip | xml_escape }}
 			{%- if site.plainwhite.matomo.url and site.plainwhite.matomo.idsite -%}
 				{%- capture matomo_basic -%}
-					<img src="{{ site.plainwhite.matomo.url }}/matomo.php?idsite={{ site.plainwhite.matomo.idsite | url_encode }}&amp;rec=1&amp;url={{ post.url | absolute_url | url_encode }}&amp;urlref={{ page.url | absolute_url | url_encode }}" alt=""/>
+					<img src="{{ site.plainwhite.matomo.url }}/matomo.php?idsite={{ site.plainwhite.matomo.idsite | url_encode }}&amp;rec=1&amp;url={{ post.url | absolute_url | url_encode }}&amp;_cvar={{ matomo_cvar | url_encode }}" alt=""/>
 				{%- endcapture -%}
 				{{ matomo_basic | xml_escape }}
 			{%- endif -%}
