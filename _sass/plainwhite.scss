@@ -326,6 +326,12 @@ main {
 		height: auto;
 		max-width: 100%;
 		max-height: 100vh;
+		@media screen and (min-width: $breakMobile) {
+			cursor: zoom-in;
+		}
+	}
+	a img {
+		cursor: inherit;
 	}
 
 	@media screen and (min-width: $breakWide) {

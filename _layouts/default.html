@@ -37,15 +37,17 @@
   {%- endcapture -%}
 {%- endif -%}
 <script>
-function main() {
+if (document.querySelectorAll && document.body.classList && document.body.matches) (function () {
   function handleTip(e) {
     e.target.parentNode.classList.toggle('tip-active');
     e.preventDefault();
   }
   var nodes = document.querySelectorAll('.tip-handle'), i = nodes.length;
   while (i--) nodes[i].addEventListener('click', handleTip);
-}
-if (document.querySelectorAll && 'classList' in document.body) main();
-{% if matomo_basic -%}
+  document.body.addEventListener('ontouchstart' in window ? 'dblclick' : 'click', function (e) {
+    if (e.target.nodeName === 'IMG' && !e.target.matches('a img')) window.open(e.target.src);
+  });
+}());
+{% if matomo_basic %}
 if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
 {%- endif %}</script>
