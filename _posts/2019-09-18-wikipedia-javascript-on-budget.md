@@ -60,7 +60,7 @@ The change was detected in ResourceLoader's synthetic monitoring. The above is c
 
 With this week's deployment, we've completed the goal of shrinking the startup manifest to under 28 KB. This cross-departmental and cross-organisational project reduced the startup manifest by **9 KB** overall (net bandwidth, after compression); From 36.2 kilobytes one year ago, down to 27.2 KB today.
 
-We have around 363,000 page views a minute in total on Wikipedia and sister projects. That's 21.8M an hour, or 523 million every day ([User pageview stats](https://stats.wikimedia.org/v2/#/all-projects/reading/total-page-views/normal%7Cbar%7C2-year%7Cagent~user%7Cmonthly)). This week's deployment saves around 1.4 Terabytes a day. In total, the year-long effort is saving 4.3 Terabytes a day of bandwidth on our users' page views.
+We have around 363,000 page views a minute in total on Wikipedia and sister projects. That's 21.8M an hour, or 523 million every day ([User pageview stats](https://stats.wikimedia.org/v2/#/all-projects/reading/total-page-views/normal%7Cbar%7C2-year%7Cagent~user%7Cmonthly)). This week's deployment saves around 1.4 terabytes a day. In total, the year-long effort is saving 4.3 terabytes a day of bandwidth on our users' page views.
 
 -------
 
