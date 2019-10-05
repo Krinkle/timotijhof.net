@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <title>
 {%- if page.title -%}
-  {{ page.title | escape }}   | {{ site.title | escape }}
+  {{ page.title | escape }} | {{ site.title | escape }}
 {%- else -%}
   {{ site.title | escape }}
 {%- endif -%}
@@ -39,19 +39,13 @@
 <script>
 function main() {
   function handleTip(e) {
-    if (e.target.previousSibling) e.target.previousSibling.classList.toggle('tip-active');
+    e.target.parentNode.classList.toggle('tip-active');
+    e.preventDefault();
   }
-  function initTouch() {
-    var handle, nodes = document.querySelectorAll('[data-tip]'), i = nodes.length;
-    while (i--) {
-      handle = document.createElement('span'); handle.className = 'tip-handle';
-      handle.addEventListener('click', handleTip);
-      nodes[i].parentNode.insertBefore(handle, nodes[i].nextSibling);
-    }
-  }
+  var nodes = document.querySelectorAll('.tip-handle'), i = nodes.length;
+  while (i--) nodes[i].addEventListener('click', handleTip);
   {% if matomo_basic -%}
   if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
   {%- endif %}
-  if ('ontouchstart' in window) initTouch();
 }
 if (document.querySelectorAll && 'classList' in document.body) main();</script></html>
