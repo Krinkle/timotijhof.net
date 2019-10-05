@@ -44,8 +44,8 @@ function main() {
   }
   var nodes = document.querySelectorAll('.tip-handle'), i = nodes.length;
   while (i--) nodes[i].addEventListener('click', handleTip);
-  {% if matomo_basic -%}
-  if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
-  {%- endif %}
 }
-if (document.querySelectorAll && 'classList' in document.body) main();</script></html>
+if (document.querySelectorAll && 'classList' in document.body) main();
+{% if matomo_basic -%}
+if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
+{%- endif %}</script></html>
