@@ -66,6 +66,12 @@ blockquote {
 	color: $textColorMinor;
 	font-size: 0.8em;
 }
+blockquote > p:first-child {
+    margin-top: 0;
+}
+blockquote > p:last-child {
+    margin-bottom: 0;
+}
 
 hr {
 	border: 0;
@@ -297,6 +303,10 @@ main {
 		text-decoration: none;
 		border-bottom: 0.5px solid $linkColorContent;
 	}
+	strong {
+		letter-spacing: -0.3px;
+		font-size: 90%;
+	}
 	a:hover {
 		outline: 1px solid $linkColorShade;
 		background-color: $linkColorShade;
@@ -338,6 +348,22 @@ main {
 	}
 	.md-center {
 		text-align: center;
+	}
+	.md-center-box {
+		text-align: center;
+		outline: 2px solid $lineShade;
+		box-shadow: 2px 2px 10px $lineShade;
+	}
+	.md-right {
+		clear: right;
+		text-align: right;
+	}
+	.md-right-box {
+		text-align: center;
+		@media screen and (min-width: $breakWide) {
+			float: right;
+			margin-left: 0.75em;
+		}
 	}
 }
 .posts-row {

@@ -39,7 +39,7 @@ Our JavaScript code reads the measurements from Navigation Timing, and sends the
 Imagine 9 users each send a request: 5 users get a result in 5ms, 3 users get a result in 70ms, and for one user the result took 560ms. The average is 88ms. But, the average does not match anyone’s real experience. Let’s explore percentiles!
 
 ![Diagram showing 9 labels: 5ms, 5ms, 5ms, 5ms, 5ms, 70ms, 70ms, 70ms, and 560ms.](/assets/attachments/2018_measuring_figure_1_percentiles_intro.png)
-{:class="md-center"}
+{:class="md-center-box"}
 
 The first number after the lower half (or middle) is the median (or _50th percentile_). Here, the median is 5ms. The first number after the lower 75% is 70ms (_75th percentile_). We can say that "for 75% of users, the service responded within 70ms". That’s more useful.
 
@@ -80,6 +80,7 @@ iOS 9, or the networks of iOS 9 users, were not significantly faster or slower
 Where desktop latency is around 330ms; mobile latency is around 520ms. Having more metrics from mobile, skewed the global metrics toward that category.
 
 | ![Line graph for responseStart metric from desktop pageviews. Values range from 250ms to 450ms. Averaging around 330ms.](/assets/attachments/2018_measuring_figure_2a_desktop.png) | ![Line graph for responseStart metric from mobile pageviews. Values range from 350ms to 700ms. Averaging around 520ms.](/assets/attachments/2018_measuring_figure_2b_mobile.png)
+{:class="md-center-box"}
 
 The above graphs plot the "75th percentile" of responseStart for desktop and mobile (from November 2015). We combine these metrics into one data point for each minute. The above graphs show data for one month. There is only enough space on the screen to have each point represent 3 hours. This works by taking the mean average of the per-minute values within each 3 hour block. While this provides a rough impression, this graph does not show the 75th percentile for November 2015. The next section explains why.
 
@@ -90,6 +91,7 @@ Opinions vary on how bad it is to take the average of percentiles over time. But
 Below is an example with values from three minutes of time. Each value is the response time for one request. Within each minute, the values sort from low to high.
 
 ![Diagram with four sections. Section One is for the minute 08:00 to 08:01, it has nine values with the middle value of 5ms marked as the median. Section Two is for 08:01 to 08:02 and contains five values, the median is 560ms. Section Three is 08:02 to 08:03, contains five values, the median of Section Three is 70ms. The last section, Section Four, is the combined diagram from 08:00 to 08:03 showing all nineteen values. The median is 70ms.](/assets/attachments/2018_measuring_figure_3_percentiles.png)
+{:class="md-center-box"}
 
 The average of the three separate medians is 211ms. This is the result of `(5 + 560 + 70) / 3`. The actual median of these values combined, is 70ms.
 
@@ -103,7 +105,7 @@ Let’s process the same example values as before, but this time using buckets.
 
 ![There are four buckets. Bucket A is for values below 11ms. Bucket B is for 11ms to 100ms. Bucket C is for 101ms to 1000ms. And Bucket D is for values above 1000ms. For each of the 19 values, we find the associated bucket and increase its counter.](/assets/attachments/2018_measuring_figure_4a_buckets.png)
 ![After processing all values, the counters are as follows. Bucket A holds 9, Bucket B holds 4, Bucket C holds 6, and Bucket D holds 0.](/assets/attachments/2018_measuring_figure_4b_buckets_summary.png){:style="max-height:120px"}
-{:class="md-center"}
+{:class="md-center-box"}
 
 Based on the total count (19) we know that the median (10th value) must be in bucket B, because bucket B contains values 10 to 13. And that the 75th percentile (15th value) must be in bucket C because it contains values 14 to 19.
 
@@ -118,6 +120,7 @@ When using buckets, goals are defined differently. In our example, 6 out of 19 r
 Traffic trends are generally moving towards mobile. In fact, April 2017 was the first month where Wikimedia mobile pageviews reached 50% of all Wikimedia pageviews. And after June 2017, mobile traffic has stayed above 50%.
 
 ![Bar chart showing percentages of mobile and desktop pageviews for each month in 2017. They mostly swing equal at around 50%. Looking closely, we see mobile first reaches 51% in April. In May it was below 50% again. But for June and every month since then mobile has remained above 50%. The peak was in October 2017, where mobile accounted for 59% of pageviews. The last month in the graph, November 2017 shows 53% of mobile pageviews.](/assets/attachments/2018_measuring_figure_5_platforms.png)
+{:class="md-center-box"}
 
 Global changes like this have a big impact on our measurements. This is the kind of change that drives us to rethink how we measure performance, and (more importantly) what we monitor.
 
