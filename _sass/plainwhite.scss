@@ -382,7 +382,7 @@ a[data-tip] {
 }
 a[data-tip].tip-active {
 	background: $linkColorShade;
-	outline: 2px solid $linkColorShade;
+	outline: 5px solid $linkColorShade;
 }
 
 a[data-tip]:hover:before,
@@ -399,7 +399,7 @@ a[data-tip].tip-active:before {
 }
 a[data-tip].tip-active:before {
 	// Align with tip-handle
-	left: calc(100% + 0.5em);
+	left: calc(100% - 10px - 0.5em);
 }
 
 a[data-tip]:hover:after,
@@ -422,7 +422,7 @@ a[data-tip].tip-active:after {
 	}
 }
 
-a[data-tip] + .tip-handle {
+a[data-tip] .tip-handle {
 	display: inline-block;
 	margin-left: 0.5em;
 	background: #fff;
@@ -431,13 +431,26 @@ a[data-tip] + .tip-handle {
 	width: 1em;
 	line-height: 1em;
 	text-align: center;
+	cursor: pointer;
 }
-a[data-tip].tip-active + .tip-handle {
+a[data-tip].tip-active .tip-handle {
 	border-color: $linkColorContent;
-	box-shadow: 0px 0px 0px 15px $linkColorShade;
+	position: relative;
 }
-a[data-tip] + .tip-handle:before {
+a[data-tip] .tip-handle:before {
 	content: "i";
+}
+a[data-tip].tip-active .tip-handle:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+	border-radius: 2em;
+	box-shadow: 0px 0px 0px 20px $linkColorShade;
 }
 
 .screen-reader-text {
