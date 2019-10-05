@@ -48,4 +48,4 @@ function main() {
 if (document.querySelectorAll && 'classList' in document.body) main();
 {% if matomo_basic -%}
 if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
-{%- endif %}</script></html>
+{%- endif %}</script>
