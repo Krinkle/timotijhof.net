@@ -57,4 +57,4 @@ Chromium has its abstraction layer at a higher level (platform independent). Whe
 
 -------
 
-**Update (September 2018)**: If you found this interesting, you might also enjoy _[Creative Selection](http://creativeselection.io/)_ by Ken Kocienda. This book details the origin story of Apple Safari and iPhone from the engineer that worked on these projects at Apple.
+**Update (September 2018)**: I recently read _[Creative Selection](http://creativeselection.io/)_ by Ken Kocienda. This book details the origin story of Safari and iPhone, told by the engineer that worked on these projects at Apple.
