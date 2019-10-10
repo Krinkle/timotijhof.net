@@ -337,8 +337,20 @@ main {
 		object-fit: scale-down;
 		width: auto;
 		height: auto;
+		// Markup may have its own max-height or max-width,
+		// which we'll honour. E.g. in combination with md-left-box.
 		max-width: 100%;
 		max-height: 100vh;
+		@media screen and (max-width: $breakMobile) {
+			// ... but, once we get to a certain narrow width,
+			// honouring the inline style means it can end up
+			// being bigger than the viewport and cause scrollbars.
+			// This hack wouldn't be needed if CSS min()/clamp() had
+			// wide browser support so that the inline markup
+			// could use "max-width: min(380px, 100%)".
+			max-width: 100% !important;
+			max-height: 100vh !important;
+		}
 		@media screen and (min-width: $breakMobile) {
 			cursor: zoom-in;
 		}
