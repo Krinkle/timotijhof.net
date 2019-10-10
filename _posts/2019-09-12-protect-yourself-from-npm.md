@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to protect yourself from npm
-excerpt: <p>What’s the worst that could happen after <code>npm install</code>?</p>
+excerpt: <p>What’s the worst that could happen after npm install?</p>
 tags: wikipedia javascript testing
 plainwhite:
   original_url: https://medium.com/@timotijhof/how-to-protect-yourself-from-vulnerable-npm-packages-c03f85249651
