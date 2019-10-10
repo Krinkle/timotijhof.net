@@ -13,6 +13,10 @@ $textColorMinor: #555;
 $textColorMutedOnShade: #777;
 $textColorMuted: #aaa;
 
+$fontFamilySans: 'Avenir', sans-serif;
+
+$spaceContentSide: 30px;
+
 $lineShade: #eee;
 
 $breakMobileSmall: 480px;
@@ -30,7 +34,7 @@ html {
 }
 
 body {
-	font-family: 'Avenir', sans-serif;
+	font-family: $fontFamilySans;
 	font-size: 16px;
 	line-height: 1.2;
 	margin: 0;
@@ -43,10 +47,19 @@ h1 {
 	font-size: 2em;
 	margin: 0.67em 0;
 }
-
-h2, h3 {
-	font-family: 'Avenir', sans-serif;
+h2 {
+	font-size: 1.5em;
+	font-family: $fontFamilySans;
 	margin: 0.7em 0;
+}
+h3,
+ol.md-toc {
+	font-size: 1.17em;
+	font-family: $fontFamilySans;
+	margin: 0.7em 0;
+}
+ol.md-toc {
+	font-style: italic;
 }
 
 a {
@@ -125,14 +138,14 @@ main {
 	// Use border-box to make it easy to add padding
 	// inside, within the given width/max-width.
 	box-sizing: border-box;
-	padding: 35px 30px;
+	padding: 35px $spaceContentSide;
 
 	@media screen and (min-width: $breakMobile) {
 		max-width: calc(100% - 220px);
 	}
 	@media screen and (max-width: $breakMobile) {
 		// Remove top padding
-		padding: 0 30px;
+		padding: 0 $spaceContentSide;
 	}
 	@media screen and (max-width: $breakMobileSmall) {
 		// Reduce side padding
@@ -333,6 +346,21 @@ main {
 	a img {
 		cursor: inherit;
 	}
+	figure {
+		margin-right: -$spaceContentSide;
+		margin-left: -$spaceContentSide;
+	}
+	figure > p {
+		// No easy way in Kramdown to have <figcaption> and <img> in the
+		// same box without the <img> getting a magic paragraph. This is
+		// fine in un-floated contexts where the figure's margin and p's
+		// margin collapse together. But when floated, they add up.
+		margin: 0;
+	}
+	figcaption {
+		font-family: $fontFamilySans;
+		font-size: 16px;
+	}
 
 	@media screen and (min-width: $breakWide) {
 		font-size: 20px;
@@ -345,8 +373,8 @@ main {
 
 .post {
 	.md-dictdef {
-		background-color: $textBackShade;
-		line-height: 1;
+		border: 5px dashed $lineShade;
+		line-height: 1.1;
 		color: $textColorContentOnShade;
 	}
 	.md-dicteg {
@@ -368,7 +396,16 @@ main {
 		text-align: center;
 		@media screen and (min-width: $breakWide) {
 			float: right;
+			margin-top: 0;
 			margin-left: 0.75em;
+		}
+	}
+	.md-left-box {
+		text-align: center;
+		@media screen and (min-width: $breakWide) {
+			float: left;
+			margin-top: 0;
+			margin-right: 0.75em;
 		}
 	}
 }

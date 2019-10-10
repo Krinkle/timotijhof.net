@@ -26,6 +26,10 @@ sass:
   style: compressed
   sourcemap: never
 
+## Jekyll / Markdown
+## https://jekyllrb.com/docs/configuration/markdown/
+markdown: kramdown
+
 ##
 # Unofficial site vars that various plugins consider.
 ##
