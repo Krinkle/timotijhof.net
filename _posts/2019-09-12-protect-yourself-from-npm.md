@@ -13,7 +13,7 @@ plainwhite:
 When you open an app or execute a program from the terminal,
 that program can do anything that you can do.
 
-**In a nutshell**: Imagine if your computer were to disappear in front of your eyes and re-appear in front of mine. Still open. Still unlocked. What could I do from this moment on? _That_ is what an evil program could do.
+**In a nutshell**: Imagine if your computer were to disappear in front of your eyes and re-appear in front of mine. Still open. Still unlocked. What could I do from this moment on? _That_ is what an unknown program could do.
 
 Upon running `npm install`, you may be downloading and executing hundreds of unknown programs.
 
