@@ -1,19 +1,31 @@
 {% comment %}
 
-  Reminder: This file does mostly the same as feed.xml. Keep them in sync!
+ Reminder: This file does mostly the same as feed.xml. Keep them in sync!
+
+ Twitter Card (as of 9 Oct 2019).
+ Ref https://cards-dev.twitter.com/validator.
+ Ref https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image
+ - og:title: Displayed.
+ - og:description: Displayed.
+ - og:site_name: Ignored, URL domain is displayed instead.
+ - og:author: Ignored.
+ - og:image: Displayed, but only if og:image:alt is set as well (wow!).
+             Twitter will generate a small thumbnail for you, however the original
+             must still be no larger than 4096x4096 pixels or 5MB in size.
+ - og:image:alt: Used as image alt, naturally (must be under 420 characters).
 
 {% endcomment %}
 
-<meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:title" content="{{ page.title | default: site.title | strip_html | normalize_whitespace | escape }}">
-{% assign post_author = post.author | default: site.author %}
-{% if post_author %}
-<meta name="author" content="{{ post_author | escape }}">
-{% endif %}
-<meta property="og:site_name" content="{{ site.title | escape }}">
 
-{% if post.excerpt and post.excerpt != empty %}
-<meta property="og:description" content="{{ post.excerpt | strip_html | normalize_whitespace | escape }}">
+{% if page.excerpt and page.excerpt != empty %}
+<meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
+{% endif %}
+
+{% if page.plainwhite.og_image_url and page.plainwhite.og_image_alt %}
+<meta property="twitter:card" content="summary_large_image">
+<meta property="og:image" content="{{ page.plainwhite.og_image_url | absolute_url }}">
+<meta property="og:image:alt" content="{{ page.plainwhite.og_image_alt | escape }}">
 {% endif %}
 
 {% if page.date %}
