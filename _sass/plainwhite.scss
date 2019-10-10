@@ -411,12 +411,8 @@ main {
 }
 .posts-row {
 	.md-dictdef {
-		margin-top: 0;
-		background-color: transparent;
+		border-width: 0 0 0 5px;
 		color: inherit;
-	}
-	.md-dicteg {
-		color: $textColorMuted;
 	}
 }
 
