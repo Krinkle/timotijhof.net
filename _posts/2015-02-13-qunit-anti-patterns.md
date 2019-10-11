@@ -1,7 +1,7 @@
 ---
 layout: post
 title: QUnit anti-patterns
-tags: javascript testing qunit
+tags: qunit javascript testing
 redirect_from:
 - /2015/qunit-anti-patterns/ # former WordPress site (deleted page)
 plainwhite:
@@ -59,7 +59,7 @@ assert.notEqual( index, -1 );
 assert.equal( index, 2 );
 
 // Even better?
-assert.propEqual( index, [
+assert.propEqual( list, [
   'foo',
   'bar',
 ] );
@@ -67,4 +67,4 @@ assert.propEqual( index, [
 
 I’ve yet to see the first use of these assert methods that wouldn’t be improved by writing it a different way. I admit there are limited scenarios where [`assert.notEqual`](https://api.qunitjs.com/assert/notEqual) can’t be avoided in the short-term, for example when the intent is to detect a difference between two unpredictable return values.
 
-When calling a method such as `Math.random()` twice, one could use `notEqual` to assert the two return values differ. I still have my doubts about the value of such test, though. And it’ll certainly be annoying when it randomly does produce the same value twice and cause a test failure. In the mission of test coverage, my recommendation would be to instead assert that calling the method did not throw an exception, and perhaps assert the type and length of the return value, without comparing the string content.
+When calling a method such as `Math.random()` twice, one could use `notEqual` to assert the two return values differ. I still have my doubts about the value of such test, though. It’ll certainly be annoying when it randomly does produce the same value twice and cause a test failure. In the mission of test coverage, my recommendation would be to instead assert that calling the method did not throw an exception, and perhaps assert the type and length of the return value, without comparing the string content.

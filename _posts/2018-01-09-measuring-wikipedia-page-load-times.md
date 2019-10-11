@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Measuring Wikipedia page load times
-tags: wikipedia performance
+tags: wikipedia performance javascript
 redirect_from:
 - /2018/measuring-wikipedia-page-load-times/ # former WordPress site (deleted page)
 plainwhite:
