@@ -4,14 +4,14 @@ $linkColorRoot: #000;
 $linkColorContent: #085bb5;
 $linkColorShade: #ddedfd;
 
+$textBackRoot: #fff;
 $textBackShade: #f4f4f4;
 
 $textColorRoot: #222;
 $textColorContent: #333;
 $textColorContentOnShade: #222;
 $textColorMinor: #555;
-$textColorMutedOnShade: #777;
-$textColorMuted: #aaa;
+$textColorMuted: #767676;
 
 $fontFamilySans: 'Avenir', sans-serif;
 
@@ -38,6 +38,7 @@ body {
 	font-size: 16px;
 	line-height: 1.2;
 	margin: 0;
+	background: $textBackRoot;
 	color: $textColorRoot;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -209,7 +210,9 @@ main {
 	margin-top: 17px;
 	color: $textColorMuted;
 	@media screen and (min-width: $breakMobile + 1) {
-		font-size: 20px;
+		font-size: 18px;
+		line-height: 1.6;
+		margin: 1.2em 0;
 	}
 }
 
@@ -390,7 +393,7 @@ main {
 		color: $textColorContentOnShade;
 	}
 	.md-dicteg {
-		color: $textColorMutedOnShade;
+		color: $textColorMuted;
 	}
 	.md-center {
 		text-align: center;
@@ -476,7 +479,7 @@ a[data-tip].tip-active:after {
 a[data-tip] .tip-handle {
 	display: inline-block;
 	margin-left: 0.5em;
-	background: #fff;
+	background: $textBackRoot;
 	border: 1px solid $textColorMuted;
 	border-radius: 2em;
 	width: 1em;
