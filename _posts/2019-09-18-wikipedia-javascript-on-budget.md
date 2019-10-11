@@ -2,7 +2,7 @@
 layout: post
 title: Wikipedia's JavaScript initialisation on a budget
 excerpt: <p>This week saw the conclusion of a project I've been shepherding since September of last year. The goal was for the initialisation code for our JavaScript pipeline to fit within a budget of 28 KB.</p>
-tags: wikipedia performance
+tags: wikipedia performance javascript
 plainwhite:
   og_title: Wikipedia's JavaScript on a budget
   og_image_url: /assets/attachments/2019_wikipedia_figure1_chart.png
