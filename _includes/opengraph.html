@@ -25,7 +25,9 @@
 {% endif %}
 
 {% if page.plainwhite.og_image_url and page.plainwhite.og_image_alt %}
+{% if page.plainwhite.og_image_align != "aside" %}
 <meta property="twitter:card" content="summary_large_image">
+{% endif %}
 <meta property="og:image" content="{{ page.plainwhite.og_image_url | absolute_url }}">
 <meta property="og:image:alt" content="{{ page.plainwhite.og_image_alt | escape }}">
 {% endif %}
