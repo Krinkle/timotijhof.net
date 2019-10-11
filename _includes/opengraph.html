@@ -6,6 +6,8 @@
  Ref https://cards-dev.twitter.com/validator.
  Ref https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image
  - og:title: Displayed.
+             Trimmed at 40 characters for summary cards (placeholder box on the side),
+             Trimmed at 55 characters for summary_large_image cards (image on top, title full width).
  - og:description: Displayed.
  - og:site_name: Ignored, URL domain is displayed instead.
  - og:author: Ignored.
@@ -16,7 +18,7 @@
 
 {% endcomment %}
 
-<meta property="og:title" content="{{ page.title | default: site.title | strip_html | normalize_whitespace | escape }}">
+<meta property="og:title" content="{{ page.plainwhite.og_title | default: page.title | default: site.title | strip_html | normalize_whitespace | escape }}">
 
 {% if page.excerpt and page.excerpt != empty %}
 <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
