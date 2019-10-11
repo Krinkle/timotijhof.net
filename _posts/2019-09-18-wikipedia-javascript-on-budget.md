@@ -4,6 +4,7 @@ title: Wikipedia's JavaScript initialisation on a budget
 excerpt: <p>This week saw the conclusion of a project I've been shepherding since September of last year. The goal was for the initialisation code for our JavaScript pipeline to fit within a budget of 28 KB.</p>
 tags: wikipedia performance
 plainwhite:
+  og_title: Wikipedia's JavaScript on a budget
   original_url: https://phabricator.wikimedia.org/phame/live/7/post/175/wikipedia_s_javascript_initialisation_on_a_budget/
   original_label: wikimedia.org
 ---
