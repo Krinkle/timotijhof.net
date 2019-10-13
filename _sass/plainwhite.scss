@@ -1,23 +1,8 @@
 @import 'ext/solarized-light';
 
-$linkColorRoot: #000;
-$linkColorContent: #085bb5;
-$linkColorShade: #ddedfd;
-
-$textBackRoot: #fff;
-$textBackShade: #f4f4f4;
-
-$textColorRoot: #222;
-$textColorContent: #333;
-$textColorContentOnShade: #222;
-$textColorMinor: #555;
-$textColorMuted: #767676;
-
 $fontFamilySans: 'Avenir', sans-serif;
 
 $spaceContentSide: 30px;
-
-$lineShade: #eee;
 
 $breakMobileSmall: 480px;
 $breakMobile: 770px;
@@ -26,22 +11,22 @@ $breakWide: 1000px;
 $leftWidth: 220px;
 
 html {
-	// 1. Set default font family to sans-serif.
-	// 2. Prevent iOS text size adjust after orientation change, without disabling user zoom.
-	font-family: sans-serif; // 1
-	-ms-text-size-adjust: 100%; // 2
-	-webkit-text-size-adjust: 100%; // 2
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	// Prevent iOS text size adjust after orientation change, without disabling user zoom.
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 }
 
-body {
+html, button {
 	font-family: $fontFamilySans;
 	font-size: 16px;
 	line-height: 1.2;
+}
+
+body {
+	// Reset UA
 	margin: 0;
-	background: $textBackRoot;
-	color: $textColorRoot;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -63,40 +48,33 @@ ol.md-toc {
 	font-style: italic;
 }
 
-a {
-	color: $linkColorRoot;
-	&:hover {
-		color: $linkColorContent;
-	}
-}
 a.sitelink {
 	text-decoration: none;
 }
 
 blockquote {
 	margin: 1em;
-	border-left: 5px solid $lineShade;
+	border-left: 5px solid transparent;
 	padding: 0.5em 1em;
-	color: $textColorMinor;
+	color: inherit;
 	font-size: 0.8em;
 }
 blockquote > p:first-child {
-    margin-top: 0;
+	margin-top: 0;
 }
 blockquote > p:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 hr {
 	border: 0;
-	background: $lineShade;
 	margin: 2em auto;
 	width: 80%;
 	height: 1px;
 }
 
 // See also assets/css/style.scss
-[class^="icon-"], [class*=" icon-"] {
+.icon {
   speak: none;
   display: inline-block;
   width: 1em;
@@ -106,16 +84,25 @@ hr {
   background-size: contain;
 }
 
+@mixin screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+}
+.screen-reader-text {
+	@include screen-reader-text;
+}
+
 pre.highlight {
 	overflow: auto;
-	background-color: $textBackShade;
 	padding: 1em 1.5em;
 	font-family: Menlo, Monaco, monospace;
 	line-height: 1.4em;
 	tab-size: 4;
 }
 code.highlighter-rouge {
-	background-color: $textBackShade;
 	padding: 0.3em 0.4em;
 	font-family: Menlo, Monaco, monospace;
 	font-size: 0.8em;
@@ -153,7 +140,7 @@ main {
 .about {
 	display: flex;
 	flex: 0;
-	height: 100vh;
+	height: 90vh;
 	width: $leftWidth;
 	justify-content: flex-start;
 	flex-direction: column;
@@ -170,18 +157,35 @@ main {
 		font-weight: normal;
 	}
 }
+.dark-toggleable .dark-toggle {
+	// margin-top=auto makes this item jusitied at the bottom
+	// of the flex column (.about).
+	margin: auto 0 10px 0;
+	border: 0;
+	border-radius: 2px;
+	padding: 5px 20px;
+	font-size: 14px;
+	cursor: pointer;
+}
+@media screen and (min-width: $breakMobile + 1) {
+	.dark-toggleable .dark-toggle {
+		position: fixed;
+		bottom: 0;
+	}
+}
+
 @media screen and (max-width: $breakMobile) {
 	.about {
 		height: auto;
 		margin-top: 5vh;
 	}
 	.about-sm {
-		display: block;
-		flex: none;
+		justify-content: space-between;
+		flex-direction: row;
 		width: auto;
-		margin: 0 10px;
-		padding: 10px 0;
-		border-bottom: 1px solid $lineShade;
+		margin: 0;
+		padding: 10px 10px;
+		border-bottom: 1px solid transparent;
 		.sitelink {
 			display: flex;
 			justify-content: flex-start;
@@ -204,7 +208,6 @@ main {
 .tagline {
 	font-size: 22px;
 	margin-top: 17px;
-	color: $textColorMuted;
 	@media screen and (min-width: $breakMobile + 1) {
 		font-size: 18px;
 		line-height: 1.6;
@@ -223,26 +226,22 @@ main {
 		font-size: 34px;
 	}
 	a:hover i {
-		// Approximate $linkColorContent
+		// Note: This approximates $linkColorContent,
+		// not currently varied by theme, but seems good enough.
 		filter: contrast(0.2) sepia(1) saturate(4) hue-rotate(180deg);
 	}
 }
 
-.footer {
-	color: $textColorMuted;
-}
-
 .posts-label {
-	border-bottom: 1px solid $lineShade;
+	border-bottom: 1px solid transparent;
 	font-size: 15px;
-	color: $textColorMinor;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 	padding-bottom: 10px;
 	font-weight: normal;
 }
 .posts-row {
-	border-bottom: 1px solid $lineShade;
+	border-bottom: 1px solid transparent;
 }
 .posts-readmore {
 	font-size: 0.8em;
@@ -255,12 +254,6 @@ main {
 .posts-row .post-link:hover {
 	text-decoration: underline;
 }
-.posts-row .post-link:hover h2 {
-	background-color: $linkColorShade;
-	// Approximate $linkColorShade
-	box-shadow: 0px 0px 0px 5px hsla(211, 92%, 37%, 0.12);
-	outline: 2px solid $linkColorShade;
-}
 
 .post-meta {
 	overflow: hidden;
@@ -269,7 +262,6 @@ main {
 }
 .post-date {
 	float: right;
-	color: $textColorMinor;
 	i {
 		// Approximate text color
 		opacity: 0.7;
@@ -286,15 +278,12 @@ main {
 		font-size: 14px;
 		text-decoration: none;
 		float: left;
-		background-color: $textBackShade;
 		padding: 5px 20px;
 		border-radius: 2px;
 		margin: 0 10px 10px 0;
 	}
 	a:hover {
-		background-color: $linkColorShade;
 		text-decoration-line: underline;
-		text-decoration-color: $linkColorContent;
 	}
 }
 .page-heading,
@@ -309,25 +298,24 @@ main {
 	font-size: 18px;
 	line-height: 1.7;
 	letter-spacing: -0.1px;
-	color: $textColorContent;
 	a {
-		color: $linkColorContent;
 		text-decoration: none;
-		border-bottom: 0.5px solid $linkColorContent;
+		border-bottom: 0.5px solid transparent;
 	}
 	strong {
 		letter-spacing: -0.3px;
 		font-size: 90%;
 	}
 	a:hover {
-		outline: 1px solid $linkColorShade;
-		background-color: $linkColorShade;
-		border-bottom: 3px solid $linkColorContent;
-		// Approximate $linkColorShade
-		box-shadow: 0px 0px 0px 5px hsla(211, 92%, 37%, 0.12);
+		border-bottom: 3px solid transparent;
+	}
+	a > code {
+		color: inherit;
+		text-decoration: underline;
 	}
 	a:hover > code {
 		background-color: transparent;
+		text-decoration: none;
 	}
 	li {
 		margin-top: 1em;
@@ -384,20 +372,16 @@ main {
 
 .post {
 	.md-dictdef {
-		border: 5px dashed $lineShade;
+		border-width: 5px;
+		border-style: dashed;
 		line-height: 1.1;
-		color: $textColorContentOnShade;
-	}
-	.md-dicteg {
-		color: $textColorMuted;
 	}
 	.md-center {
 		text-align: center;
 	}
 	.md-center-box {
 		text-align: center;
-		outline: 2px solid $lineShade;
-		box-shadow: 2px 2px 10px $lineShade;
+		outline: 2px solid transparent;
 	}
 	.md-right {
 		clear: right;
@@ -431,19 +415,20 @@ a[data-tip] {
 	position: relative;
 }
 a[data-tip].tip-active {
-	background: $linkColorShade;
-	outline: 5px solid $linkColorShade;
+	outline: 5px solid transparent;
 }
 
 a[data-tip]:hover:before,
 a[data-tip].tip-active:before {
-	display: block;
 	content: "";
+	display: block;
+	// Set z-index to get it in front of the tip's drop-shadow
+	z-index: 1;
 	position: absolute;
 	bottom: 95%;
 	// Align with center of link
 	left: 70%;
-	border-top: 10px solid rgba(0, 0, 0, 0.7);
+	border-top: 10px solid transparent;
 	border-left: 9px solid transparent;
 	border-right: 9px solid transparent;
 }
@@ -459,24 +444,22 @@ a[data-tip].tip-active:after {
 	position: absolute;
 	width: 300px;
 	bottom: calc(95% + 10px);
-	left: -2em;
-	background: rgba(0, 0, 0, 0.7);
+	left: -1em;
 	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.54));
 	border-radius: 4px;
 	padding: 0.5em 1em;
 	font-size: 0.9em;
-	color: #fff;
 	@media screen and (max-width: $breakMobile) {
-		width: 80vw;
+		left: -($spaceContentSide / 2);
 		padding: 5vw;
+		width: calc(90vw - #{$spaceContentSide + 15px});
 	}
 }
 
 a[data-tip] .tip-handle {
 	display: inline-block;
 	margin-left: 0.5em;
-	background: $textBackRoot;
-	border: 1px solid $textColorMuted;
+	border: 1px solid transparent;
 	border-radius: 2em;
 	width: 1em;
 	line-height: 1em;
@@ -484,7 +467,6 @@ a[data-tip] .tip-handle {
 	cursor: pointer;
 }
 a[data-tip].tip-active .tip-handle {
-	border-color: $linkColorContent;
 	position: relative;
 }
 a[data-tip] .tip-handle:before {
@@ -500,13 +482,165 @@ a[data-tip].tip-active .tip-handle:after {
 	bottom: 0;
 	z-index: -1;
 	border-radius: 2em;
-	box-shadow: 0px 0px 0px 20px $linkColorShade;
 }
 
-.screen-reader-text {
-	clip: rect(1px, 1px, 1px, 1px);
-	overflow: hidden;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
+@mixin my-color-scheme($vars) {
+	// Root and content styles
+	body,
+	a[data-tip] .tip-handle {
+		background: map-get($vars, "textBackRoot");
+		color: map-get($vars, "textColorRoot");
+	}
+	.post {
+		color: map-get($vars, "textColorContent");
+	}
+	.post .md-dictdef {
+		color: map-get($vars, "textColorRoot");
+	}
+
+	// Muted styles and shades
+	.tagline,
+	.footer,
+	.md-dicteg {
+		color: map-get($vars, "textColorMuted");
+	}
+	.about-sm {
+		@media screen and (max-width: $breakMobile) {
+			background: map-get($vars, "textBackPanel");
+		}
+	}
+	blockquote,
+	.posts-label,
+	.about-sm,
+	.posts-row,
+	.post-date {
+		border-color: map-get($vars, "lineShade");
+		color: map-get($vars, "textColorMinor");
+	}
+	.post .md-center-box {
+		outline-color: map-get($vars, "lineShade");
+		box-shadow: 2px 2px 10px map-get($vars, "lineShade");
+	}
+	hr {
+		background: map-get($vars, "lineShade");
+	}
+	pre.highlight,
+	code.highlighter-rouge,
+	.post-tags a,
+	.dark-toggle {
+		background: map-get($vars, "textBackShade");
+		color: map-get($vars, "linkColorRoot");
+	}
+	.dark-toggle:hover,
+	.dark-toggle:focus,
+	.dark-toggle:active {
+		background: map-get($vars, "linkColorShade");
+	}
+
+	// Link styles
+	a {
+		color: map-get($vars, "linkColorRoot");
+	}
+	a:hover,
+	.post a {
+		color: map-get($vars, "linkColorContent");
+		border-color: map-get($vars, "linkColorContent");
+	}
+	.post a:hover,
+	.post-tags a:hover,
+	.posts-row .post-link:hover h2 {
+		background: map-get($vars, "linkColorShade");
+		text-decoration-color: map-get($vars, "linkColorContent");
+		outline-color: map-get($vars, "linkColorShade");
+		border-color: map-get($vars, "linkColorContent");
+	}
+	a[data-tip] .tip-handle {
+		border-color: map-get($vars, "textColorMuted");
+	}
+	a[data-tip].tip-active .tip-handle {
+		border-color: map-get($vars, "linkColorContent");
+	}
+	.post a:hover,
+	.posts-row .post-link:hover h2 {
+		box-shadow: 0px 0px 0px 5px map-get($vars, "linkColorShade");
+	}
+	a[data-tip].tip-active .tip-handle:after {
+		box-shadow: 0px 0px 0px 20px map-get($vars, "linkColorShade");
+	}
+
+	// Bubble styles
+	a[data-tip]:hover:after,
+	a[data-tip].tip-active:after {
+		background: map-get($vars, "textBackBubble");
+		color: map-get($vars, "textColorBubble");
+	}
+	a[data-tip]:hover:before,
+	a[data-tip].tip-active:before {
+		border-top-color: map-get($vars, "textBackBubble");
+	}
+}
+
+$lightModeVars: (
+	"textBackRoot": #fff,
+	"textBackPanel": #fff,
+	"textColorRoot": #222,
+	"textColorContent": #333,
+	"textColorMinor": #555,
+	"textColorMuted": #767676,
+
+	"linkColorRoot": #000,
+	"linkColorShade": hsla(210, 89%, 53%, 0.15),
+	"linkColorContent": #085bb5,
+
+	"lineShade": #eee,
+
+	"textBackShade": #f4f4f4,
+
+	"textBackBubble": rgba(0, 0, 0, 0.7),
+	"textColorBubble": #fff
+);
+
+$darkModeVars: (
+	"textBackRoot": #100e17,
+	"textBackPanel": #000,
+	"textColorRoot": #c2c2c2,
+	"textColorContent": #c2c2c2,
+	"textColorMinor": #c2c2c2,
+	"textColorMuted": #7a7a8c,
+
+	"linkColorRoot": #fff,
+	"linkColorShade": hsla(210, 89%, 53%, 0.2),
+	"linkColorContent": lighten(map-get($lightModeVars, "linkColorContent"), 30%),
+
+	"lineShade": darken(#7a7a8c, 30%),
+
+	"textBackShade": #201c29,
+
+	"textBackBubble": hsla(258, 19%, 25%, 0.9),
+	"textColorBubble": #fff
+);
+
+// Light (unscoped, as default)
+@include my-color-scheme($lightModeVars);
+.dark-off.dark-toggleable {
+	.dark-toggle::before {
+		content: '☼   Light';
+	}
+}
+
+// Dark (scoped to class=dark-on)
+.dark-on {
+	@include my-color-scheme($darkModeVars);
+	.icon {
+		filter: invert( 1 ) hue-rotate( 180deg );
+	}
+	pre.highlight {
+		filter: brightness(1.4) contrast(1.5) saturate(0.5);
+	}
+	.dark-toggle::before {
+		content: '☾   Dark';
+	}
+	.post img {
+		filter: brightness(0.8) contrast(1.4) saturate(0.9);
+	}
 }

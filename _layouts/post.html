@@ -13,7 +13,7 @@ plainwhite:
     <a rel="tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
     {%- endfor -%}
   </div>
-  <div class="post-date"><i class="icon-calendar"></i><time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></div>
+  <div class="post-date"><i class="icon icon-calendar"></i><time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></div>
 </div>
 <div class="post">
   {{- content | fix_extlink -}}
