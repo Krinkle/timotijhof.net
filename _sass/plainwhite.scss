@@ -4,9 +4,10 @@ $fontFamilySans: 'Avenir', sans-serif;
 
 $spaceContentSide: 30px;
 
-$breakMobileSmall: 480px;
-$breakMobile: 770px;
-$breakWide: 1000px;
+$breakMobileSmall: 480px; // max-width
+$breakMobile: 770px; // max-width
+$breakBeyondMobile: $breakMobile + 1px; // min-width
+$breakWide: 1000px; // min-width
 
 $leftWidth: 220px;
 
@@ -124,7 +125,7 @@ main {
 	box-sizing: border-box;
 	padding: 35px $spaceContentSide;
 
-	@media screen and (min-width: $breakMobile) {
+	@media screen and (min-width: $breakBeyondMobile) {
 		max-width: calc(100% - 220px);
 	}
 	@media screen and (max-width: $breakMobile) {
@@ -167,7 +168,7 @@ main {
 	font-size: 14px;
 	cursor: pointer;
 }
-@media screen and (min-width: $breakMobile + 1) {
+@media screen and (min-width: $breakBeyondMobile) {
 	.dark-toggleable .dark-toggle {
 		position: fixed;
 		bottom: 0;
@@ -208,7 +209,7 @@ main {
 .tagline {
 	font-size: 22px;
 	margin-top: 17px;
-	@media screen and (min-width: $breakMobile + 1) {
+	@media screen and (min-width: $breakBeyondMobile) {
 		font-size: 18px;
 		line-height: 1.6;
 		margin: 1.2em 0;
@@ -338,7 +339,7 @@ main {
 			max-width: 100% !important;
 			max-height: 100vh !important;
 		}
-		@media screen and (min-width: $breakMobile) {
+		@media screen and (min-width: $breakBeyondMobile) {
 			cursor: zoom-in;
 		}
 	}
@@ -346,8 +347,11 @@ main {
 		cursor: inherit;
 	}
 	figure {
-		margin-right: -$spaceContentSide;
 		margin-left: -$spaceContentSide;
+		margin-right: -($spaceContentSide / 2);
+		@media screen and (max-width: $breakMobile), (min-width: $breakWide) {
+			margin-right: -$spaceContentSide;
+		}
 	}
 	figure > p {
 		// No easy way in Kramdown to have <figcaption> and <img> in the
