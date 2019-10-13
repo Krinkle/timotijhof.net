@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-off">
 <meta charset="UTF-8">
 <title>
 {%- if page.title -%}
@@ -8,12 +8,22 @@
   {{ site.title | escape }}
 {%- endif -%}
 </title>
+{% capture darkinit_js -%}
+<script>
+_d = /dark=(\d)\b/.exec(document.cookie);
+DARK = _d && _d[1] === '1';
+(DARK || DARK === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) && (document.documentElement.className = 'dark-on');
+</script>
+{%- endcapture -%}
+{{ darkinit_js | strip_newlines }}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20191011c' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20191011d' | relative_url }}">
+{% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-{%- capture opengraph %}{% include opengraph.html %}{% endcapture -%}
-{{ opengraph | strip_newlines }}
+{% include opengraph.html %}
+{% endcapture -%}
+{{ meta | strip_newlines }}
 <main>
   <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
     <a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
@@ -22,10 +32,11 @@
     </a>
     <p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
     <ul class="social">
-      <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="{{ site.plainwhite.social_links.github | escape }} on GitHub"><i class="icon-github-circled"></i></a></li>
-      <li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="@{{ site.plainwhite.social_links.twitter | escape }} on Twitter"><i class="icon-twitter-squared"></i></a></li>
+      <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="{{ site.plainwhite.social_links.github | escape }} on GitHub"><i class="icon icon-github-circled"></i></a></li>
+      <li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="@{{ site.plainwhite.social_links.twitter | escape }} on Twitter"><i class="icon icon-twitter-squared"></i></a></li>
     </ul>
     <p class="footer">&copy; 2019</p>
+    <button aria-label="Toggle dark mode" title="Toggle dark mode" class="dark-toggle"></button>
   </header>
   <section class="content">
     {{- content -}}
@@ -37,16 +48,20 @@
   {%- endcapture -%}
 {%- endif -%}
 <script>
-if (document.querySelectorAll && document.body.classList && document.body.matches) (function () {
+DOCEL = document.documentElement; if (document.querySelector && DOCEL.classList && DOCEL.matches) (function () {
   function handleTip(e) {
-    e.target.parentNode.classList.toggle('tip-active');
-    e.preventDefault();
+    e.target.parentNode.classList.toggle('tip-active'); e.preventDefault();
   }
   var nodes = document.querySelectorAll('.tip-handle'), i = nodes.length;
   while (i--) nodes[i].addEventListener('click', handleTip);
   document.body.addEventListener('ontouchstart' in window ? 'dblclick' : 'click', function (e) {
     if (e.target.nodeName === 'IMG' && !e.target.matches('a img')) window.open(e.target.src);
   });
+  document.querySelector('.dark-toggle').addEventListener('click', function () {
+    DARK = DOCEL.classList.toggle('dark-on'); DOCEL.classList.toggle('dark-off');
+    document.cookie = 'dark=' + +DARK + '; path=/';
+  });
+  DOCEL.classList.add('dark-toggleable');
 }());
 {% if matomo_basic %}
 if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
