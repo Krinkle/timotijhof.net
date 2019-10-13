@@ -2,7 +2,7 @@
 
 $fontFamilySans: 'Avenir', sans-serif;
 
-$spaceContentSide: 30px;
+$spaceContentSide: 20px;
 
 $breakMobileSmall: 480px; // max-width
 $breakMobile: 770px; // max-width
@@ -131,10 +131,6 @@ main {
 	@media screen and (max-width: $breakMobile) {
 		// Remove top padding
 		padding: 0 $spaceContentSide;
-	}
-	@media screen and (max-width: $breakMobileSmall) {
-		// Reduce side padding
-		padding: 0 20px;
 	}
 }
 
@@ -302,6 +298,8 @@ main {
 	a {
 		text-decoration: none;
 		border-bottom: 0.5px solid transparent;
+		// Avoid scrollbars on mobile due to longer urls
+		word-break: break-word;
 	}
 	strong {
 		letter-spacing: -0.3px;
@@ -348,7 +346,7 @@ main {
 	}
 	figure {
 		margin-left: -$spaceContentSide;
-		margin-right: -($spaceContentSide / 2);
+		margin-right: 0;
 		@media screen and (max-width: $breakMobile), (min-width: $breakWide) {
 			margin-right: -$spaceContentSide;
 		}
