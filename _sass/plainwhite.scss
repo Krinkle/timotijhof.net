@@ -496,6 +496,8 @@ a[data-tip].tip-active .tip-handle:after {
 	.post {
 		color: map-get($vars, "textColorContent");
 	}
+	h1,
+	h2,
 	.post .md-dictdef {
 		color: map-get($vars, "textColorRoot");
 	}
@@ -605,7 +607,7 @@ $lightModeVars: (
 $darkModeVars: (
 	"textBackRoot": #100e17,
 	"textBackPanel": #000,
-	"textColorRoot": #c2c2c2,
+	"textColorRoot": #fff,
 	"textColorContent": #c2c2c2,
 	"textColorMinor": #c2c2c2,
 	"textColorMuted": #7a7a8c,
