@@ -43,7 +43,7 @@ The scene continued to feature more rich language.
 >
 > _[..]_
 >
-> _Holmes_: There is not a warmer, kinder me waiting to be coaxed out into the light. I am [acerbic](https://www.wordnik.com/words/acerbic "Definition of acerbic - Wordnik"). I can be cruel. It’s who I am; right to the bottom. I’m neither proud of this, nor ashamed of it. It simply is.
+> _Holmes_: There is not a warmer, kinder me waiting to be coaxed out into the light. I am acerbic. I can be cruel. It’s who I am; right to the bottom. I’m neither proud of this, nor ashamed of it. It simply is.
 
 Having lines like these is actually not uncommon for the Holmes character and is one of the reasons I enjoy the show so much. Short musings and rants containing rich language happen at regular intervals throughout the series’ episodes.
 
