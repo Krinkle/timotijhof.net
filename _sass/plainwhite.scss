@@ -80,9 +80,8 @@ hr {
   display: inline-block;
   width: 1em;
   height: 1em;
-  margin-left: .2em;
-  margin-right: .2em;
   background-size: contain;
+  vertical-align: top;
 }
 
 @mixin screen-reader-text {
@@ -219,13 +218,18 @@ main {
 	li {
 		float: left;
 	}
-	i {
+	a {
+		margin: 0 .2em;
+		display: inline-block;
+		border-radius: 100%;
 		font-size: 34px;
+		line-height: 1;
 	}
-	a:hover i {
-		// Note: This approximates $linkColorContent,
-		// not currently varied by theme, but seems good enough.
-		filter: contrast(0.2) sepia(1) saturate(4) hue-rotate(180deg);
+	.icon {
+		opacity: 0.5;
+	}
+	a:hover .icon {
+		opacity: 1;
 	}
 }
 
@@ -259,9 +263,10 @@ main {
 }
 .post-date {
 	float: right;
-	i {
+	.icon {
 		// Approximate text color
 		opacity: 0.7;
+		margin-right: 0.2em;
 	}
 	a {
 		text-decoration: none;
@@ -496,8 +501,7 @@ a[data-tip].tip-active .tip-handle:after {
 	.post {
 		color: map-get($vars, "textColorContent");
 	}
-	h1,
-	h2,
+	.post h2,
 	.post .md-dictdef {
 		color: map-get($vars, "textColorRoot");
 	}
@@ -552,7 +556,8 @@ a[data-tip].tip-active .tip-handle:after {
 	}
 	.post a:hover,
 	.post-tags a:hover,
-	.posts-row .post-link:hover h2 {
+	.posts-row .post-link:hover h2,
+	.social a:hover {
 		background: map-get($vars, "linkColorShade");
 		text-decoration-color: map-get($vars, "linkColorContent");
 		outline-color: map-get($vars, "linkColorShade");
@@ -568,7 +573,8 @@ a[data-tip].tip-active .tip-handle:after {
 	.posts-row .post-link:hover h2 {
 		box-shadow: 0px 0px 0px 5px map-get($vars, "linkColorShade");
 	}
-	a[data-tip].tip-active .tip-handle:after {
+	a[data-tip].tip-active .tip-handle:after,
+	.social a:hover {
 		box-shadow: 0px 0px 0px 20px map-get($vars, "linkColorShade");
 	}
 
@@ -631,12 +637,20 @@ $darkModeVars: (
 		content: '☼   Light';
 	}
 }
+.social a:hover .icon {
+	// Approximate $linkColorContent
+	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
+}
 
 // Dark (scoped to class=dark-on)
 .dark-on {
 	@include my-color-scheme($darkModeVars);
 	.icon {
-		filter: invert( 1 ) hue-rotate( 180deg );
+		filter: invert(1);
+	}
+	.social a:hover .icon {
+		// Approximate $linkColorContent
+		filter: contrast(0.1) sepia(2) saturate(4) hue-rotate(170deg);
 	}
 	pre.highlight {
 		filter: brightness(1.4) contrast(1.5) saturate(0.5);
