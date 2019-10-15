@@ -588,6 +588,10 @@ a[data-tip].tip-active .tip-handle:after {
 	a[data-tip].tip-active:before {
 		border-top-color: map-get($vars, "textBackBubble");
 	}
+	::selection {
+		color: map-get($vars, "textColorSelected");
+		background-color: map-get($vars, "textBackSelected");
+	}
 }
 
 $lightModeVars: (
@@ -609,6 +613,13 @@ $lightModeVars: (
 	"textBackBubble": rgba(0, 0, 0, 0.7),
 	"textColorBubble": #fff
 );
+$lightModeVars: map-merge(
+	$lightModeVars,
+	(
+		"textBackSelected": map-get($lightModeVars, "linkColorShade"),
+		"textColorSelected": map-get($lightModeVars, "textColorRoot")
+	)
+);
 
 $darkModeVars: (
 	"textBackRoot": #100e17,
@@ -628,6 +639,13 @@ $darkModeVars: (
 
 	"textBackBubble": hsla(258, 19%, 25%, 0.9),
 	"textColorBubble": #fff
+);
+$darkModeVars: map-merge(
+	$darkModeVars,
+	(
+		"textBackSelected": map-get($darkModeVars, "linkColorContent"),
+		"textColorSelected": map-get($darkModeVars, "textColorRoot")
+	)
 );
 
 // Light (unscoped, as default)
