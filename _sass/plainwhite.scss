@@ -314,7 +314,6 @@ main {
 		border-bottom: 3px solid transparent;
 	}
 	a > code {
-		color: inherit;
 		text-decoration: underline;
 	}
 	a:hover > code {
@@ -536,6 +535,9 @@ a[data-tip].tip-active .tip-handle:after {
 	code.highlighter-rouge {
 		background: map-get($vars, "textBackShade");
 		color: map-get($vars, "textColorContent");
+	}
+	.post a > code {
+		color: inherit;
 	}
 	// Button styles
 	.post-tags a,
