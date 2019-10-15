@@ -535,7 +535,7 @@ a[data-tip].tip-active .tip-handle:after {
 	pre.highlight,
 	code.highlighter-rouge {
 		background: map-get($vars, "textBackShade");
-		color: map-get($vars, "linkColorRoot");
+		color: map-get($vars, "textColorContent");
 	}
 	// Button styles
 	.post-tags a,
