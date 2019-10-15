@@ -533,16 +533,22 @@ a[data-tip].tip-active .tip-handle:after {
 		background: map-get($vars, "lineShade");
 	}
 	pre.highlight,
-	code.highlighter-rouge,
-	.post-tags a,
-	.dark-toggle {
+	code.highlighter-rouge {
 		background: map-get($vars, "textBackShade");
 		color: map-get($vars, "linkColorRoot");
 	}
+	// Button styles
+	.post-tags a,
+	.dark-toggle {
+		background: map-get($vars, "textBackButton");
+		color: map-get($vars, "textColorButton");
+	}
+	.post-tags a:hover,
 	.dark-toggle:hover,
 	.dark-toggle:focus,
 	.dark-toggle:active {
-		background: map-get($vars, "linkColorShade");
+		background: map-get($vars, "textBackButtonActive");
+		color: map-get($vars, "textColorButtonActive");
 	}
 
 	// Link styles
@@ -555,7 +561,6 @@ a[data-tip].tip-active .tip-handle:after {
 		border-color: map-get($vars, "linkColorContent");
 	}
 	.post a:hover,
-	.post-tags a:hover,
 	.posts-row .post-link:hover h2,
 	.social a:hover {
 		background: map-get($vars, "linkColorShade");
@@ -606,19 +611,19 @@ $lightModeVars: (
 	"linkColorShade": hsla(210, 89%, 53%, 0.15),
 	"linkColorContent": #085bb5,
 
-	"lineShade": #eee,
+	"textBackSelected": hsla(210, 89%, 53%, 0.15),
+	"textColorSelected": #fff,
 
+	"lineShade": #eee,
 	"textBackShade": #f4f4f4,
+
+	"textBackButton": #f4f4f4,
+	"textColorButton": #000,
+	"textBackButtonActive": hsla(210, 89%, 53%, 0.15),
+	"textColorButtonActive": #085bb5,
 
 	"textBackBubble": rgba(0, 0, 0, 0.7),
 	"textColorBubble": #fff
-);
-$lightModeVars: map-merge(
-	$lightModeVars,
-	(
-		"textBackSelected": map-get($lightModeVars, "linkColorShade"),
-		"textColorSelected": map-get($lightModeVars, "textColorRoot")
-	)
 );
 
 $darkModeVars: (
@@ -633,19 +638,20 @@ $darkModeVars: (
 	"linkColorShade": hsla(210, 89%, 53%, 0.2),
 	"linkColorContent": lighten(map-get($lightModeVars, "linkColorContent"), 30%),
 
-	"lineShade": darken(#7a7a8c, 30%),
+	"textBackSelected": lighten(map-get($lightModeVars, "linkColorContent"), 30%),
+	"textColorSelected": #fff,
 
+	"lineShade": darken(#7a7a8c, 30%),
 	"textBackShade": #201c29,
+
+	"textBackButton": #201c29,
+	"textColorButton": #fff,
+
+	"textBackButtonActive": hsla(258, 19%, 25%, 0.9),
+	"textColorButtonActive": #fff,
 
 	"textBackBubble": hsla(258, 19%, 25%, 0.9),
 	"textColorBubble": #fff
-);
-$darkModeVars: map-merge(
-	$darkModeVars,
-	(
-		"textBackSelected": map-get($darkModeVars, "linkColorContent"),
-		"textColorSelected": map-get($darkModeVars, "textColorRoot")
-	)
 );
 
 // Light (unscoped, as default)
