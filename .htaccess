@@ -12,3 +12,6 @@ RewriteRule ^(.*)$ https://timotijhof.net/$1 [R=301,L]
 Redirect 301 /category/tools/feed/ https://timotijhof.net/feed.xml
 Redirect 301 /category/toolserver/feed/ https://timotijhof.net/feed.xml
 Redirect 301 /feed/ https://timotijhof.net/feed.xml
+
+# Charset
+AddDefaultCharset utf-8
