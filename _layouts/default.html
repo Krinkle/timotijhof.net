@@ -21,6 +21,7 @@ DARK = _d && _d[1] === '1';
 {% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="me" href="https://mastodon.technology/@krinkle">
 {% include opengraph.html %}
 {% endcapture -%}
 {{ meta | strip_newlines }}
