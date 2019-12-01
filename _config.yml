@@ -55,6 +55,9 @@ plainwhite:
   exclude_tag: wiki-tools
   social_links:
     github:  Krinkle
+    mastodon:
+      user: krinkle
+      instance: mastodon.technology
     twitter: TimoTijhof
   matomo:
     url: https://stats.timotijhof.net
