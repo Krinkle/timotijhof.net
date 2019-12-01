@@ -17,7 +17,7 @@ DARK = _d && _d[1] === '1';
 {%- endcapture -%}
 {{ darkinit_js | strip_newlines }}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20191015' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20191123' | relative_url }}">
 {% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -33,8 +33,9 @@ DARK = _d && _d[1] === '1';
     </a>
     <p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
     <ul class="social">
-      <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="{{ site.plainwhite.social_links.github | escape }} on GitHub"><i class="icon icon-github-circled"></i></a></li>
-      <li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="@{{ site.plainwhite.social_links.twitter | escape }} on Twitter"><i class="icon icon-twitter-squared"></i></a></li>
+      <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="GitHub: {{ site.plainwhite.social_links.github | escape }}"><i class="icon icon-github-circled"></i></a></li>
+      <li><a href="https://{{ site.plainwhite.social_links.mastodon.instance | escape }}/@{{ site.plainwhite.social_links.mastodon.user | escape }}" title="Mastodon: @{{ site.plainwhite.social_links.mastodon.user | escape }}@{{ site.plainwhite.social_links.mastodon.instance | escape }}"><i class="icon icon-mastodon"></i></a></li>
+      <li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="Twitter: @{{ site.plainwhite.social_links.twitter | escape }}"><i class="icon icon-twitter-squared"></i></a></li>
     </ul>
     <p class="footer">&copy; 2019</p>
     <button aria-label="Toggle dark mode" title="Toggle dark mode" class="dark-toggle"></button>
