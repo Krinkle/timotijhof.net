@@ -40,14 +40,28 @@ h2 {
 	margin: 0.7em 0;
 }
 h3,
-ol.md-toc {
+.md-toc > li {
 	font-size: 1.17em;
 	font-family: $fontFamilySans;
-	margin: 0.7em 0;
+	margin: 0.7em 0 0;
 }
-ol.md-toc {
+.md-toc {
 	font-style: italic;
 }
+ul.md-toc {
+	list-style: none;
+	padding-left: 1em;
+}
+ul.md-toc > li:before {
+	content: '§ ';
+}
+p {
+	margin: 1em 0;
+}
+h3 + p {
+	margin-top: 0;
+}
+
 
 a.sitelink {
 	text-decoration: none;
@@ -616,7 +630,7 @@ $lightModeVars: (
 	"linkColorContent": #085bb5,
 
 	"textBackSelected": hsla(210, 89%, 53%, 0.15),
-	"textColorSelected": #fff,
+	"textColorSelected": #000,
 
 	"lineShade": #eee,
 	"textBackShade": #f4f4f4,
