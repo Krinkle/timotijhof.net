@@ -6,14 +6,20 @@ layout: null
     <url>
         <loc>{{ site.url }}</loc>
         <lastmod>{{site.time | date: '%Y-%m-%d' }}</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
     </url>
     {%- for post in site.posts %}
     <url>
         <loc>{{ site.url }}{{ post.url }}</loc>
         <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
         <priority>1.0</priority>
+    </url>
+    {%- endfor %}
+    {%- for taginfo in site.tags %}
+    <url>
+        <loc>{{ site.url }}{% link {{ taginfo[0] | prepend: 'tags/' | append: '.md' }} %}</loc>
+        <priority>0.1</priority>
     </url>
     {%- endfor %}
 </urlset>
