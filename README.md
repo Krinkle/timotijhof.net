@@ -14,6 +14,8 @@ Upgrade packages based on the current [Gemfile](./Gemfile):
 bundle update
 </pre>
 
+-------
+
 Start a local server:
 
 <pre lang="sh">
@@ -21,6 +23,19 @@ bundle exec jekyll serve
 </pre>
 
 This starts a Jekyll server listening at <http://localhost:4000>.
+
+-------
+
+To start a local server that can be accessed by other devices on the network:
+
+<pre lang="sh">
+# For example, if 192.168.1.101 is your LAN-IP address.
+bundle exec jekyll serve --trace -H 192.168.1.101
+</pre>
+
+This starts a Jekyll server listening at <http://192.168.1.101:4000>.
+
+-------
 
 Generate the site (without starting a server)
 
