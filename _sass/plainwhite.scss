@@ -2,14 +2,30 @@
 
 $fontFamilySans: 'Avenir', sans-serif;
 
-$spaceContentSide: 20px;
+$sidebarWidth: 220px;
 
-$breakMobileSmall: 480px; // max-width
+$contentSpacing: 20px;
+$contentSpacingMicro: 10px;
+
+// "Micro" widths:
+// - Nokia 8110 4G:     240px
+$breakMicro: 319px; // max-width
+
+// "Mobile" widths:
+// - iPhone 5/SE:       320px (Portrait)
+// - iPhone 6/7/8:      375px (Portrait)
+// - iPhone 6/7/8 Plus: 414px (Portrait)
+// - iPad: 768px (Portait)
 $breakMobile: 770px; // max-width
-$breakBeyondMobile: $breakMobile + 1px; // min-width
-$breakWide: 1000px; // min-width
 
-$leftWidth: 220px;
+// "Beyond mobile" widths:
+// - iPad:              1024px (Landscape)
+// - Generic Desktop:   771px-1000px (Custom)
+$breakBeyondMobile: $breakMobile + 1px; // min-width
+
+// "Wide" widths:
+// - Generic Desktop:   1000px or wider (Custom)
+$breakWide: 1000px; // min-width
 
 html {
 	-webkit-font-smoothing: antialiased;
@@ -138,14 +154,17 @@ main {
 	// Use border-box to make it easy to add padding
 	// inside, within the given width/max-width.
 	box-sizing: border-box;
-	padding: 35px $spaceContentSide;
+	padding: 35px $contentSpacing;
 
-	@media screen and (min-width: $breakBeyondMobile) {
-		max-width: calc(100% - 220px);
-	}
 	@media screen and (max-width: $breakMobile) {
 		// Remove top padding
-		padding: 0 $spaceContentSide;
+		padding: 0 $contentSpacing;
+	}
+	@media screen and (max-width: $breakMicro) {
+		padding: 0 $contentSpacingMicro;
+	}
+	@media screen and (min-width: $breakBeyondMobile) {
+		max-width: calc(100% - 220px);
 	}
 }
 
@@ -153,7 +172,7 @@ main {
 	display: flex;
 	flex: 0;
 	height: 90vh;
-	width: $leftWidth;
+	width: $sidebarWidth;
 	justify-content: flex-start;
 	flex-direction: column;
 	align-items: center;
@@ -164,67 +183,13 @@ main {
 	}
 	h2 {
 		font-size: 22px;
-		margin-top: 25px;
-		margin-bottom: 0;
+		margin: 25px 0 0 0;
 		font-weight: normal;
 	}
 }
-.dark-toggleable .dark-toggle {
-	// margin-top=auto makes this item jusitied at the bottom
-	// of the flex column (.about).
-	margin: auto 0 10px 0;
-	border: 0;
-	border-radius: 2px;
-	padding: 5px 20px;
-	font-size: 14px;
-	cursor: pointer;
-}
-@media screen and (min-width: $breakBeyondMobile) {
-	.dark-toggleable .dark-toggle {
-		position: fixed;
-		bottom: 0;
-	}
-}
-
-@media screen and (max-width: $breakMobile) {
-	.about {
-		height: auto;
-		margin-top: 5vh;
-	}
-	.about-sm {
-		justify-content: space-between;
-		flex-direction: row;
-		width: auto;
-		margin: 0;
-		padding: 10px 10px;
-		border-bottom: 1px solid transparent;
-		.sitelink {
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-		}
-		img {
-			max-width: 50px;
-		}
-		h2 {
-			margin: 0 0 0 10px;
-		}
-		.tagline,
-		.social,
-		.footer {
-			display: none;
-		}
-	}
-}
-
 .tagline {
 	font-size: 22px;
-	margin-top: 17px;
-	@media screen and (min-width: $breakBeyondMobile) {
-		font-size: 18px;
-		line-height: 1.6;
-		margin: 1.2em 0;
-	}
+	margin: 18px 0;
 }
 
 .social {
@@ -246,6 +211,100 @@ main {
 	}
 	a:hover .icon {
 		opacity: 1;
+	}
+}
+@media screen and (max-width: $breakMobile) {
+	.about {
+		height: auto;
+		margin-top: 5vh;
+	}
+	.about-sm {
+		justify-content: space-between;
+		flex-direction: row;
+		width: auto;
+		margin: 0;
+		padding: $contentSpacing;
+		border-bottom: 1px solid transparent;
+		.sitelink {
+			display: flex;
+			justify-content: flex-start;
+			text-align: left; // For micro widths
+			align-items: center;
+		}
+		img {
+			max-width: 50px;
+			max-height: 50px; // Support: KAIOS 2.5 / FF 48 (Fix aspect ratio)
+		}
+		h2 {
+			margin: 0 0 0 $contentSpacing;
+		}
+		.tagline,
+		.social,
+		.footer {
+			display: none;
+		}
+	}
+}
+@media screen and (max-width: $breakMicro) {
+	.about {
+		.sitelink {
+			display: flex;
+			justify-content: flex-start;
+			text-align: left; // For micro widths
+			align-items: center;
+		}
+		img {
+			max-width: 50px;
+			max-height: 50px; // Support: KAIOS 2.5 / FF 48 (Fix aspect ratio)
+		}
+		h2 {
+			font-size: 18px;
+			margin: 0 0 0 $contentSpacingMicro;
+		}
+		.footer {
+			display: none;
+		}
+	}
+	.tagline {
+		font-size: 14px;
+		margin: $contentSpacingMicro 0;
+	}
+	.social {
+		a {
+			font-size: 28px;
+		}
+	}
+
+	.about-sm {
+		padding: $contentSpacingMicro;
+		h2 {
+			margin: 0 0 0 $contentSpacingMicro;
+		}
+	}
+}
+@media screen and (min-width: $breakBeyondMobile) {
+	.tagline {
+		font-size: 18px;
+		line-height: 1.6;
+		margin: 1.2em 0;
+	}
+}
+
+.dark-toggleable .dark-toggle {
+	// margin-top=auto makes this item jusitied at the bottom
+	// of the flex column (.about).
+	margin: auto 0 10px 0;
+	border: 0;
+	border-radius: 2px;
+	padding: 5px 20px 5px 10px;
+	font-size: 14px;
+	cursor: pointer;
+	white-space: nowrap; // For micro widths
+}
+@media screen and (min-width: $breakBeyondMobile) {
+	.dark-toggleable .dark-toggle {
+		position: fixed;
+		bottom: 0;
 	}
 }
 
@@ -365,10 +424,14 @@ main {
 		cursor: inherit;
 	}
 	figure {
-		margin-left: -$spaceContentSide;
+		margin-left: -$contentSpacing;
 		margin-right: 0;
 		@media screen and (max-width: $breakMobile), (min-width: $breakWide) {
-			margin-right: -$spaceContentSide;
+			margin-right: -$contentSpacing;
+		}
+		@media screen and (max-width: $breakMicro) {
+			margin-left: -$contentSpacingMicro;
+			margin-right: -$contentSpacingMicro;
 		}
 	}
 	figure > p {
@@ -472,9 +535,9 @@ a[data-tip].tip-active:after {
 	padding: 0.5em 1em;
 	font-size: 0.9em;
 	@media screen and (max-width: $breakMobile) {
-		left: -($spaceContentSide / 2);
+		left: -($contentSpacing / 2);
 		padding: 5vw;
-		width: calc(90vw - #{$spaceContentSide + 15px});
+		width: calc(90vw - #{$contentSpacing + 15px});
 	}
 }
 
