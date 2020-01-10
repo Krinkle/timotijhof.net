@@ -2,11 +2,11 @@
 layout: post
 title: "To throw or not to throw, that is the question"
 tags: wikipedia engineering-stories
+redirect_from:
+- /posts/2019/wikipedia-stories-3/ # renamed
 ---
 
 What are namespaces and special pages on Wikipedia? Why do we accept invalid data? And, at what layer should we reject it?
-
-These are stories from bug hunts and incident investigations at Wikipedia.
 
 <!--more-->
 

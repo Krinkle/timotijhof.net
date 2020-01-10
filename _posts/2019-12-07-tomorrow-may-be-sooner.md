@@ -4,6 +4,7 @@ title: "Tomorrow, may be sooner than you think"
 tags: wikipedia engineering-stories
 redirect_from:
 - /posts/2019/wikipedia-stories-02/ # draft
+- /posts/2019/wikipedia-stories-2/ # renamed
 plainwhite:
   also_url: https://phabricator.wikimedia.org/phame/live/1/post/119/production_excellence_september_2018/
   also_label: Production Excellence at Wikipedia
