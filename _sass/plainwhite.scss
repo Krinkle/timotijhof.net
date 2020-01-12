@@ -53,7 +53,7 @@ h1 {
 h2 {
 	font-size: 1.5em;
 	font-family: $fontFamilySans;
-	margin: 0.7em 0;
+	margin: 0.7em 0 0.3em;
 }
 h3,
 .md-toc > li {
@@ -74,6 +74,7 @@ ul.md-toc > li:before {
 p {
 	margin: 1em 0;
 }
+h2 + p,
 h3 + p {
 	margin-top: 0;
 }
@@ -99,7 +100,7 @@ blockquote > p:last-child {
 
 hr {
 	border: 0;
-	margin: 2em auto;
+	margin: 2em auto 1.5em;
 	width: 80%;
 	height: 1px;
 }
@@ -365,6 +366,7 @@ main {
 }
 .page-heading,
 .post-title {
+	margin: 0.7em 0;
 	line-height: 1.2em;
 	font-size: 28px;
 }
@@ -396,7 +398,7 @@ main {
 		text-decoration: none;
 	}
 	li {
-		margin-top: 1em;
+		margin-top: 0.5em;
 	}
 	img {
 		object-fit: scale-down;
