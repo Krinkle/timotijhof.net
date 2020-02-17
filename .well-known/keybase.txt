@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/timotijhof
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://timotijhof.net
+  * I am timotijhof (https://keybase.io/timotijhof) on keybase.
+  * I have a public key ASB3M3YXhui3j18_kDjQytHRLG_DxHYLbDEnFiSWARx_uAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01207733761786e8b78f5f3f9038d0cad1d12c6fc3c4760b6c3127162496011c7fb80a",
+      "host": "keybase.io",
+      "kid": "01207733761786e8b78f5f3f9038d0cad1d12c6fc3c4760b6c3127162496011c7fb80a",
+      "uid": "26ab3b542e99bf294a07829a9e0c5819",
+      "username": "timotijhof"
+    },
+    "merkle_root": {
+      "ctime": 1581884131,
+      "hash": "2762a76a071c458efae7133064acb7a9691730ffe9486a668e494ac7d1e819b3c0b15b8d27a5e57b9fce5168721cc571100322b301b459aae80c9b69bd27c75d",
+      "hash_meta": "6b8aeab682b87c71384acc6c1d38ae2ecfcc82d5b2cc6ff6da378c211161f57f",
+      "seqno": 14621550
+    },
+    "service": {
+      "entropy": "EUR5Npi2sPI90FaR/B/OD/99",
+      "hostname": "timotijhof.net",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.2.0"
+  },
+  "ctime": 1581884267,
+  "expire_in": 504576000,
+  "prev": "13745b97cac2fd46ddcdec59840f4503e369b909ed38cb81e35c8dd7dc9610b4",
+  "seqno": 9,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgdzN2F4bot49fP5A40MrR0Sxvw8R2C2wxJxYklgEcf7gKp3BheWxvYWTESpcCCcQgE3Rbl8rC/UbdzexZhA9FA+NpuQntOMuB41yN19yWELTEIPkLHWhGI84dnr61Uat8W8VVFj7fHLG7xEKU+YDRNecYAgHCo3NpZ8RAaKVMCREvPOfzyQrRA1rburL/0Qd6WVO+OIuFmh0V3Yuk1f1jOoWH4MwpqwT6IndkT/jFOA/yu/qIBfhB9k8PCahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIL9nu1WD1m77isiARKLBANmAPrCwLE2i9NBj3YNJE4BQo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/timotijhof
+
+==================================================================
