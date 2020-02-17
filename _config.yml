@@ -5,6 +5,9 @@
 
 ## Jekyll / Configuration
 permalink: /posts/:year/:title/
+include:
+  - .htaccess
+  - .well-known
 exclude:
   - LICENSE.txt
   - README.md
