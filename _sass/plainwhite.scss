@@ -99,9 +99,10 @@ blockquote > p:last-child {
 }
 
 hr {
+	clear: both;
 	border: 0;
 	margin: 2em auto 1.5em;
-	width: 80%;
+	max-width: 80%;
 	height: 1px;
 }
 
@@ -132,7 +133,7 @@ pre.highlight {
 	overflow: auto;
 	padding: 1em 1.5em;
 	font-family: Menlo, Monaco, monospace;
-	line-height: 1.4em;
+	line-height: 1.4;
 	tab-size: 4;
 }
 code.highlighter-rouge {
@@ -367,7 +368,6 @@ main {
 .page-heading,
 .post-title {
 	margin: 0.7em 0;
-	line-height: 1.2em;
 	font-size: 28px;
 }
 
@@ -377,6 +377,15 @@ main {
 	font-size: 18px;
 	line-height: 1.7;
 	letter-spacing: -0.1px;
+
+	@media screen and (min-width: $breakWide) {
+		font-size: 20px;
+	}
+
+	@media screen and (max-width: $breakMobile) {
+		font-size: 17px;
+	}
+
 	a {
 		text-decoration: none;
 		border-bottom: 0.5px solid transparent;
@@ -445,15 +454,8 @@ main {
 	}
 	figcaption {
 		font-family: $fontFamilySans;
-		font-size: 16px;
-	}
-
-	@media screen and (min-width: $breakWide) {
-		font-size: 20px;
-	}
-
-	@media screen and (max-width: $breakMobile) {
-		font-size: 17px;
+		font-size: 15px;
+		line-height: 1.5;
 	}
 }
 
