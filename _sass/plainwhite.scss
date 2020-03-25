@@ -507,7 +507,6 @@ a[data-tip].tip-active {
 	outline: 5px solid transparent;
 }
 
-a[data-tip]:hover:before,
 a[data-tip].tip-active:before {
 	content: "";
 	display: block;
@@ -526,7 +525,6 @@ a[data-tip].tip-active:before {
 	left: calc(100% - 10px - 0.5em);
 }
 
-a[data-tip]:hover:after,
 a[data-tip].tip-active:after {
 	display: block;
 	content: attr(data-tip);
@@ -669,12 +667,10 @@ a[data-tip].tip-active .tip-handle:after {
 	}
 
 	// Bubble styles
-	a[data-tip]:hover:after,
 	a[data-tip].tip-active:after {
 		background: map-get($vars, "textBackBubble");
 		color: map-get($vars, "textColorBubble");
 	}
-	a[data-tip]:hover:before,
 	a[data-tip].tip-active:before {
 		border-top-color: map-get($vars, "textBackBubble");
 	}
