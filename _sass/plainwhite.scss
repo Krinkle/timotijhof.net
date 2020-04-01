@@ -500,50 +500,53 @@ main {
 	}
 }
 
-a[data-tip] {
+[data-tip] {
 	position: relative;
 }
-a[data-tip].tip-active {
-	outline: 5px solid transparent;
-}
 
-a[data-tip].tip-active:before {
+// The cut-out
+.tip-handle:focus + [data-tip]:before,
+.tip-handle:active + [data-tip]:before {
 	content: "";
 	display: block;
 	// Set z-index to get it in front of the tip's drop-shadow
 	z-index: 1;
 	position: absolute;
 	bottom: 95%;
-	// Align with center of link
-	left: 70%;
+	// Align with tip-handle
+	left: calc(100% - 10px - 0.5em);
 	border-top: 10px solid transparent;
 	border-left: 9px solid transparent;
 	border-right: 9px solid transparent;
-}
-a[data-tip].tip-active:before {
-	// Align with tip-handle
-	left: calc(100% - 10px - 0.5em);
+	@media screen and (max-width: $breakMobile) {
+		display: none;
+	}
 }
 
-a[data-tip].tip-active:after {
+// The bubble
+.tip-handle:focus + [data-tip]:after,
+.tip-handle:active + [data-tip]:after {
 	display: block;
 	content: attr(data-tip);
 	position: absolute;
 	width: 300px;
+	// Align with center
+	left: -150px;
 	bottom: calc(95% + 10px);
-	left: -1em;
 	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.54));
 	border-radius: 4px;
 	padding: 0.5em 1em;
 	font-size: 0.9em;
 	@media screen and (max-width: $breakMobile) {
-		left: -($contentSpacing / 2);
+		position: fixed;
+		left: ($contentSpacing / 2);
+		bottom: 20%;
 		padding: 5vw;
-		width: calc(90vw - #{$contentSpacing + 15px});
+		width: calc(90vw - #{$contentSpacing});
 	}
 }
 
-a[data-tip] .tip-handle {
+.tip-handle {
 	display: inline-block;
 	margin-left: 0.5em;
 	border: 1px solid transparent;
@@ -553,13 +556,11 @@ a[data-tip] .tip-handle {
 	text-align: center;
 	cursor: pointer;
 }
-a[data-tip].tip-active .tip-handle {
+.tip-handle:focus {
+	outline: 0;
 	position: relative;
 }
-a[data-tip] .tip-handle:before {
-	content: "i";
-}
-a[data-tip].tip-active .tip-handle:after {
+.tip-handle:focus:after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -574,7 +575,7 @@ a[data-tip].tip-active .tip-handle:after {
 @mixin my-color-scheme($vars) {
 	// Root and content styles
 	body,
-	a[data-tip] .tip-handle {
+	.tip-handle {
 		background: map-get($vars, "textBackRoot");
 		color: map-get($vars, "textColorRoot");
 	}
@@ -651,27 +652,31 @@ a[data-tip].tip-active .tip-handle:after {
 		outline-color: map-get($vars, "linkColorShade");
 		border-color: map-get($vars, "linkColorContent");
 	}
-	a[data-tip] .tip-handle {
+	.tip-handle {
 		border-color: map-get($vars, "textColorMuted");
 	}
-	a[data-tip].tip-active .tip-handle {
+	.tip-handle:focus,
+	.tip-handle:active {
 		border-color: map-get($vars, "linkColorContent");
 	}
 	.post a:hover,
 	.posts-row .post-link:hover h2 {
 		box-shadow: 0px 0px 0px 5px map-get($vars, "linkColorShade");
 	}
-	a[data-tip].tip-active .tip-handle:after,
+	.tip-handle:focus:after,
+	.tip-handle:active:after,
 	.social a:hover {
 		box-shadow: 0px 0px 0px 20px map-get($vars, "linkColorShade");
 	}
 
 	// Bubble styles
-	a[data-tip].tip-active:after {
+	.tip-handle:focus + [data-tip]:after,
+	.tip-handle:active + [data-tip]:after {
 		background: map-get($vars, "textBackBubble");
 		color: map-get($vars, "textColorBubble");
 	}
-	a[data-tip].tip-active:before {
+	.tip-handle:focus + [data-tip]:before,
+	.tip-handle:active + [data-tip]:before {
 		border-top-color: map-get($vars, "textBackBubble");
 	}
 	::selection {
