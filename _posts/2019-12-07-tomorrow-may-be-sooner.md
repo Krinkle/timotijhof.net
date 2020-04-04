@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tomorrow, may be sooner than you think"
-tags: wikipedia engineering-stories
+tags: engineering-stories
 redirect_from:
 - /posts/2019/wikipedia-stories-02/ # draft
 - /posts/2019/wikipedia-stories-2/ # renamed

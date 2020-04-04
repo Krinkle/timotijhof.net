@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Many dots, do not a query make"
-tags: wikipedia engineering-stories
+tags: engineering-stories
 author_role: editor
 ---
 
