@@ -18,7 +18,7 @@ module Jekyll
 		File.symlink("/home/deb35044/domains/timotijhof.net/rocvt-sub-public_html/", "#{site.dest}/rocvt")
 
 		# Symlink for stats.timotijhof.net
-		File.symlink("/home/deb35044/domains/timotijhof.net/matomo-sub-public_html/", "#{site.dest}/stats")
+		File.symlink("/home/deb35044/domains/timotijhof-stats.localhost/private_html/", "#{site.dest}/stats")
 
 	end
 end
