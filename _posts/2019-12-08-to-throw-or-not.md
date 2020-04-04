@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "To throw or not to throw, that is the question"
-tags: wikipedia engineering-stories
+tags: engineering-stories
 redirect_from:
 - /posts/2019/wikipedia-stories-3/ # renamed
 ---

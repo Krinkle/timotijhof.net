@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Missing partitions, disappearing audio players, and extreme packet loss"
-tags: wikipedia engineering-stories
+tags: engineering-stories
 redirect_from:
 - /posts/2018/production-excellence-aug-2018/ # draft
 - /posts/2018/wikipedia-stories-aug-2018/ # renamed
