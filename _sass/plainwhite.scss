@@ -131,10 +131,14 @@ hr {
 
 pre.highlight {
 	overflow: auto;
-	padding: 1em 1.5em;
+	padding: 1em 1em;
 	font-family: Menlo, Monaco, monospace;
 	line-height: 1.4;
+	font-size: 17px;
 	tab-size: 4;
+	white-space: pre-wrap;
+	white-space: break-spaces;
+	overflow-wrap: break-word;
 }
 code.highlighter-rouge {
 	padding: 0.3em 0.4em;
@@ -448,7 +452,8 @@ main {
 	figure,
 	table,
 	> p:not(.md-block) > img,
-	.md-block {
+	.md-block,
+	pre.highlight {
 		margin-left: -$contentSpacing;
 		margin-right: -$contentSpacing;
 		@media screen and (max-width: $breakMicro) {

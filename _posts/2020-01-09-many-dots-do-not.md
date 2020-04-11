@@ -17,9 +17,9 @@ Wikipedia's production error logs were reporting an increase in app crashes from
 [RuntimeException]
 Cannot consume query at offset 0 (need to go to 7296)
 
-at mediawiki/ext…/CirrusSearch/…: QueryStringRegexParser->nextToken
-at mediawiki/ext…/CirrusSearch/…: QueryStringRegexParser->parse
-at mediawiki/ext…/CirrusSearch/…: SearchQueryBuilder::newFTSearchQueryBuilder
+at mediawiki/…/CirrusSearch: QueryStringRegexParser->nextToken
+at mediawiki/…/CirrusSearch: QueryStringRegexParser->parse
+at mediawiki/…/CirrusSearch: SearchQueryBuilder::newFTSearchQueryBuilder
 ```
 
 What caused this?
@@ -36,7 +36,7 @@ While each error report had a different URL and search query, I noticed most of 
 
 
 ```
-https://de.wikipedia.org/w/index.php?search=.................... (3000 dots)
+https://de.wikipedia.org/w/?search=.................. (3000 dots)
 ```
 
 Such an odd query might not need to yield a useful response, but it is important that it not crash the application. Doing so leaves the user stranded with an unhelpful "Internal server error" page. It can also interfere with on-going deployments as raised error levels usually indicate that a recent software update caused a problem.
