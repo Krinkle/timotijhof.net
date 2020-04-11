@@ -14,8 +14,8 @@ plainwhite:
 
 This week saw the conclusion of a project that I've been shepherding on and off since September of last year. The goal was for the initialisation of our asynchronous JavaScript pipeline (at the time, 36 kilobytes in size) to fit within a budget of 28 KB.
 
-![Chart showing a decline in Startup manifest size from 36.2 kilobytes in 2018 to just under 28 KB in September 2019](/assets/attachments/2019_wikipedia_figure1_chart.png "From 36.2 KB to 27.2 KB"){:style="max-height:370px" class="md-center-box"}
-{:class="md-center"}
+![Chart showing a decline in Startup manifest size from 36.2 kilobytes in 2018 to just under 28 KB in September 2019](/assets/attachments/2019_wikipedia_figure1_chart.png "From 36.2 KB to 27.2 KB"){:style="max-height:370px" class="md-box"}
+{:class="md-block"}
 
 The above graph shows the transfer size over time. Sizes are after compression (i.e. the net bandwidth cost as perceived from a browser).
 
@@ -58,7 +58,7 @@ Second – We shrunk the average size for each entry in the registry overall ([t
 
 Below is a close-up for the last few days (this is from synthetic monitoring, plotting the decompressed size):
 
-![Line graph showing a sudden drop in Startup JS size from 55.6KB to 52.8KB](/assets/attachments/2019_wikipedia_figure2_synth.png "From 55.6KB to 52.8KB (decompressed)"){:class="md-center-box"}
+![Line graph showing a sudden drop in Startup JS size from 55.6KB to 52.8KB](/assets/attachments/2019_wikipedia_figure2_synth.png "From 55.6KB to 52.8KB (decompressed)"){:class="md-box"}
 
 The change was detected in ResourceLoader's synthetic monitoring. The above is captured from the [Startup manifest size dashboard](https://grafana.wikimedia.org/d/BvWJlaDWk/startup-manifest-size?orgId=1&from=1568439360000&to=1568680200000) on our public Grafana instance, showing a **2.8KB** decrease in the uncompressed data stream.
 
@@ -70,7 +70,8 @@ We have around 363,000 page views a minute in total on Wikipedia and sister proj
 
 ## What's next
 
-![Percentage of bundle metadata size, by component. 26% is for MediaWiki core's bundles, 12% for ContentTranslation bundles, 7% for VisualEditor, 5% for Wikidata.](/assets/attachments/2019_wikipedia_figure3_pie.png "Percentage of bundle metadata size, by component"){:style="max-height:280px" class="md-right-box"}
+![Percentage of bundle metadata size, by component. 26% is for MediaWiki core's bundles, 12% for ContentTranslation bundles, 7% for VisualEditor, 5% for Wikidata.](/assets/attachments/2019_wikipedia_figure3_pie.png "Percentage of bundle metadata size, by component"){:style="max-height:280px"}
+{:class="md-block md-block-right"}
 
 It's great to celebrate that Wikipedia's startup payload now neatly fits into the target budget of 28 KB – chosen as the lowest multiple of 14KB we can fit within subsequent [bursts of Internet packets](https://tylercipriani.com/blog/2016/09/25/the-14kb-in-the-tcp-initial-window/) to a web browser.
 
