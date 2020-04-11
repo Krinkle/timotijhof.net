@@ -414,7 +414,7 @@ main {
 		width: auto;
 		height: auto;
 		// Markup may have its own max-height or max-width,
-		// which we'll honour. E.g. in combination with md-left-box.
+		// which we'll honour. E.g. in combination with md-block-left.
 		max-width: 100%;
 		max-height: 100vh;
 		@media screen and (max-width: $breakMobile) {
@@ -431,15 +431,26 @@ main {
 			cursor: zoom-in;
 		}
 	}
+	// Turn simple images (those not in an already widened block),
+	// effectively into a block as well.
+	> p:not(.md-block) > img {
+		max-width: calc( 100% + #{$contentSpacing} + #{$contentSpacing} );
+		@media screen and (max-width: $breakMobile) {
+			max-width: calc( 100% + #{$contentSpacing} + #{$contentSpacing} ) !important;
+		}
+		@media screen and (max-width: $breakMicro) {
+			max-width: calc( 100% + #{$contentSpacingMicro} + #{$contentSpacingMicro} ) !important;
+		}
+	}
 	a img {
 		cursor: inherit;
 	}
-	figure {
+	figure,
+	table,
+	> p:not(.md-block) > img,
+	.md-block {
 		margin-left: -$contentSpacing;
-		margin-right: 0;
-		@media screen and (max-width: $breakMobile), (min-width: $breakWide) {
-			margin-right: -$contentSpacing;
-		}
+		margin-right: -$contentSpacing;
 		@media screen and (max-width: $breakMicro) {
 			margin-left: -$contentSpacingMicro;
 			margin-right: -$contentSpacingMicro;
@@ -465,32 +476,37 @@ main {
 		border-style: dashed;
 		line-height: 1.1;
 	}
-	.md-center {
-		text-align: center;
-	}
-	.md-center-box {
-		text-align: center;
+	.md-box {
 		outline: 2px solid transparent;
 	}
-	.md-right {
-		clear: right;
-		text-align: right;
+	figure,
+	.md-block {
+		text-align: center;
 	}
-	.md-right-box {
+	table.md-block {
+		border-spacing: 4px;
+	}
+	.md-block-right {
 		text-align: center;
 		@media screen and (min-width: $breakWide) {
 			float: right;
 			margin-top: 0;
+			margin-bottom: 1em;
 			margin-left: 0.75em;
 		}
 	}
-	.md-left-box {
+	.md-block-left {
 		text-align: center;
 		@media screen and (min-width: $breakWide) {
 			float: left;
 			margin-top: 0;
+			margin-bottom: 1em;
 			margin-right: 0.75em;
 		}
+	}
+	.md-right {
+		clear: right;
+		text-align: right;
 	}
 }
 .posts-row {
@@ -606,7 +622,7 @@ main {
 		border-color: map-get($vars, "lineShade");
 		color: map-get($vars, "textColorMinor");
 	}
-	.post .md-center-box {
+	.post .md-box {
 		outline-color: map-get($vars, "lineShade");
 		box-shadow: 2px 2px 10px map-get($vars, "lineShade");
 	}

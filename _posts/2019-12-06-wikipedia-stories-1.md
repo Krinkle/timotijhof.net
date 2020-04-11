@@ -95,8 +95,8 @@ dashboard and the culprit was quickly identified. Over 3000 UDP packets were bei
 
 As first mitigation, he rebooted the server, quadrupled the default receive buffer size (`net.core.rmem_default` in the Linux kernel) to 4MB, and rebooted it again.
 
-| ![Rate of succesfull Logstash packet reception increased from 50 pps to 300 pps](/assets/attachments/2018_augstories_1a_logstash_recv.png "Success rate goes up from 50 pps to 300 pps") | ![Rate of Logstash packet loss decreased from 1200 pps to 950 pps.](/assets/attachments/2018_augstories_1b_logstash_loss.png "Failure rate went down from 1200 pps to 950 pps")
-{:class="md-center-box"}
+| ![Rate of succesfull Logstash packet reception increased from 50 pps to 300 pps](/assets/attachments/2018_augstories_1a_logstash_recv.png "Success rate goes up from 50 pps to 300 pps"){:class="md-box"} | ![Rate of Logstash packet loss decreased from 1200 pps to 950 pps.](/assets/attachments/2018_augstories_1b_logstash_loss.png "Failure rate went down from 1200 pps to 950 pps"){:class="md-box"}
+{:class="md-block"}
 
 The first reboot significantly improved throughput (from 10% success, to 25% success), but the receive buffer change didn't have any positive effect and we were still dropping the remaining 75% of packets.
 
