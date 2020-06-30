@@ -1,7 +1,7 @@
 ---
 layout: post
 title: QUnit anti-patterns
-tags: qunit javascript testing
+tags: javascript testing
 redirect_from:
 - /2015/qunit-anti-patterns/ # former WordPress site (deleted page)
 plainwhite:
