@@ -17,7 +17,7 @@ DARK = _d && _d[1] === '1';
 {%- endcapture -%}
 {{ darkinit_js | strip_newlines }}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200629' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200630' | relative_url }}">
 {% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -28,7 +28,7 @@ DARK = _d && _d[1] === '1';
 <div class="wrap">
   <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
     <a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
-      <img src="{{ '/assets/profile.png?v=20190922' | relative_url }}" alt="{{ site.plainwhite.name | escape }}">
+      <img src="{{ '/assets/profile.png?v=20190922' | relative_url }}" alt="">
       <h2>{{ site.plainwhite.name | escape }}</h2>
     </a>
     <p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
