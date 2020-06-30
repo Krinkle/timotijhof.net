@@ -17,7 +17,7 @@ DARK = _d && _d[1] === '1';
 {%- endcapture -%}
 {{ darkinit_js | strip_newlines }}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200410' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200629' | relative_url }}">
 {% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -25,7 +25,7 @@ DARK = _d && _d[1] === '1';
 {% include opengraph.html %}
 {% endcapture -%}
 {{ meta | strip_newlines }}
-<main>
+<div class="wrap">
   <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
     <a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
       <img src="{{ '/assets/profile.png?v=20190922' | relative_url }}" alt="{{ site.plainwhite.name | escape }}">
@@ -37,13 +37,13 @@ DARK = _d && _d[1] === '1';
       <li><a href="https://{{ site.plainwhite.social_links.mastodon.instance | escape }}/@{{ site.plainwhite.social_links.mastodon.user | escape }}" title="Mastodon: @{{ site.plainwhite.social_links.mastodon.user | escape }}@{{ site.plainwhite.social_links.mastodon.instance | escape }}"><i class="icon icon-mastodon"></i></a></li>
       <li><a href="https://twitter.com/{{ site.plainwhite.social_links.twitter | escape }}" title="Twitter: @{{ site.plainwhite.social_links.twitter | escape }}"><i class="icon icon-twitter-squared"></i></a></li>
     </ul>
-    <p class="footer">&copy; 2019</p>
+    <p class="footer">&copy; 2011–2020</p>
     <button aria-label="Toggle dark mode" title="Toggle dark mode" class="dark-toggle"></button>
   </header>
-  <section class="content">
+  <main class="content">
     {{- content -}}
-  </section>
-</main>
+  </main>
+</div>
 {%- if site.plainwhite.matomo.url and site.plainwhite.matomo.idsite -%}
   {%- capture matomo_basic -%}
   {{ site.plainwhite.matomo.url }}/matomo.php?idsite={{ site.plainwhite.matomo.idsite | url_encode }}&rec=1

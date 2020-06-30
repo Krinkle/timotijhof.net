@@ -5,19 +5,22 @@ plainwhite:
 ---
 {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
 <a class="post-link" href="{{ page.url | relative_url }}">
-  <h2 class="post-title">{{ page.title | escape }}</h2>
+  <h1>{{ page.title | escape }}</h1>
 </a>
 <div class="post-meta">
-  <div class="post-tags">
-    {%- for tag in page.tags -%}
-    <a rel="tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
-    {%- endfor -%}
-  </div>
-  <div class="post-date"><i class="icon icon-calendar"></i><time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></div>
+  <span class="post-date"><i class="icon icon-calendar"><span class="screen-reader-text">Published on</span></i><time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></span>
+  in
+  {% for tag in page.tags -%}
+    {%- if page.tags.first != tag and page.tags.last != tag %}, {% endif -%}
+    {%- if page.tags.first != tag and page.tags.last == tag %}, and {% endif -%}
+    <a rel="tag" class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
+    {%- if page.tags.last == tag %}.{% endif -%}
+  {%- endfor -%}
 </div>
-<div class="post">
+<hr>
+<article class="post">
   {{- content | fix_extlink -}}
-</div>
+</article>
 <hr>
 {%- if page.plainwhite.original_url or page.plainwhite.also_url -%}
 <p>

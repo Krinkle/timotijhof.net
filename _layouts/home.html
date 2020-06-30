@@ -3,13 +3,13 @@ layout: default
 ---
 
 {%- if page.title -%}
-<h1 class="page-heading">{{ page.title | escape }}</h1>
+<h1>{{ page.title | escape }}</h1>
 {%- endif -%}
 
 {{ content }}
 
 {%- if site.posts.size > 0 -%}
-<h1 class="posts-label">posts</h1>
+<p class="posts-label">posts</p>
 {%- for post in site.posts -%}
   {% if post.tags contains site.plainwhite.exclude_tag %}
     {%- continue -%}
@@ -32,8 +32,8 @@ layout: default
 {%- endif -%}
 
 {%- if site.tags.size > 0 -%}
-<h1 class="posts-label">tags</h1>
-<div class="post-tags">
+<p class="posts-label">tags</p>
+<p>
 {%- capture tags_str -%}
 {%- for tag in site.tags -%}
   {{ tag[0] }}
@@ -42,7 +42,8 @@ layout: default
 {%- endcapture -%}
 {%- assign tags = tags_str | split: '|' | sort -%}
 {%- for tag in tags -%}
-  <a href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
+  {%- if tags.first != tag %}, {% endif -%}
+  <a class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
 {%- endfor -%}
-</div>
+.</p>
 {%- endif -%}

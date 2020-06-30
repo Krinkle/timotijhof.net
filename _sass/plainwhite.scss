@@ -1,6 +1,6 @@
 @import 'ext/solarized-light';
 
-$fontFamilySans: 'Avenir', sans-serif;
+$fontFamilySans: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 
 $sidebarWidth: 220px;
 
@@ -47,18 +47,24 @@ body {
 }
 
 h1 {
-	font-size: 2em;
-	margin: 0.67em 0;
+	font-size: 2.1em;
+	margin: $contentSpacing 0;
+	font-weight: 600;
+	@media screen and (max-width: $breakMicro) {
+		margin: $contentSpacingMicro 0;
+	}
 }
 h2 {
 	font-size: 1.5em;
 	font-family: $fontFamilySans;
+	font-weight: 600;
 	margin: 0.7em 0 0.3em;
 }
 h3,
 .md-toc > li {
 	font-size: 1.17em;
 	font-family: $fontFamilySans;
+	font-weight: 600;
 	margin: 0.7em 0 0;
 }
 .md-toc {
@@ -146,7 +152,7 @@ code.highlighter-rouge {
 	font-size: 0.8em;
 }
 
-main {
+.wrap {
 	margin: 0 auto;
 	display: flex;
 	height: 100%;
@@ -184,6 +190,10 @@ main {
 	align-items: center;
 	text-align: center;
 	margin: 10vh auto 0 auto;
+	// Ensure the About aligns with page header
+	// where 35px = content padding-top
+	$wideTop: 35px + $contentSpacing;
+	margin: #{"min("$wideTop", 10vh)"} auto 0 auto;
 	img {
 		max-width: 150px;
 	}
@@ -322,19 +332,23 @@ main {
 	padding-bottom: 10px;
 	font-weight: normal;
 }
-.posts-row {
-	border-bottom: 1px solid transparent;
-}
-.posts-readmore {
-	font-size: 0.8em;
-	text-align: center;
-}
 // Link to post from listings (home page, tag page)
 .post-link {
 	text-decoration: none;
 }
-.posts-row .post-link:hover {
-	text-decoration: underline;
+.posts-row {
+	border-bottom: 1px solid transparent;
+	.post-link:hover {
+		text-decoration: underline;
+	}
+	.post-date a {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+.posts-readmore {
+	font-size: 0.8em;
+	text-align: center;
 }
 
 .post-meta {
@@ -342,34 +356,16 @@ main {
 	// Undo last non-collapsed post-tags margin-bottom
 	margin-bottom: -10px;
 }
-.post-date {
-	float: right;
-	.icon {
-		// Approximate text color
-		opacity: 0.7;
-		margin-right: 0.2em;
-	}
-	a {
-		text-decoration: none;
-	}
+.post-date .icon {
+	// Approximate text color
+	opacity: 0.7;
+	margin-right: 0.3em;
 }
-.post-tags {
-	float: left;
-	margin: 0;
-	padding: 0;
-	a {
-		font-size: 14px;
-		text-decoration: none;
-		float: left;
-		padding: 5px 20px;
-		border-radius: 2px;
-		margin: 0 10px 10px 0;
-	}
-	a:hover {
-		text-decoration-line: underline;
-	}
+.post-tag {
+	display: inline-block;
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
 }
-.page-heading,
 .post-title {
 	margin: 0.7em 0;
 	font-size: 28px;
@@ -380,10 +376,10 @@ main {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 1.7;
-	letter-spacing: -0.1px;
 
 	@media screen and (min-width: $breakWide) {
 		font-size: 20px;
+		letter-spacing: -0.1px;
 	}
 
 	@media screen and (max-width: $breakMobile) {
@@ -623,7 +619,7 @@ main {
 	.posts-label,
 	.about-sm,
 	.posts-row,
-	.post-date {
+	.post-meta {
 		border-color: map-get($vars, "lineShade");
 		color: map-get($vars, "textColorMinor");
 	}
@@ -643,12 +639,10 @@ main {
 		color: inherit;
 	}
 	// Button styles
-	.post-tags a,
 	.dark-toggle {
 		background: map-get($vars, "textBackButton");
 		color: map-get($vars, "textColorButton");
 	}
-	.post-tags a:hover,
 	.dark-toggle:hover,
 	.dark-toggle:focus,
 	.dark-toggle:active {
@@ -665,7 +659,11 @@ main {
 		color: map-get($vars, "linkColorContent");
 		border-color: map-get($vars, "linkColorContent");
 	}
+	.post-tag {
+		color: map-get($vars, "linkColorContent");
+	}
 	.post a:hover,
+	.post-tag:hover
 	.posts-row .post-link:hover h2,
 	.social a:hover {
 		background: map-get($vars, "linkColorShade");
@@ -680,8 +678,7 @@ main {
 	.tip-handle:active {
 		border-color: map-get($vars, "linkColorContent");
 	}
-	.post a:hover,
-	.posts-row .post-link:hover h2 {
+	.post a:hover {
 		box-shadow: 0px 0px 0px 5px map-get($vars, "linkColorShade");
 	}
 	.tip-handle:focus:after,
