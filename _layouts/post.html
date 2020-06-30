@@ -13,7 +13,9 @@ plainwhite:
   {% for tag in page.tags -%}
     {%- if page.tags.first != tag and page.tags.last != tag %}, {% endif -%}
     {%- if page.tags.first != tag and page.tags.last == tag %}, and {% endif -%}
-    <a rel="tag" class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
+    {%- assign tagpage = site.pages | where: "tag", tag | first -%}
+    {%- assign tagtitle = tagpage.title | default: tag -%}
+    <a rel="tag" class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tagtitle | escape }}</a>
     {%- if page.tags.last == tag %}.{% endif -%}
   {%- endfor -%}
 </div>

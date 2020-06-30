@@ -4,7 +4,8 @@ plainwhite:
   small_header: true
 ---
 
-<h1>Tag: {{ page.tag | escape }}</h1>
+<p class="posts-label">‹ <a href="{{ '/' | relative_url }}#latest-posts" title="Back to the home page">View all posts</a></p>
+<h1>Tag: {{ page.title | escape }}</h1>
 <p class="posts-label">{%- if site.tags[page.tag].size == 1 -%} 1 post {%- else -%} {{ site.tags[page.tag].size }} posts {%- endif -%}</p>
 
 {%- for post in site.tags[page.tag] -%}
@@ -20,7 +21,7 @@ plainwhite:
     {%- if site.plainwhite.show_excerpts -%}
     {{- post.excerpt -}}
     {%- if post.excerpt != post.content -%}
-    <div class="posts-readmore"><p><a href="{{ post.url | relative_url }}">Continue reading<span class="screen-reader-text"> {{ post.title | escape }}</span>…</a></p></div>
+    <p class="screen-reader-text"><a href="{{ post.url | relative_url }}">Continue reading "{{ post.title | escape }}".</a></p>
     {%- endif -%}
     {%- endif -%}
   </div>
