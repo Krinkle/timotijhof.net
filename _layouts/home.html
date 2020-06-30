@@ -2,14 +2,11 @@
 layout: default
 ---
 
-{%- if page.title -%}
-<h1>{{ page.title | escape }}</h1>
-{%- endif -%}
-
 {{ content }}
 
 {%- if site.posts.size > 0 -%}
-<p class="posts-label">posts</p>
+<a name="latest-posts"></a>
+<p class="posts-label">Latest posts</p>
 {%- for post in site.posts -%}
   {% if post.tags contains site.plainwhite.exclude_tag %}
     {%- continue -%}
@@ -43,7 +40,9 @@ layout: default
 {%- assign tags = tags_str | split: '|' | sort -%}
 {%- for tag in tags -%}
   {%- if tags.first != tag %}, {% endif -%}
-  <a class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tag | escape }}</a>
+    {%- assign tagpage = site.pages | where: "tag", tag | first -%}
+    {%- assign tagtitle = tagpage.title | default: tag -%}
+  <a class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tagtitle | escape }}</a>
 {%- endfor -%}
 .</p>
 {%- endif -%}

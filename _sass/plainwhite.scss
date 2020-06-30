@@ -85,11 +85,6 @@ h3 + p {
 	margin-top: 0;
 }
 
-
-a.sitelink {
-	text-decoration: none;
-}
-
 blockquote {
 	margin: 1em;
 	border-left: 5px solid transparent;
@@ -332,23 +327,23 @@ code.highlighter-rouge {
 	padding-bottom: 10px;
 	font-weight: normal;
 }
-// Link to post from listings (home page, tag page)
-.post-link {
+
+a.sitelink,
+.post-link,
+.post-date a,
+.post-tag,
+.posts-label a {
 	text-decoration: none;
+}
+// Link to post from listings (home page, tag page)
+.posts-row .post-link:hover {
+	text-decoration: underline;
 }
 .posts-row {
 	border-bottom: 1px solid transparent;
-	.post-link:hover {
-		text-decoration: underline;
-	}
 	.post-date a {
-		text-decoration: none;
 		color: inherit;
 	}
-}
-.posts-readmore {
-	font-size: 0.8em;
-	text-align: center;
 }
 
 .post-meta {
@@ -363,7 +358,6 @@ code.highlighter-rouge {
 }
 .post-tag {
 	display: inline-block;
-	text-decoration: none;
 	border-bottom: 1px solid transparent;
 }
 .post-title {
