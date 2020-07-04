@@ -207,11 +207,13 @@ code.highlighter-rouge {
 	list-style-type: none;
 	padding: 0;
 	margin-top: 0;
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
 	li {
-		float: left;
+		display: inline-block; // Fallback for browsers without flex
 	}
 	a {
-		margin: 0 .2em;
 		display: inline-block;
 		border-radius: 100%;
 		font-size: 34px;
@@ -219,6 +221,9 @@ code.highlighter-rouge {
 	}
 	.icon {
 		opacity: 0.5;
+	}
+	.icon-mastodon {
+		margin-top: 0.05em; // It just ain't right.
 	}
 	a:hover .icon {
 		opacity: 1;
