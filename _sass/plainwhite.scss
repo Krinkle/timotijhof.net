@@ -190,7 +190,7 @@ code.highlighter-rouge {
 	$wideTop: 35px + $contentSpacing;
 	margin: #{"min("$wideTop", 10vh)"} auto 0 auto;
 	img {
-		max-width: 150px;
+		max-height: 150px;
 	}
 	h2 {
 		font-size: 22px;
