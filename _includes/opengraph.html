@@ -28,7 +28,7 @@
 	{% assign excerpt = "" %}
 {% endif %}
 {% if excerpt and excerpt != empty %}
-<meta property="description" content="{{ excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
+<meta name="description" content="{{ excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
 <meta property="og:description" content="{{ excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
 {% endif %}
 
