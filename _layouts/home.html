@@ -12,12 +12,12 @@ layout: default
     {%- continue -%}
   {%- endif -%}
 <div class="posts-row">
-  {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
+  {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
   <a class="post-link" href="{{ post.url | relative_url }}">
     <h2 class="post-title">{{ post.title | escape }}</h2>
   </a>
   <div class="post-meta">
-    <div class="post-date"><a href="{{ post.url | relative_url }}" tabindex="-1"><i class="icon icon-calendar"></i><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a></div>
+    <div class="post-date"><a href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a></div>
   </div>
   <div class="post">
     {%- if site.plainwhite.show_excerpts -%}
