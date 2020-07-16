@@ -51,7 +51,7 @@ This forced the software to filter the query to one of two possible namespace ID
 
 ![Users were shown an "Internal error" page, stating a fatal exception had ocurred, with an Error Code next to it.](/assets/attachments/2019_stories3_error.png "The error page shown to users"){:style="max-height:200px"}
 
-The error code is used to look up the trace report, which looks like this:
+The error code is used to look up the trace report, which looks like this ([task 150324](https://phabricator.wikimedia.org/T150324 "Fatal MWNamespace exception on Special:Contributions")):
 
 ```
 [MWException]
@@ -89,7 +89,3 @@ The "Associated namespaces" option on Special:Contributions, uses that function.
 If one of your edits is for a page that has no discussion namespace, what should we do? Show no edits at all? Skip that one edit and tell the user "1 edit was hidden"? Or show it anyway, but without the "talk" portion? This is a decision the inner layer cannot make. All it knows is the small question being asked. It should not be aware of what the outer layer wants to do. The outer layer has to decide how to handle this problem. If the outer layer believes this kind of edit should never show up under normal conditions, then it could show an error message. Something like "_Error: Unsupported namespace selection._"
 
 Or, the outer layer can avoid the error by asking a different question. A question that cannot fail. A question that leaves room for unexpected outcomes. Such as "_Does namespace X have a talk space?_", instead of "_I need the talk space of X, what is it?_". The outer layer then recognises that the question can be answered with “No”, and could then have logic for displaying those edits in a different way.
-
--------
-
-_This article was inspired by [Task #150324](https://phabricator.wikimedia.org/T150324 "Fatal MWNamespace exception on Special:Contributions") (resolved in February 2019)_.

@@ -46,22 +46,22 @@ Such an odd query might not need to yield a useful response, but it is important
 ## Investigation
 
 
-[David Causse](https://phabricator.wikimedia.org/p/dcausse/) (Search Platform team) led the investigation.
+[David Causse](https://phabricator.wikimedia.org/p/dcausse/) (Search Platform team) led the investigation ([task #236419](https://phabricator.wikimedia.org/T236419 "[CirrusSearch] Fatal RuntimeException: Cannot consume query at offset 0")).
 
 This RuntimeException has been added as a safeguard in the parser for incoming search queries. This check exists toward the end of the parsing code, and should never be reached. It is an indication that a problem appeared previously. The problem was narrowed down to a failure executing the following regex
 
-```
+```js
 /\G(?<negated>[-!](?=[\w]))?(?<word>(?:\\\\.|[!-](?!")|[^"!\pZ\pC-])+)/u
 ```
 
 This regex looks complex, but it can actually be simplified to:
-```
+```js
 /(?:ab|c)+/
 ```
 
 This regex still triggers the problematic behavior in PHP. It fails with a `PREG_JIT_STACKLIMIT_ERROR`, when given a long string. Below is a reduced test case:
 
-```
+```php
 $ret = preg_match('/(?:ab|c)+/', str_repeat('c', 8192));
 if ($ret === false) {
     print("failed with: " . preg_last_error());
@@ -72,11 +72,8 @@ if ($ret === false) {
 * Fails with 2731 characters on PHP 7.2, PHP 7.1, and PHP 7.0.13.
 * Fails with 8192 characters on PHP 7.3. (Might be due to [php-src@bb2f1a6](https://github.com/php/php-src/commit/bb2f1a683003559ada1c70166557bd7ac2845a11)).
 
-In the end, the fix we applied was to split the regex into two separate ones, and remove the non-capturing group with a quantifier, and loop through at the PHP level ([Patch 546209](https://gerrit.wikimedia.org/r/c/mediawiki/extensions/CirrusSearch/+/546209)).
+In the end, the fix we applied was to split the regex into two separate ones, and remove the non-capturing group with a quantifier, and loop through at the PHP level ([patch 546209](https://gerrit.wikimedia.org/r/c/mediawiki/extensions/CirrusSearch/+/546209)).
 
 The lesson learned here is that the code did not properly check the return value of `preg_match`, this is even more important as the size allowed for the JIT stack changes between PHP versions.
 
 For future reference, David concluded: The regex could be optimized to support more chars (~3 times more) by using atomic groups, like so `/(?>ab|c)+/`.
-
--------
-_This article was inspired by [Task #T236419](https://phabricator.wikimedia.org/T236419 "[CirrusSearch] Fatal RuntimeException: Cannot consume query at offset 0") (October 2019)_.

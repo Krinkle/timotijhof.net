@@ -3,7 +3,6 @@
 $fontFamilySans: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 
 $sidebarWidth: 220px;
-
 $contentSpacing: 20px;
 $contentSpacingMicro: 10px;
 
@@ -87,7 +86,7 @@ h3 + p {
 
 blockquote {
 	margin: 1em;
-	border-left: 5px solid transparent;
+	border-left: 3px solid transparent;
 	padding: 0.5em 1em;
 	color: inherit;
 	font-size: 0.8em;
@@ -102,8 +101,7 @@ blockquote > p:last-child {
 hr {
 	clear: both;
 	border: 0;
-	margin: 2em auto 1.5em;
-	max-width: 80%;
+	margin: 1.5em auto;
 	height: 1px;
 }
 
@@ -132,7 +130,6 @@ hr {
 
 pre.highlight {
 	overflow: auto;
-	padding: 1em 1em;
 	font-family: Menlo, Monaco, monospace;
 	line-height: 1.4;
 	font-size: 17px;
@@ -140,6 +137,11 @@ pre.highlight {
 	white-space: pre-wrap;
 	white-space: break-spaces;
 	overflow-wrap: break-word;
+
+	padding: 1em $contentSpacing;
+	@media screen and (max-width: $breakMicro) {
+		padding: 1em $contentSpacingMicro;
+	}
 }
 code.highlighter-rouge {
 	padding: 0.3em 0.4em;
@@ -240,7 +242,6 @@ code.highlighter-rouge {
 		width: auto;
 		margin: 0;
 		padding: $contentSpacing;
-		border-bottom: 1px solid transparent;
 		.sitelink {
 			display: flex;
 			justify-content: flex-start;
@@ -333,11 +334,13 @@ code.highlighter-rouge {
 	font-weight: normal;
 }
 
+a {
+	color: inherit;
+}
 a.sitelink,
 .post-link,
 .post-date a,
-.post-tag,
-.posts-label a {
+.post-tag {
 	text-decoration: none;
 }
 // Link to post from listings (home page, tag page)
@@ -353,13 +356,9 @@ a.sitelink,
 
 .post-meta {
 	overflow: hidden;
-	// Undo last non-collapsed post-tags margin-bottom
-	margin-bottom: -10px;
 }
-.post-date .icon {
-	// Approximate text color
-	opacity: 0.7;
-	margin-right: 0.3em;
+.post-date {
+	text-transform: uppercase;
 }
 .post-tag {
 	display: inline-block;
@@ -368,6 +367,12 @@ a.sitelink,
 .post-title {
 	margin: 0.7em 0;
 	font-size: 28px;
+}
+.posts-row .post {
+	margin-top: 0.5em;
+}
+.posts-row .post p {
+	margin-top: 0;
 }
 
 .post {
@@ -400,6 +405,7 @@ a.sitelink,
 	}
 	a > code {
 		text-decoration: underline;
+		text-underline-position: under;
 	}
 	a:hover > code {
 		background-color: transparent;
@@ -446,6 +452,7 @@ a.sitelink,
 	}
 	figure,
 	table,
+	hr,
 	> p:not(.md-block) > img,
 	.md-block,
 	pre.highlight {
@@ -472,8 +479,6 @@ a.sitelink,
 
 .post {
 	.md-dictdef {
-		border-width: 5px;
-		border-style: dashed;
 		line-height: 1.1;
 	}
 	.md-box {
@@ -507,12 +512,6 @@ a.sitelink,
 	.md-right {
 		clear: right;
 		text-align: right;
-	}
-}
-.posts-row {
-	.md-dictdef {
-		border-width: 0 0 0 5px;
-		color: inherit;
 	}
 }
 
@@ -590,100 +589,112 @@ a.sitelink,
 
 @mixin my-color-scheme($vars) {
 	// Root and content styles
-	body,
-	.tip-handle {
-		background: map-get($vars, "textBackRoot");
-		color: map-get($vars, "textColorRoot");
-	}
-	.post {
-		color: map-get($vars, "textColorContent");
+	body {
+		background: map-get($vars, "backgroundRoot");
+		color: map-get($vars, "textColorBase");
 	}
 	.post h2,
-	.post .md-dictdef {
+	.post h3,
+	.post strong {
 		color: map-get($vars, "textColorRoot");
 	}
 
 	// Muted styles and shades
 	.tagline,
 	.footer,
-	.md-dicteg {
+	.md-dicteg,
+	.post-meta,
+	.posts-row .post {
 		color: map-get($vars, "textColorMuted");
 	}
 	.about-sm {
 		@media screen and (max-width: $breakMobile) {
-			background: map-get($vars, "textBackPanel");
+			background: map-get($vars, "backgroundPanel");
 		}
 	}
-	blockquote,
-	.posts-label,
-	.about-sm,
-	.posts-row,
-	.post-meta {
-		border-color: map-get($vars, "lineShade");
+	.post .md-dictdef {
+		border-color: map-get($vars, "textColorAccentMinor");
+		background: map-get($vars, "backgroundPanel");
+		color: map-get($vars, "textColorRoot");
+	}
+	.posts-row, {
+		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMinor");
 	}
+	blockquote {
+		border-color: map-get($vars, "textColorAccent");
+		color: map-get($vars, "textColorMinor");
+	}
+	.posts-label {
+		border-color: map-get($vars, "textColorAccentMinor");
+		color: map-get($vars, "textColorAccent");
+	}
 	.post .md-box {
-		outline-color: map-get($vars, "lineShade");
-		box-shadow: 2px 2px 10px map-get($vars, "lineShade");
+		outline-color: map-get($vars, "textColorAccentMinor");
+		box-shadow: 2px 2px 10px map-get($vars, "textColorAccentMinor");
 	}
 	hr {
-		background: map-get($vars, "lineShade");
+		background: map-get($vars, "textColorAccentMinor");
 	}
 	pre.highlight,
 	code.highlighter-rouge {
-		background: map-get($vars, "textBackShade");
-		color: map-get($vars, "textColorContent");
+		background: map-get($vars, "backgroundMarked");
+		color: map-get($vars, "textColorMarked");
 	}
 	.post a > code {
 		color: inherit;
 	}
 	// Button styles
 	.dark-toggle {
-		background: map-get($vars, "textBackButton");
+		background: map-get($vars, "backgroundButton");
 		color: map-get($vars, "textColorButton");
 	}
 	.dark-toggle:hover,
 	.dark-toggle:focus,
 	.dark-toggle:active {
-		background: map-get($vars, "textBackButtonActive");
+		background: map-get($vars, "backgroundButtonActive");
 		color: map-get($vars, "textColorButtonActive");
 	}
 
 	// Link styles
-	a {
-		color: map-get($vars, "linkColorRoot");
-	}
 	a:hover,
-	.post a {
-		color: map-get($vars, "linkColorContent");
-		border-color: map-get($vars, "linkColorContent");
-	}
 	.post-tag {
-		color: map-get($vars, "linkColorContent");
+		color: map-get($vars, "textColorLinkBase");
+	}
+	.post-link,
+	.sitelink {
+		color: map-get($vars, "textColorLinkRoot");
+	}
+	.post a {
+		color: map-get($vars, "textColorLinkRoot");
+		border-color: map-get($vars, "textColorLinkRoot");
+	}
+	a:hover {
+		border-color: map-get($vars, "textColorLinkBase");
 	}
 	.post a:hover,
 	.post-tag:hover
 	.posts-row .post-link:hover h2,
 	.social a:hover {
-		background: map-get($vars, "linkColorShade");
-		text-decoration-color: map-get($vars, "linkColorContent");
-		outline-color: map-get($vars, "linkColorShade");
-		border-color: map-get($vars, "linkColorContent");
+		background: map-get($vars, "backgroundLinkBase");
+		text-decoration-color: map-get($vars, "textColorLinkBase");
+		outline-color: map-get($vars, "backgroundLinkBase");
+		border-color: map-get($vars, "textColorLinkBase");
 	}
 	.tip-handle {
 		border-color: map-get($vars, "textColorMuted");
 	}
 	.tip-handle:focus,
 	.tip-handle:active {
-		border-color: map-get($vars, "linkColorContent");
+		border-color: map-get($vars, "textColorLinkBase");
 	}
 	.post a:hover {
-		box-shadow: 0px 0px 0px 5px map-get($vars, "linkColorShade");
+		box-shadow: 0px 0px 0px 5px map-get($vars, "backgroundLinkBase");
 	}
 	.tip-handle:focus:after,
 	.tip-handle:active:after,
 	.social a:hover {
-		box-shadow: 0px 0px 0px 20px map-get($vars, "linkColorShade");
+		box-shadow: 0px 0px 0px 20px map-get($vars, "backgroundLinkBase");
 	}
 
 	// Bubble styles
@@ -698,31 +709,33 @@ a.sitelink,
 	}
 	::selection {
 		color: map-get($vars, "textColorSelected");
-		background-color: map-get($vars, "textBackSelected");
+		background-color: map-get($vars, "backgroundSelected");
 	}
 }
 
 $lightModeVars: (
-	"textBackRoot": #fff,
-	"textBackPanel": #fff,
-	"textColorRoot": #222,
-	"textColorContent": #333,
+	"backgroundRoot": #fff,
+	"backgroundPanel": #f4f4f4,
+	"textColorRoot": #111,
+	"textColorBase": #333,
 	"textColorMinor": #555,
 	"textColorMuted": #767676,
+	"textColorLinkRoot": #000,
+	"textColorAccentMinor": darken(#fff, 10%),
+	"textColorAccent": #555,
 
-	"linkColorRoot": #000,
-	"linkColorShade": hsla(210, 89%, 53%, 0.15),
-	"linkColorContent": #085bb5,
+	"backgroundLinkBase": hsla(210, 89%, 53%, 0.15),
+	"textColorLinkBase": #085bb5,
 
-	"textBackSelected": hsla(210, 89%, 53%, 0.15),
+	"backgroundSelected": hsla(210, 89%, 53%, 0.15),
 	"textColorSelected": #000,
 
-	"lineShade": #eee,
-	"textBackShade": #f4f4f4,
+	"backgroundMarked": #f4f4f4,
+	"textColorMarked": #333,
 
-	"textBackButton": #f4f4f4,
+	"backgroundButton": #f4f4f4,
 	"textColorButton": #000,
-	"textBackButtonActive": hsla(210, 89%, 53%, 0.15),
+	"backgroundButtonActive": hsla(210, 89%, 53%, 0.15),
 	"textColorButtonActive": #085bb5,
 
 	"textBackBubble": rgba(0, 0, 0, 0.7),
@@ -730,27 +743,28 @@ $lightModeVars: (
 );
 
 $darkModeVars: (
-	"textBackRoot": #100e17,
-	"textBackPanel": #000,
-	"textColorRoot": #fff,
-	"textColorContent": #c2c2c2,
+	"backgroundRoot": #100e17,
+	"backgroundPanel": #000,
+	"textColorRoot": rgba(255, 255, 255, 0.90),
+	"textColorBase": #c2c2c2,
 	"textColorMinor": #c2c2c2,
-	"textColorMuted": #7a7a8c,
+	"textColorMuted": #837f9c,
+	"textColorLinkRoot": rgba(255, 255, 255, 0.92),
+	"textColorAccentMinor": lighten(#100e17, 25%),
+	"textColorAccent": #c5b5fc,
 
-	"linkColorRoot": #fff,
-	"linkColorShade": hsla(210, 89%, 53%, 0.2),
-	"linkColorContent": lighten(map-get($lightModeVars, "linkColorContent"), 30%),
+	"backgroundLinkBase": hsla(210, 89%, 53%, 0.2),
+	"textColorLinkBase": lighten(map-get($lightModeVars, "textColorLinkBase"), 30%),
 
-	"textBackSelected": lighten(map-get($lightModeVars, "linkColorContent"), 30%),
+	"backgroundSelected": lighten(map-get($lightModeVars, "textColorLinkBase"), 30%),
 	"textColorSelected": #fff,
 
-	"lineShade": darken(#7a7a8c, 30%),
-	"textBackShade": #201c29,
+	"backgroundMarked": #201c29,
+	"textColorMarked": #c5b5fc,
 
-	"textBackButton": #201c29,
-	"textColorButton": #fff,
-
-	"textBackButtonActive": hsla(258, 19%, 25%, 0.9),
+	"backgroundButton": #201c29,
+	"textColorButton": rgba(255, 255, 255, 0.90),
+	"backgroundButtonActive": hsla(258, 19%, 25%, 0.9),
 	"textColorButtonActive": #fff,
 
 	"textBackBubble": hsla(258, 19%, 25%, 0.9),
@@ -765,7 +779,7 @@ $darkModeVars: (
 	}
 }
 .social a:hover .icon {
-	// Approximate $linkColorContent
+	// Approximate $textColorLinkBase
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 }
 
@@ -773,14 +787,15 @@ $darkModeVars: (
 .dark-on {
 	@include my-color-scheme($darkModeVars);
 	.icon {
-		filter: invert(1);
+		// Approximate $textColorMuted
+		filter: invert(1) contrast(0.1) sepia(2) hue-rotate(200deg);
 	}
 	.social a:hover .icon {
-		// Approximate $linkColorContent
-		filter: contrast(0.1) sepia(2) saturate(4) hue-rotate(170deg);
+		// Approximate $textColorLinkBase
+		filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 	}
-	pre.highlight {
-		filter: brightness(1.4) contrast(1.5) saturate(0.5);
+	pre.highlight code {
+		filter: brightness(2) saturate(0.5);
 	}
 	.dark-toggle::before {
 		content: '☾   Dark';

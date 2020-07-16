@@ -51,6 +51,7 @@ plainwhite:
   name: Timo Tijhof
   # Caption in sidebar
   tagline: Principal Engineer, Wikimedia Foundation.
+  # Date format in by lines
   date_format: "%-e %b %Y"
   # Excerpts on Home and Tag pages
   show_excerpts: true

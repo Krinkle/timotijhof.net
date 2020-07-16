@@ -3,15 +3,11 @@
 
 @import "plainwhite";
 
-{% capture _icon_calendar_svg %}{% include_relative icon-calendar.svg %}{% endcapture %}
 {% capture _icon_github_svg %}{% include_relative icon-github-circled.svg %}{% endcapture %}
 {% capture _icon_mastodon_svg %}{% include_relative icon-mastodon.svg %}{% endcapture %}
 {% capture _icon_rss_svg %}{% include_relative icon-rss-squared.svg %}{% endcapture %}
 {% capture _icon_twitter_svg %}{% include_relative icon-twitter-squared.svg %}{% endcapture %}
 
-.icon-calendar {
-	background-image: url("data:image/svg+xml, {{ _icon_calendar_svg | remove_first: '<?xml version="1.0" encoding="utf-8"?>' | strip_newlines | uri_escape | replace: '%20', ' ' }}");
-}
 .icon-github-circled {
 	background-image: url("data:image/svg+xml, {{ _icon_github_svg | remove_first: '<?xml version="1.0" encoding="utf-8"?>' | strip_newlines | uri_escape | replace: '%20', ' ' }}");
 }
