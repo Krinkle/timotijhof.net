@@ -85,11 +85,20 @@ h3 + p {
 }
 
 blockquote {
-	margin: 1em;
-	border-left: 3px solid transparent;
-	padding: 0.5em 1em;
 	color: inherit;
 	font-size: 0.8em;
+
+	margin: 1em (-$contentSpacing);
+	border-left: 5px solid transparent;
+	padding: 0.5em ($contentSpacing - 5px);
+	@media screen and (max-width: $breakMobile) {
+		margin: 1em 0;
+		padding: 0.5em 1em;
+	}
+	@media screen and (max-width: $breakMicro) {
+		margin: 1em (-$contentSpacingMicro);
+		border-left-width: 3px;
+	}
 }
 blockquote > p:first-child {
 	margin-top: 0;
@@ -374,6 +383,10 @@ a.sitelink,
 .posts-row .post p {
 	margin-top: 0;
 }
+.posts-row .post blockquote {
+	border-left-width: 0;
+	margin: 1em 0;
+}
 
 .post {
 	font-family: 'Georgia', sans-serif;
@@ -478,9 +491,6 @@ a.sitelink,
 }
 
 .post {
-	.md-dictdef {
-		line-height: 1.1;
-	}
 	.md-box {
 		outline: 2px solid transparent;
 	}
@@ -602,7 +612,6 @@ a.sitelink,
 	// Muted styles and shades
 	.tagline,
 	.footer,
-	.md-dicteg,
 	.post-meta,
 	.posts-row .post {
 		color: map-get($vars, "textColorMuted");
@@ -612,17 +621,12 @@ a.sitelink,
 			background: map-get($vars, "backgroundPanel");
 		}
 	}
-	.post .md-dictdef {
-		border-color: map-get($vars, "textColorAccentMinor");
-		background: map-get($vars, "backgroundPanel");
-		color: map-get($vars, "textColorRoot");
-	}
-	.posts-row, {
+	.posts-row {
 		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMinor");
 	}
 	blockquote {
-		border-color: map-get($vars, "textColorAccent");
+		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMinor");
 	}
 	.posts-label {
