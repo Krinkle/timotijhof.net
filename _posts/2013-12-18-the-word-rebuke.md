@@ -12,16 +12,15 @@ redirect_from:
 >
 > 1. express sharp disapproval or criticism of (someone) because of their behavior or actions
 >
->    _“she had **rebuked** him for drinking too much“_{:class="md-dicteg"}
+>    _“she had **rebuked** him for drinking too much“_
 >
->    _“the judge publicly **rebuked** the jury“_{:class="md-dicteg"}
+>    _“the judge publicly **rebuked** the jury“_
 >
 > _noun_
 >
 > 1. an expression of sharp disapproval or criticism
 >
->    _“he hadn’t meant it as a **rebuke**, but Neil flinched“_{:class="md-dicteg"}
-{:class="md-dictdef"}
+>    _“he hadn’t meant it as a **rebuke**, but Neil flinched“_
 
 <!--more-->
 
