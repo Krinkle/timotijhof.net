@@ -8,7 +8,13 @@ layout: default
 <a name="latest-posts"></a>
 <p class="posts-label">Latest posts</p>
 {%- for post in site.posts -%}
-  {% if post.tags contains site.plainwhite.exclude_tag %}
+  {%- assign _excluded = false -%}
+  {%- for tag in site.plainwhite.exclude_tags -%}
+    {%- if post.tags contains tag -%}
+      {%- assign _excluded = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if _excluded -%}
     {%- continue -%}
   {%- endif -%}
 <div class="posts-row">
