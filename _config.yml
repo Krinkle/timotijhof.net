@@ -56,7 +56,9 @@ plainwhite:
   # Excerpts on Home and Tag pages
   show_excerpts: true
   # Tag filter for Home page
-  exclude_tag: wiki-tools
+  exclude_tags:
+    - wiki-tools
+    - english-language
   social_links:
     github:  Krinkle
     mastodon:
