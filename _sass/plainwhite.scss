@@ -185,6 +185,7 @@ code.highlighter-rouge {
 	}
 	@media screen and (min-width: $breakBeyondMobile) {
 		max-width: calc(100% - 220px);
+		flex: 1;
 	}
 }
 
