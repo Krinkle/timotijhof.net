@@ -22,19 +22,19 @@ These are stories from bug hunts and incident investigations at Wikipedia.
 
 ## New database partition
 
-A user reported a timeout error for certain queries from the [Public log viewer](https://en.wikipedia.org/wiki/Special:Log "Public logs (Special:Logs) - Wikipedia") on commons.wikimedia.org.
+A user reported a timeout error for certain queries from the [Public log viewer](https://en.wikipedia.org/wiki/Special:Log) on commons.wikimedia.org.
 
-Database administrator [Manuel Aróstegui](https://phabricator.wikimedia.org/p/Marostegui/ "@Marostegui - Phabricator") investigated the underlying query and found that it was slow (and timing out) due to one of the database replicas having an unpartitioned `logging` table.
+Database administrator [Manuel Aróstegui](https://phabricator.wikimedia.org/p/Marostegui/) investigated the underlying query and found that it was slow (and timing out) due to one of the database replicas having an unpartitioned `logging` table.
 
 ### Background
 Our database servers carry labels that the MediaWiki application can ask for along with a query. This allows replicas to be finely tuned to specific kinds of of queries. In particular, when two useful optimisations strategies are mutually exclusive. The labelling system allows both strategies to be applied, on different database servers. MediaWiki then decides which one is most important for that query.
 
-Partioning the [MediaWiki `logging` table](https://www.mediawiki.org/wiki/Manual:Logging_table "logging table - MediaWiki documentation") is one such optimisation strategy. For queries in the Public logs that focus on actions by a specific user, we route the query to replicas where the `logging` table is partioned by user ID. This is in addition to a regular index on the user ID column for that table, which we have on all replicas.
+Partioning the [MediaWiki `logging` table](https://www.mediawiki.org/wiki/Manual:Logging_table) is one such optimisation strategy. For queries in the Public logs that focus on actions by a specific user, we route the query to replicas where the `logging` table is partioned by user ID. This is in addition to a regular index on the user ID column for that table, which we have on all replicas.
 
 ### Action
 As first response, the faulty server was taken out of rotation. Re-partitioning was completed later that day.
 
-– [Task #199790](https://phabricator.wikimedia.org/T199790 "Special:Log/… results in fatal exception of type DBQueryTimeoutError")
+– [Task #199790](https://phabricator.wikimedia.org/T199790 "Special:Log results in fatal exception of type DBQueryTimeoutError.")
 
 -------
 
@@ -48,7 +48,7 @@ at mediawiki/extensions/Score/includes/Score.php:L507
 ```
 
 ### Background
-The [Score extension](https://www.mediawiki.org/wiki/Extension:Score "Extension:Score - mediawiki.org") for MediaWiki provides a way to produce image and audio files from music notation (backed by LilyPond). The extension registers a wikitext tag that allows editors to create and embed music on Wikipedia pages.
+The [Score extension](https://www.mediawiki.org/wiki/Extension:Score) for MediaWiki provides a way to produce image and audio files from music notation (backed by LilyPond). The extension registers a wikitext tag that allows editors to create and embed music on Wikipedia pages.
 
 The "Undefined index" warning from PHP happens when code tries to access a non-existent key
 from an associative array. For example: `$x = array( 'foo' => 1 ); return $x['bar'];`. When this happens, no exception or run-time errors ocurrs. Instead, the PHP engine implicitly returns the `null` value. PHP also emits a notice to the error log channel. We feed that into Logstash and Kibana.
@@ -56,7 +56,7 @@ from an associative array. For example: `$x = array( 'foo' => 1 ); return $x['ba
 "PHP Notice" errors are not uncommon and can sometimes even cause (by accident) the correct behaviour. For example, if the code involves a condition like `if ($x['bar']) { … } else { … }`. Our error will produce the `null` value, which casts to `false`, and we proceed to the `else` branch. If the `bar` key is meant to be optional here, and if the `else` branch correctly handles the scenario for when it is not set, then this code might already behave correctly. A simple fix would then be to expand the condition to first assert that the key exists. Thus preventing the warning message, but otherwise behaving the same.
 
 ### Action
-Back to our investigation; The response was led by volunteer [@Ebe123](https://phabricator.wikimedia.org/p/Ebe123/ "Ebe123 - Phabricator") who is also the lead maintainer of the Score extension.
+Back to our investigation; The response was led by volunteer [@Ebe123](https://phabricator.wikimedia.org/p/Ebe123/) who is also the lead maintainer of the Score extension.
 
 First, we did some exploratory testing to see if there were any defects we could find with the feature. On the various Wikipedia articles we tested it on, the audio player seemed to work fine.
 
@@ -74,7 +74,7 @@ We also found a separate bug report from a few months earlier where several user
 
 It all started to make sense.
 
-– [Task #200835](https://phabricator.wikimedia.org/T200835 "PHP Notice: 'Undefined index' from Score.php:L507"), [Task #192550](https://phabricator.wikimedia.org/T192550 "Score audio player vanishes for a few seconds")
+– [Task #200835](https://phabricator.wikimedia.org/T200835 "PHP Notice: 'Undefined index' from Score.php:L507."), [Task #192550](https://phabricator.wikimedia.org/T192550 "Score audio player vanishes for a few seconds.")
 
 -------
 
@@ -90,7 +90,7 @@ error report to Logstash. MediaWiki then displays an error page to the user,
 where it mentions the "Error ID".
 
 ### Action
-[Tim Starling](https://tstarling.com/blog/ "Tim Starling's Blog") (Platform architect at Wikimedia) started investigating. He created a new Grafana
+[Tim Starling](https://tstarling.com/blog/) (Platform architect at Wikimedia) started investigating. He created a new Grafana
 dashboard and the culprit was quickly identified. Over 3000 UDP packets were being dropped at the Logstash servers, every second. That's over 90% of its total packets – lost!
 
 As first mitigation, he rebooted the server, quadrupled the default receive buffer size (`net.core.rmem_default` in the Linux kernel) to 4MB, and rebooted it again.
@@ -102,7 +102,7 @@ The first reboot significantly improved throughput (from 10% success, to 25% suc
 
 To recap, the buffer was now large enough to accomodate 3 seconds worth of messages which should be enough margin for Logstash to process it. Short spikes aside, it's unlikely that allowing more stalling would help, because new packets are constantly added to the buffer as well.
 
-[Filippo Giunchedi](https://phabricator.wikimedia.org/p/fgiunchedi/ "@fgiunchedi - Phabricator") (Site Reliability Engineering team) jumped in and noticed that the [`workers.pipeline` setting](https://www.elastic.co/guide/en/logstash/6.4/tuning-logstash.html "Tuning Logstash - Elastic Docs") was explicitly set to `1`, thus allowing Logstash to only use a single thread to process all the messages. This was configured several years earlier ([commit](https://github.com/wikimedia/puppet/commit/011aa76f0af62c3d5160c9f5e821108323cc3f16 "Commit 011aa - wikimedia/puppet - GitHub")) to workaround a problem with the Logstash Multiline plugin; This plugin wasn't thread-safe and would corrupt logs if active in multiple threads.
+[Filippo Giunchedi](https://phabricator.wikimedia.org/p/fgiunchedi/) (Site Reliability Engineering team) jumped in and noticed that the [`workers.pipeline` setting](https://www.elastic.co/guide/en/logstash/6.4/tuning-logstash.html) was explicitly set to `1`, thus allowing Logstash to only use a single thread to process all the messages. This was configured several years earlier ([commit](https://github.com/wikimedia/puppet/commit/011aa76f0af62c3d5160c9f5e821108323cc3f16)) to workaround a problem with the Logstash Multiline plugin; This plugin wasn't thread-safe and would corrupt logs if active in multiple threads.
 
 Filippo determined we no longer needed this plugin, disabled it, and allowed the default `workers.pipeline` setting to take effect - which is to use the number of available CPU cores as the number of threads.
 
