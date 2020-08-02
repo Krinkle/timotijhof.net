@@ -32,9 +32,9 @@ For example, on 14 August 23:59:59, `strtotime("tomorrow")` would evaluate to a 
 
 This meant that whenever a test started running shortly before midnight, it would fail. The test server uses UTC as its timezone. As such, a test suite that started less than 15 minutes before 5 PM in San Francisco (which is midnight in UTC), it would mysteriously fail!
 
-– [Task #201976](https://phabricator.wikimedia.org/T201976 "Flaky unit test MergeHistoryTest::testIsValidMerge")
+– [Task #201976](https://phabricator.wikimedia.org/T201976 "Flaky unit test MergeHistoryTest::testIsValidMerge.")
 
-– [Changeset 452873](https://gerrit.wikimedia.org/r/452873 "MergeHistory: Fix flaky test due to relative timestamp")
+– [Changeset 452873](https://gerrit.wikimedia.org/r/452873 "MergeHistory: Fix flaky test due to relative timestamp.")
 
 -------
 

@@ -30,7 +30,7 @@ Upon running `npm install`, you may be downloading and executing hundreds of unk
 <figure class="md-block-left" markdown="block">
 ![Two surveillance cameras on a lamppost with a clear blue sky behind them.](/assets/attachments/2019_npm_BlueSkyCCTV13.jpg){:style="max-width:380px"}
 <figcaption markdown="span">
-Photo by [Raysonho](https://commons.wikimedia.org/wiki/File:BlueSkyCCTV13.jpg#firstHeading "via Wikimedia Commons")
+Photo by [Raysonho](https://commons.wikimedia.org/wiki/File:BlueSkyCCTV13.jpg#firstHeading)
 </figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ Files you might not be thinking about:
 <figure markdown="block">
 ![A red face in a white rectangle made of nanoblocks, resting on a silver Apple keyboard.](/assets/attachments/2019_npm_FamilyComputer.jpg)
 <figcaption markdown="span">
-Photo by [DaraKero_F](https://commons.wikimedia.org/wiki/File:Family_Computer_(6914313766).jpg#firstHeading "via Wikimedia Commons") / CC BY 2.0
+Photo by [DaraKero_F](https://commons.wikimedia.org/wiki/File:Family_Computer_(6914313766).jpg#firstHeading) / CC BY 2.0
 </figcaption>
 </figure>
 
@@ -80,7 +80,7 @@ It could also add local command-line programs that wrap the popular `sudo` and `
 <figure markdown="block">
 ![Statue of King Louis XIV on a horse with a red blindfold over his eyes. Taken in Paris, France.](/assets/attachments/2019_npm_LouisXIV.jpg)
 <figcaption markdown="span">
-Photo by [BikerNormand](https://commons.wikimedia.org/wiki/File:Louis_XIV_with_a_red_mask,_Paris_20_August_2015.jpg#firstHeading "via Wikimedia Commons") / CC BY-SA 2.0
+Photo by [BikerNormand](https://commons.wikimedia.org/wiki/File:Louis_XIV_with_a_red_mask,_Paris_20_August_2015.jpg#firstHeading) / CC BY-SA 2.0
 </figcaption>
 </figure>
 
@@ -129,7 +129,7 @@ For the past year, I've been using disposable Docker containers as a way to redu
 <figure markdown="block">
 ![Earth is small compared to Jupiter. Jupiter is roughly 11 times larger.](/assets/attachments/2019_npm_Servers.jpg)
 <figcaption markdown="span">
-Image by [Victor Grigas](https://commons.wikimedia.org/wiki/Category:Wikimedia_servers_in_Carrollton#/media/File:Wikimedia_Foundation_Servers_2015-88.jpg "via Wikimedia Commons") / CC BY-SA 3.0
+Image by [Victor Grigas](https://commons.wikimedia.org/wiki/Category:Wikimedia_servers_in_Carrollton#/media/File:Wikimedia_Foundation_Servers_2015-88.jpg) / CC BY-SA 3.0
 </figcaption>
 </figure>
 

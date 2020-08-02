@@ -24,9 +24,9 @@ redirect_from:
 
 <!--more-->
 
-(from the [Oxford English Dictionary](http://www.oxforddictionaries.com/definition/english/rebuke "Definition of rebuke"))
+(from the [Oxford English Dictionary](http://www.oxforddictionaries.com/definition/english/rebuke))
 
-I ran into the word whilst watching an episode of [Elementary](https://en.wikipedia.org/wiki/Elementary_(TV_series) "Elementary (TV series) - Wikipedia").
+I ran into the word whilst watching an episode of [Elementary](https://en.wikipedia.org/wiki/Elementary_(TV_series) "From Wikipedia: Elementary is an American drama television series that presents a contemporary Sherlock Holmes.").
 
 The scene continued to feature more rich language.
 
