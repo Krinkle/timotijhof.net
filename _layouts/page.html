@@ -4,5 +4,5 @@ plainwhite:
   small_header: true
 ---
 <div class="post">
-  {{- content -}}
+  {{- content | fix_extlink | fix_tooltip -}}
 </div>

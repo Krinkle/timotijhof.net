@@ -9,7 +9,7 @@ plainwhite:
   <a class="post-link" href="{{ page.url | relative_url }}">
     <h1>{{ page.title | escape }}</h1>
   </a>
-  <span class="post-date"><time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></span>
+  <span class="post-date"><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></span>
   •
   {% for tag in page.tags -%}
     {%- if page.tags.first != tag %}, {% endif -%}
@@ -20,7 +20,7 @@ plainwhite:
 </header>
 <hr>
 <div class="post">
-  {{- content | fix_extlink -}}
+  {{- content | fix_extlink | fix_tooltip -}}
 </div>
 <hr>
 <footer role="contentinfo">
@@ -44,6 +44,6 @@ plainwhite:
   {%- endif -%}
 </p>
 {%- endif -%}
-<p><a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Some rights reserved</a><span tabindex="0" class="tip-handle">i</span><span data-tip="Except where otherwise noted, this work is licensed under a Creative Commons license (CC BY 4.0)"></span>. {% if page.author_role == 'editor' %}Edited by{% else %}Written by{% endif %} <span rel="author">{{ page.author | escape }}<span>. Published on <time datetime="{{ page.date | date: '%Y-%m-%d' }}" title="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-e %B %Y' }}</time>.</p>
+<p><a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" title="Except where otherwise noted, this work is licensed under a Creative Commons license (CC BY 4.0)">Some rights reserved<span title="Except where otherwise noted, this work is licensed under a Creative Commons license (CC BY 4.0)" tabindex="0"></span></a>. {% if page.author_role == 'editor' %}Edited by{% else %}Written by{% endif %} <span rel="author">{{ page.author | escape }}<span>. Published on <time tabindex="0" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-e %B %Y' }}</time>.</p>
 </footer>
 </article>

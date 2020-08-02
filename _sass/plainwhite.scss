@@ -173,6 +173,8 @@ code.highlighter-rouge {
 	// inside, within the given width/max-width.
 	box-sizing: border-box;
 	padding: 35px $contentSpacing;
+	// For tooltip bubble sizing
+	position: relative;
 
 	@media screen and (max-width: $breakMobile) {
 		// Remove top padding
@@ -525,54 +527,65 @@ a.sitelink,
 	}
 }
 
-[data-tip] {
-	position: relative;
+// Tooltip
+[title]:not(a) {
+	display: inline-flex;
 }
-
-// The cut-out
-.tip-handle:focus + [data-tip]:before,
-.tip-handle:active + [data-tip]:before {
-	content: "";
+[title]:not(a):focus,
+[title]:not(a):focus:before {
+	// Disable native hover tooltips (e.g. double tooltip on <abbr> or <time>),
+	// by preventing native hover/click events from firing on the Tooltip handle
+	// or Tooltip bubble (after activation).
+	//
+	// We can't use this approach on anchor elements, because focus is the first
+	// step of a native tap/click. Preventing events on a:focus would mean the
+	// link can never be clicked at all, and preventing it only on a:before:focus
+	// is ineffective (link loads even clicking on the :before handle).
+	//
+	// Instead, for <a href title>, we need an additional <span title> inserted
+	// in the HTML to be able to prevent propagating those clicks (using one
+	// line of JS in _layouts/default.html).
+	pointer-events: none;
+}
+[title]:not(a):focus:after,
+a[title] > [title]:focus,
+a[title] > [title]:focus:after {
+	pointer-events: all;
+}
+// Tooltip bubble
+[title]:not(a):focus:after {
 	display: block;
-	// Set z-index to get it in front of the tip's drop-shadow
+	content: attr(title);
+	position: absolute;
 	z-index: 1;
-	position: absolute;
-	bottom: 95%;
-	// Align with tip-handle
-	left: calc(100% - 10px - 0.5em);
-	border-top: 10px solid transparent;
-	border-left: 9px solid transparent;
-	border-right: 9px solid transparent;
-	@media screen and (max-width: $breakMobile) {
-		display: none;
-	}
-}
-
-// The bubble
-.tip-handle:focus + [data-tip]:after,
-.tip-handle:active + [data-tip]:after {
-	display: block;
-	content: attr(data-tip);
-	position: absolute;
-	width: 300px;
-	// Align with center
-	left: -150px;
-	bottom: calc(95% + 10px);
-	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.54));
-	border-radius: 4px;
+	left: 0;
+	right: $contentSpacing;
+	margin-top: 2em;
 	padding: 0.5em 1em;
+	border-radius: 4px;
 	font-size: 0.9em;
+	font-family: $fontFamilySans;
+	cursor: default;
+	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.54));
+	@media screen and (max-width: $breakMobile) {
+	}
 	@media screen and (max-width: $breakMobile) {
 		position: fixed;
 		left: ($contentSpacing / 2);
-		bottom: 20%;
-		padding: 5vw;
+		bottom: ($contentSpacing / 2);
 		width: calc(90vw - #{$contentSpacing});
+		padding: 5vw;
+		// reset
+		margin-top: 0;
+		right: auto;
 	}
 }
-
-.tip-handle {
+// Tooltip handle
+[title]:not(a):before {
+	// Change order so that this becomes another "after" pseudo-element
+	order: 1;
 	display: inline-block;
+	content: "i";
 	margin-left: 0.5em;
 	border: 1px solid transparent;
 	border-radius: 2em;
@@ -581,20 +594,9 @@ a.sitelink,
 	text-align: center;
 	cursor: pointer;
 }
-.tip-handle:focus {
+[title]:not(a):before:focus {
 	outline: 0;
 	position: relative;
-}
-.tip-handle:focus:after {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: -1;
-	border-radius: 2em;
 }
 
 @mixin my-color-scheme($vars) {
@@ -685,32 +687,27 @@ a.sitelink,
 		outline-color: map-get($vars, "backgroundLinkBase");
 		border-color: map-get($vars, "textColorLinkBase");
 	}
-	.tip-handle {
+	// Tooltip handle
+	[title]:not(a):before {
 		border-color: map-get($vars, "textColorMuted");
 	}
-	.tip-handle:focus,
-	.tip-handle:active {
+	[title]:not(a):focus:before {
 		border-color: map-get($vars, "textColorLinkBase");
 	}
 	.post a:hover {
 		box-shadow: 0px 0px 0px 5px map-get($vars, "backgroundLinkBase");
 	}
-	.tip-handle:focus:after,
-	.tip-handle:active:after,
+	[title]:focus:before,
 	.social a:hover {
 		box-shadow: 0px 0px 0px 20px map-get($vars, "backgroundLinkBase");
 	}
 
-	// Bubble styles
-	.tip-handle:focus + [data-tip]:after,
-	.tip-handle:active + [data-tip]:after {
+	// Tooltip bubble
+	[title]:focus:after {
 		background: map-get($vars, "textBackBubble");
 		color: map-get($vars, "textColorBubble");
 	}
-	.tip-handle:focus + [data-tip]:before,
-	.tip-handle:active + [data-tip]:before {
-		border-top-color: map-get($vars, "textBackBubble");
-	}
+
 	::selection {
 		color: map-get($vars, "textColorSelected");
 		background-color: map-get($vars, "backgroundSelected");
@@ -779,7 +776,7 @@ $darkModeVars: (
 @include my-color-scheme($lightModeVars);
 .dark-off.dark-toggleable {
 	.dark-toggle::before {
-		content: '☼   Light';
+		content: '☾ Dark';
 	}
 }
 .social a:hover .icon {
@@ -802,7 +799,7 @@ $darkModeVars: (
 		filter: brightness(2) saturate(0.5);
 	}
 	.dark-toggle::before {
-		content: '☾   Dark';
+		content: '☼  Light';
 	}
 	.post img {
 		filter: brightness(0.8) contrast(1.4) saturate(0.9);

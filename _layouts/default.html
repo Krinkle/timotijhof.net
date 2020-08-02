@@ -39,7 +39,7 @@ DARK = _d && _d[1] === '1';
       <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="GitHub: {{ site.plainwhite.social_links.github | escape }}"><i class="icon icon-github-circled"></i></a></li>
     </ul>
     <p class="footer">&copy; 2011–2020</p>
-    <button aria-label="Toggle dark mode" title="Toggle dark mode" class="dark-toggle"></button>
+    <button aria-label="Toggle dark mode" class="dark-toggle"></button>
   </header>
   <main class="content">
     {{- content -}}
@@ -54,6 +54,9 @@ DARK = _d && _d[1] === '1';
 DOCEL = document.documentElement; if (document.querySelector && DOCEL.classList && DOCEL.matches) (function () {
   document.body.addEventListener('ontouchstart' in window ? 'dblclick' : 'click', function (e) {
     if (e.target.nodeName === 'IMG' && !e.target.matches('a img')) window.open(e.target.src);
+  });
+  document.body.addEventListener('click', function (e) {
+    if (e.target.nodeName === 'SPAN' && e.target.matches('a[title] > span[title]')) e.preventDefault() && e.stopPropagation();
   });
   document.querySelector('.dark-toggle').addEventListener('click', function () {
     DARK = DOCEL.classList.toggle('dark-on'); DOCEL.classList.toggle('dark-off'); document.cookie = 'dark=' + +DARK + '; path=/';
