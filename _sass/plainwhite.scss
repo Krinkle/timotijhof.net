@@ -364,13 +364,15 @@ a.sitelink,
 }
 .posts-row {
 	border-bottom: 1px solid transparent;
-	.post-date a {
-		color: inherit;
-	}
 }
-
-.post-meta {
-	overflow: hidden;
+header.post-meta {
+	// Match `hr` style
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid transparent;
+	margin-bottom: 1.5rem;
+}
+.post-date a {
+	color: inherit;
 }
 .post-date {
 	text-transform: uppercase;
@@ -617,8 +619,11 @@ a[title] > [title]:focus:after {
 	// Muted styles and shades
 	.tagline,
 	.footer,
-	.post-meta,
 	.posts-row .post {
+		color: map-get($vars, "textColorMuted");
+	}
+	.post-meta {
+		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMuted");
 	}
 	.about-sm {
@@ -626,10 +631,7 @@ a[title] > [title]:focus:after {
 			background: map-get($vars, "backgroundPanel");
 		}
 	}
-	.posts-row {
-		border-color: map-get($vars, "textColorAccentMinor");
-		color: map-get($vars, "textColorMinor");
-	}
+	.posts-row,
 	blockquote {
 		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMinor");
