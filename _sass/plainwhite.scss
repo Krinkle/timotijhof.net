@@ -192,7 +192,6 @@ code.highlighter-rouge {
 .about {
 	display: flex;
 	flex: 0;
-	height: 90vh;
 	width: $sidebarWidth;
 	justify-content: flex-start;
 	flex-direction: column;
@@ -220,7 +219,7 @@ code.highlighter-rouge {
 .social {
 	list-style-type: none;
 	padding: 0;
-	margin-top: 0;
+	margin: 0 0 1rem 0;
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
@@ -266,6 +265,9 @@ code.highlighter-rouge {
 		}
 		h2 {
 			margin: 0 0 0 $contentSpacing;
+		}
+		.dark-toggle {
+			margin: 0;
 		}
 		.tagline,
 		.social,
@@ -319,10 +321,8 @@ code.highlighter-rouge {
 	}
 }
 
-.dark-toggleable .dark-toggle {
-	// margin-top=auto makes this item jusitied at the bottom
-	// of the flex column (.about).
-	margin: auto 0 10px 0;
+.dark-toggle {
+	margin: 1rem 0;
 	border: 0;
 	border-radius: 2px;
 	padding: 5px 20px 5px 10px;
@@ -331,10 +331,13 @@ code.highlighter-rouge {
 	white-space: nowrap; // For micro widths
 }
 @media screen and (min-width: $breakBeyondMobile) {
-	.dark-toggleable .dark-toggle {
+	.dark-toggle {
 		position: fixed;
-		bottom: 0;
+		bottom: 1rem;
 	}
+}
+.dark-notoggle .dark-toggle {
+	display: none;
 }
 
 .posts-label {
@@ -775,7 +778,7 @@ $darkModeVars: (
 
 // Light (unscoped, as default)
 @include my-color-scheme($lightModeVars);
-.dark-off.dark-toggleable {
+.dark-off {
 	.dark-toggle::before {
 		content: '☾ Dark';
 	}
