@@ -110,7 +110,7 @@ blockquote > p:last-child {
 hr {
 	clear: both;
 	border: 0;
-	margin: 1.5em auto;
+	margin: 1.5rem auto;
 	height: 1px;
 }
 
@@ -471,7 +471,6 @@ a.sitelink,
 	}
 	figure,
 	table,
-	hr,
 	> p:not(.md-block) > img,
 	.md-block,
 	pre.highlight {
