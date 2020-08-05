@@ -6,19 +6,23 @@ plainwhite:
 {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
 <article>
 <header class="post-meta">
-  <a class="post-link" href="{{ page.url | relative_url }}">
-    <h1>{{ page.title | escape }}</h1>
-  </a>
-  <span class="post-date"><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time></span>
-  •
-  {% for tag in page.tags -%}
+  <a class="post-link" href="{{ page.url | relative_url }}"><h1>{{ page.title | escape }}</h1></a>
+  {%- comment -%}
+  The `DIV.byline` element exists solely to please Safari Reader.
+  I've tried dozens of variations but without this, Safari will only hoist
+  the `H1` and `time` into its own header and leave "• Tag" behind as if
+  it was the first paragraph of the body content. The `byline` class is
+  internally hardcoded by Safari as way to hint ignoring anything else
+  in this block.
+  {%- endcomment %}
+  <div class="byline"><time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time> • {% for tag in page.tags -%}
     {%- if page.tags.first != tag %}, {% endif -%}
     {%- assign tagpage = site.pages | where: "tag", tag | first -%}
     {%- assign tagtitle = tagpage.title | default: tag -%}
     <a rel="tag" class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tagtitle | escape }}</a>
   {%- endfor -%}
+  </div>
 </header>
-<hr>
 <div class="post">
   {{- content | fix_extlink | fix_tooltip -}}
 </div>
