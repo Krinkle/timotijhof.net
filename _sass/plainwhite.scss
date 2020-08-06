@@ -358,7 +358,7 @@ a {
 }
 a.sitelink,
 .post-link,
-.post-date a,
+.post-date,
 .post-tag {
 	text-decoration: none;
 }
@@ -367,16 +367,21 @@ a.sitelink,
 	text-decoration: underline;
 }
 .posts-row {
+	// Match `hr` style
+	margin-top: 1.5rem;
 	border-bottom: 1px solid transparent;
+	padding-bottom: 1.5rem;
+
+	// For excerpts on tag pages
+	.post p:last-of-type {
+		margin-bottom: 0;
+	}
 }
 header.post-meta {
 	// Match `hr` style
 	padding-bottom: 1.5rem;
 	border-bottom: 1px solid transparent;
 	margin-bottom: 1.5rem;
-}
-.post-date a {
-	color: inherit;
 }
 .post-date {
 	text-transform: uppercase;
@@ -389,15 +394,11 @@ header.post-meta {
 	margin: 0.7em 0;
 	font-size: 28px;
 }
-.posts-row .post {
-	margin-top: 0.5em;
-}
-.posts-row .post p {
-	margin-top: 0;
-}
-.posts-row .post blockquote {
-	border-left-width: 0;
-	margin: 1em 0;
+.posts-row-short {
+	.post-title {
+		display: inline;
+		font-size: inherit;
+	}
 }
 
 .post {
@@ -621,11 +622,11 @@ a[title] > [title]:focus:after {
 	}
 
 	// Muted styles and shades
-	.about,
-	.posts-row .post {
+	.about {
 		color: map-get($vars, "textColorMuted");
 	}
-	.post-meta {
+	.post-meta,
+	.posts-row {
 		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMuted");
 	}
@@ -634,7 +635,6 @@ a[title] > [title]:focus:after {
 			background: map-get($vars, "backgroundPanel");
 		}
 	}
-	.posts-row,
 	blockquote {
 		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMinor");
@@ -687,8 +687,6 @@ a[title] > [title]:focus:after {
 		border-color: map-get($vars, "textColorLinkBase");
 	}
 	.post a:hover,
-	.post-tag:hover
-	.posts-row .post-link:hover h2,
 	.social a:hover {
 		background: map-get($vars, "backgroundLinkBase");
 		text-decoration-color: map-get($vars, "textColorLinkBase");
