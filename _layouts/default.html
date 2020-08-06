@@ -17,7 +17,7 @@ DARK = _d && _d[1] === '1';
 {%- endcapture -%}
 {{ darkinit_js | strip_newlines }}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200802' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200803' | relative_url }}">
 {% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -38,6 +38,7 @@ DARK = _d && _d[1] === '1';
       <li><a href="{{ site.url }}/feed.xml" title="RSS Feed"><i class="icon icon-rss-squared"></i></a></li>
       <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="GitHub: {{ site.plainwhite.social_links.github | escape }}"><i class="icon icon-github-circled"></i></a></li>
     </ul>
+    <p><a href="{% link about.md %}">About me</a></p>
     <p class="footer">&copy; 2011–2020</p>
     <button aria-label="Toggle dark mode" class="dark-toggle"></button>
   </header>
