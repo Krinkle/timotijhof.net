@@ -3,6 +3,11 @@ layout: default
 plainwhite:
   small_header: true
 ---
+<article>
+<header class="post-meta">
+ <h1>{{ page.title | escape }}</h1>
+</header>
 <div class="post">
   {{- content | fix_extlink | fix_tooltip -}}
 </div>
+</article>

@@ -8,10 +8,10 @@ $contentSpacingMicro: 10px;
 
 // "Micro" widths:
 // - Nokia 8110 4G:     240px
-$breakMicro: 319px; // max-width
+// - iPhone 5/SE:       320px (Portrait)
+$breakMicro: 320px; // max-width
 
 // "Mobile" widths:
-// - iPhone 5/SE:       320px (Portrait)
 // - iPhone 6/7/8:      375px (Portrait)
 // - iPhone 6/7/8 Plus: 414px (Portrait)
 // - iPad: 768px (Portait)
@@ -192,7 +192,7 @@ code.highlighter-rouge {
 .about {
 	display: flex;
 	flex: 0;
-	width: $sidebarWidth;
+	max-width: $sidebarWidth;
 	justify-content: flex-start;
 	flex-direction: column;
 	align-items: center;
@@ -219,7 +219,7 @@ code.highlighter-rouge {
 .social {
 	list-style-type: none;
 	padding: 0;
-	margin: 0 0 1rem 0;
+	margin: 0;
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
@@ -250,7 +250,8 @@ code.highlighter-rouge {
 	.about-sm {
 		justify-content: space-between;
 		flex-direction: row;
-		width: auto;
+		flex-wrap: wrap;
+		max-width: initial;
 		margin: 0;
 		padding: $contentSpacing;
 		.sitelink {
@@ -265,6 +266,9 @@ code.highlighter-rouge {
 		}
 		h2 {
 			margin: 0 0 0 $contentSpacing;
+		}
+		p {
+			margin: $contentSpacingMicro 0;
 		}
 		.dark-toggle {
 			margin: 0;
@@ -292,9 +296,9 @@ code.highlighter-rouge {
 			font-size: 18px;
 			margin: 0 0 0 $contentSpacingMicro;
 		}
-		.footer {
-			display: none;
-		}
+	}
+	.footer {
+		display: none;
 	}
 	.tagline {
 		font-size: 14px;
@@ -325,7 +329,7 @@ code.highlighter-rouge {
 	margin: 1rem 0;
 	border: 0;
 	border-radius: 2px;
-	padding: 5px 20px 5px 10px;
+	padding: 5px 10px;
 	font-size: 14px;
 	cursor: pointer;
 	white-space: nowrap; // For micro widths
@@ -617,8 +621,7 @@ a[title] > [title]:focus:after {
 	}
 
 	// Muted styles and shades
-	.tagline,
-	.footer,
+	.about,
 	.posts-row .post {
 		color: map-get($vars, "textColorMuted");
 	}
@@ -804,7 +807,7 @@ $darkModeVars: (
 		filter: brightness(2) saturate(0.5);
 	}
 	.dark-toggle::before {
-		content: '☼  Light';
+		content: '☼ Light';
 	}
 	.post img {
 		filter: brightness(0.8) contrast(1.4) saturate(0.9);

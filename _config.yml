@@ -18,6 +18,8 @@ url: https://timotijhof.net
 ## Jekyll / Plugins
 plugins:
   - jekyll-redirect-from
+  #  https://github.com/benbalter/jekyll-relative-links
+  - jekyll-relative-links
 
 ## Jekyll / Posts
 ## https://jekyllrb.com/docs/posts/#post-excerpts
