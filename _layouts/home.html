@@ -17,19 +17,12 @@ layout: default
   {%- if _excluded -%}
     {%- continue -%}
   {%- endif -%}
-<div class="posts-row">
+<div class="posts-row {% if post.tags contains 'engineering-stories' %} posts-row-short{% endif %}">
   {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
   <a class="post-link" href="{{ post.url | relative_url }}">
     <h2 class="post-title">{{ post.title | escape }}</h2>
   </a>
-  <div class="post-meta">
-    <div class="post-date"><a href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a></div>
-  </div>
-  <div class="post">
-    {%- if site.plainwhite.show_excerpts -%}
-    {{ post.excerpt }}
-    {%- endif -%}
-  </div>
+  <a class="post-date" href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a>
 </div>
 {%- endfor -%}
 {%- endif -%}
