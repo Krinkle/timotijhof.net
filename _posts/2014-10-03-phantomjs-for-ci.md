@@ -57,4 +57,6 @@ Chromium has its abstraction layer at a higher level (platform independent). Whe
 
 -------
 
-**Update (September 2018)**: I recently read _[Creative Selection](http://creativeselection.io/)_ by Ken Kocienda. This book details the origin story of Safari and iPhone, told by the engineer that worked on these projects at Apple.
+**Update (September 2018)**: I recently read *[Creative Selection](http://creativeselection.io/)*, which talks about the engineering choices behind Safari and iPhone, how some of its features came to be, and the role of Steve Jobs day-to-day. It is written by Ken Kocienda, an engineer who worked on both projects. The book was a good and quick read.
+
+I previously read *Steve Jobs* by Walter Isaacson. The biography was great, but it didn't cover much of Apple's internal practices. *Creative Selection* covers this gap.
