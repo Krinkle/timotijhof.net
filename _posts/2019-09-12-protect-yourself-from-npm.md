@@ -156,15 +156,21 @@ Question yourself and question others before introducing new dependencies. Perha
 
 ## See also
 
-* [An idea for improving npm package permissions](https://medium.com/hackernoon/npm-package-permissions-an-idea-441a02902d9b), by David Gilbertson.
-* [When packages go bad](https://jakearchibald.com/2018/when-packages-go-bad/), by Jake Archibald.
-
 ### Further reading
 
-* [Malicious code found on npm](https://snyk.io/blog/malicious-code-found-in-npm-package-event-stream/), Danny Grander, Snyk.io.
-* [Shell execution vulnerability in iTerm 2](https://blog.mozilla.org/security/2019/10/09/iterm2-critical-issue-moss-audit/), Tom Ritter, Mozilla Security Blog.
-* [Deconstructing Spotify's local server](https://cgbystrom.com/articles/deconstructing-spotifys-builtin-http-server/), Carl Byström.
-* [Apple removes Zoom's hidden server](https://nakedsecurity.sophos.com/2019/07/15/apple-quietly-removes-zooms-hidden-web-server-from-macs/), John E Dunn, Naked Security.
-* [Zoom 0-day: 4+ Million Webcams](https://medium.com/bugbountywriteup/zoom-zero-day-4-million-webcams-maybe-an-rce-just-get-them-to-visit-your-website-ac75c83f4ef5), Jonathan Leitschuh.
-* [Detect piped curl on the server-side](https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/), Phil from idontplaydarts.com.
-* [npm Install Hook Scripts](https://blog.alexwendland.com/2018-11-20-npm-install-scripts-intro/), Alex Wendland.
+* [An idea for improving npm package permissions](https://medium.com/hackernoon/npm-package-permissions-an-idea-441a02902d9b) by David Gilbertson.
+* [Detect piped curl on the server-side](https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/) by Phil of idontplaydarts.com.
+
+### Sources
+
+* [When packages go bad](https://jakearchibald.com/2018/when-packages-go-bad/), Jake Archibald (Dec 2018).
+* [Malicious code on npm](https://snyk.io/blog/malicious-code-found-in-npm-package-event-stream/), Danny Grander, Snyk.io (Nov 2018).
+* [Shell vulnerability in iTerm 2](https://blog.mozilla.org/security/2019/10/09/iterm2-critical-issue-moss-audit/), Tom Ritter, Mozilla Security (Oct 2019).
+* [Deconstructing Spotify's local server](http://cgbystrom.com/articles/deconstructing-spotifys-builtin-http-server/) by Carl Byström (Apr 2013).
+* [Apple removes Zoom's server](https://nakedsecurity.sophos.com/2019/07/15/apple-quietly-removes-zooms-hidden-web-server-from-macs/), John E Dunn, Naked Security (Jul 2019).
+* [Zoom 0-day: 4+ Million Webcams](https://medium.com/bugbountywriteup/zoom-zero-day-4-million-webcams-maybe-an-rce-just-get-them-to-visit-your-website-ac75c83f4ef5), Jonathan Leitschuh (Jul 2019).
+* [npm Install Hook Scripts](https://blog.alexwendland.com/2018-11-20-npm-install-scripts-intro/), Alex Wendland (Nov 2018).
+
+-------
+
+**Update (6 Aug 2020)**: Check out *[Worrying about the NPM ecosystem](https://sambleckley.com/writing/npm.html)* by Sam Bleckley, which takes a more scientific look at the problem.
