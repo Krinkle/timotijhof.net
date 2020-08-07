@@ -13,7 +13,16 @@ layout: null
 
 	{%- assign matomo_cvar = '{"1":["Via","RSS"]}' -%}
 	{% assign posts = site.posts | sort: "date" | reverse %}
-	{% for post in posts limit: 17 %}
+	{% for post in posts -%}
+		{%- assign _excluded = false -%}
+		{%- for tag in site.plainwhite.exclude_tags -%}
+			{%- if post.tags contains tag -%}
+				{%- assign _excluded = true -%}
+			{%- endif -%}
+		{%- endfor -%}
+		{%- if _excluded -%}
+			{%- continue -%}
+		{%- endif %}
 	<entry{% if post.lang %}{{" "}}xml:lang="{{ post.lang }}"{% endif %}>
 		<title type="html">{{ post.title | strip_html | normalize_whitespace | xml_escape }}</title>
 		<link href="{{ post.url | absolute_url }}" rel="alternate" type="text/html" title="{{ post.title | strip_html | normalize_whitespace | xml_escape }}" />
