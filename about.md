@@ -26,11 +26,17 @@ During 2012 and 2013, I contracted with the [jQuery Foundation](https://jquery.o
 
 I remain active as a volunteer in the QUnit Team and jQuery Infrastructure Team.
 
-Some QUnit changes I helped design or implement:
-
-* [Add propEqual assertion](https://github.com/qunitjs/qunit/issues/317)
-* [Add local assert.async state](https://github.com/qunitjs/qunit/issues/534)
-* [Introduce contextual assertion object](https://github.com/qunitjs/qunit/issues/374)
-* [Launch 2020 qunitjs.com website](https://github.com/qunitjs/qunit/issues/1458)
-
 -------
+
+## Contact
+
+<dl>
+<dt>Email</dt>
+<dd markdown="span">`krinklemail@gmail.com`</dd>
+<dt>Fediverse (DM)</dt>
+<dd markdown="span">`https://mastodon.technology/@krinkle`</dd>
+<dt>GPG Fingerprint</dt>
+<dd markdown="span">`8925 D55A C638 9B43 745A  4090 0667 0C4D 66D1 7553`<br>[My public key](/key.asc)</dd>
+<dt>IRC</dt>
+<dd markdown="span">`Krinkle` on [Freenode](https://freenode.net/)</dd>
+</dl>
