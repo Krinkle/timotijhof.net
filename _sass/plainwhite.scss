@@ -629,7 +629,7 @@ a[title] > [title]:focus:after {
 	.about {
 		color: map-get($vars, "textColorMuted");
 	}
-	.post-meta,
+	header.post-meta,
 	.posts-row {
 		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMuted");
@@ -757,8 +757,8 @@ $darkModeVars: (
 	"backgroundRoot": #100e17,
 	"backgroundPanel": #000,
 	"textColorRoot": rgba(255, 255, 255, 0.90),
-	"textColorBase": #c2c2c2,
-	"textColorMinor": #c2c2c2,
+	"textColorBase": #bcbaca,
+	"textColorMinor": #bcbaca,
 	"textColorMuted": #837f9c,
 	"textColorLinkRoot": rgba(255, 255, 255, 0.92),
 	"textColorAccentMinor": lighten(#100e17, 25%),
@@ -784,10 +784,8 @@ $darkModeVars: (
 
 // Light (unscoped, as default)
 @include my-color-scheme($lightModeVars);
-.dark-off {
-	.dark-toggle::before {
-		content: '☾ Dark';
-	}
+.dark-toggle::before {
+	content: '☾ Dark';
 }
 .social a:hover .icon {
 	// Approximate $textColorLinkBase

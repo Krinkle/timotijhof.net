@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark-off dark-notoggle">
+<html lang="en" class="dark-notoggle">
 <meta charset="UTF-8">
 <title>
 {%- if page.title -%}
@@ -60,7 +60,7 @@ DOCEL = document.documentElement; if (document.querySelector && DOCEL.classList 
     if (e.target.nodeName === 'SPAN' && e.target.matches('a[title] > span[title]')) e.preventDefault() && e.stopPropagation();
   });
   document.querySelector('.dark-toggle').addEventListener('click', function () {
-    DARK = DOCEL.classList.toggle('dark-on'); DOCEL.classList.toggle('dark-off'); document.cookie = 'dark=' + +DARK + '; path=/';
+    DARK = DOCEL.classList.toggle('dark-on'); document.cookie = 'dark=' + +DARK + '; path=/';
   });
   DOCEL.classList.remove('dark-notoggle');
 }());
