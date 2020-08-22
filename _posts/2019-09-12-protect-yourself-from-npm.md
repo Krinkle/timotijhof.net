@@ -116,7 +116,7 @@ What about PyPI or Packagist (Composer)? These are like npm. Anyone can publish 
 
 There is also a difference in habit: PyPI packages have 7 dependencies on average, with typically 1 indirect dependency. And, I would expect most dependencies there to be from authors the user has trusted before. [[4]](https://snyk.io/blog/how-much-do-we-really-know-about-how-packages-behave-on-the-npm-registry/) Snyk.io published in April that the average npm package has a whopping 86 dependencies, with a 4+ levels of indirect dependencies. [[4]](https://snyk.io/blog/how-much-do-we-really-know-about-how-packages-behave-on-the-npm-registry/)
 
-The ESLint package has 118 npm dependencies [[5]](https://npm.anvaka.com/#/view/2d/eslint/6.3.0). Eleventy, a popular static site generator, requires 555 dependencies ([Explore dependency graph](https://npm.anvaka.com/#/view/2d/%254011ty%252Feleventy/0.9.0)). Each one of these may run [arbitrary shell commands](https://blog.alexwendland.com/2018-11-20-npm-install-scripts-intro/) from the terminal both during the installation process, after later when using the tool.
+The ESLint package has 118 npm dependencies [[5]](http://npm.broofa.com/?q=eslint@6.3.0). Eleventy, a popular static site generator, requires 555 dependencies ([Explore dependency graph](http://npm.broofa.com/?q=@11ty/eleventy@0.9.0)). Each one of these may run [arbitrary shell commands](https://blog.alexwendland.com/2018-11-20-npm-install-scripts-intro/) from the terminal both during the installation process, after later when using the tool.
 
 ## I get it. Now, what can we do about it?
 
