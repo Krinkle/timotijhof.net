@@ -20,16 +20,9 @@
 
 <meta property="og:title" content="{{ page.plainwhite.og_title | default: page.title | default: site.title | strip_html | normalize_whitespace | escape }}">
 
-{% if page.excerpt %}
-	{% assign excerpt = page.excerpt %}
-{% elsif page.layout == "home" %}
-	{% assign excerpt = site.description %}
-{% else %}
-	{% assign excerpt = "" %}
-{% endif %}
-{% if excerpt and excerpt != empty %}
-<meta name="description" content="{{ excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
-<meta property="og:description" content="{{ excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
+{% if page.excerpt and page.excerpt != empty %}
+<meta name="description" content="{{ page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
+<meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
 {% endif %}
 
 {% if page.plainwhite.og_image_url and page.plainwhite.og_image_alt %}

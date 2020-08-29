@@ -274,9 +274,6 @@ code.highlighter-rouge {
 		p {
 			margin: $contentSpacingMicro 0;
 		}
-		.dark-toggle {
-			margin: 0;
-		}
 		.tagline,
 		.social,
 		.footer {
@@ -327,25 +324,6 @@ code.highlighter-rouge {
 		line-height: 1.6;
 		margin: 1.2em 0;
 	}
-}
-
-.dark-toggle {
-	margin: 1rem 0;
-	border: 0;
-	border-radius: 2px;
-	padding: 5px 10px;
-	font-size: 14px;
-	cursor: pointer;
-	white-space: nowrap; // For micro widths
-}
-@media screen and (min-width: $breakBeyondMobile) {
-	.dark-toggle {
-		position: fixed;
-		bottom: 1rem;
-	}
-}
-.dark-notoggle .dark-toggle {
-	display: none;
 }
 
 .posts-label {
@@ -662,17 +640,6 @@ a[title] > [title]:focus:after {
 	.post a > code {
 		color: inherit;
 	}
-	// Button styles
-	.dark-toggle {
-		background: map-get($vars, "backgroundButton");
-		color: map-get($vars, "textColorButton");
-	}
-	.dark-toggle:hover,
-	.dark-toggle:focus,
-	.dark-toggle:active {
-		background: map-get($vars, "backgroundButtonActive");
-		color: map-get($vars, "textColorButtonActive");
-	}
 
 	// Link styles
 	a:hover,
@@ -782,34 +749,19 @@ $darkModeVars: (
 	"textColorBubble": #fff
 );
 
-// Light (unscoped, as default)
-@include my-color-scheme($lightModeVars);
-.dark-toggle::before {
-	content: '☾ Dark';
+// Dark mode
+@include my-color-scheme($darkModeVars);
+.icon {
+	// Approximate $textColorMuted
+	filter: invert(1) contrast(0.1) sepia(2) hue-rotate(200deg);
 }
 .social a:hover .icon {
 	// Approximate $textColorLinkBase
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 }
-
-// Dark (scoped to class=dark-on)
-.dark-on {
-	@include my-color-scheme($darkModeVars);
-	.icon {
-		// Approximate $textColorMuted
-		filter: invert(1) contrast(0.1) sepia(2) hue-rotate(200deg);
-	}
-	.social a:hover .icon {
-		// Approximate $textColorLinkBase
-		filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
-	}
-	pre.highlight code {
-		filter: brightness(2) saturate(0.5);
-	}
-	.dark-toggle::before {
-		content: '☼ Light';
-	}
-	.post img {
-		filter: brightness(0.8) contrast(1.4) saturate(0.9);
-	}
+pre.highlight code {
+	filter: brightness(2) saturate(0.5);
+}
+.post img {
+	filter: brightness(0.8) contrast(1.4) saturate(0.9);
 }
