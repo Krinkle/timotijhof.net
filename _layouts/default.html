@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark-notoggle">
+<html lang="en">
 <meta charset="UTF-8">
 <title>
 {%- if page.title -%}
@@ -8,16 +8,8 @@
   {{ site.title | escape }}
 {%- endif -%}
 </title>
-{% capture darkinit_js -%}
-<script>
-_d = /dark=(\d)\b/.exec(document.cookie);
-DARK = _d && _d[1] === '1';
-(DARK || DARK === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) && (document.documentElement.className = 'dark-on');
-</script>
-{%- endcapture -%}
-{{ darkinit_js | strip_newlines }}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200804' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20200827' | relative_url }}">
 {% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -40,7 +32,6 @@ DARK = _d && _d[1] === '1';
     </ul>
     <p><a href="{% link about.md %}">About me</a></p>
     <p class="footer">&copy; 2011–2020</p>
-    <button aria-label="Toggle dark mode" class="dark-toggle"></button>
   </header>
   <main class="content">
     {{- content -}}
@@ -59,10 +50,6 @@ DOCEL = document.documentElement; if (document.querySelector && DOCEL.classList 
   document.body.addEventListener('click', function (e) {
     if (e.target.nodeName === 'SPAN' && e.target.matches('a[title] > span[title]')) e.preventDefault() && e.stopPropagation();
   });
-  document.querySelector('.dark-toggle').addEventListener('click', function () {
-    DARK = DOCEL.classList.toggle('dark-on'); document.cookie = 'dark=' + +DARK + '; path=/';
-  });
-  DOCEL.classList.remove('dark-notoggle');
 }());
 {% if matomo_basic %}
 if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
