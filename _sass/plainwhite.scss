@@ -1,4 +1,4 @@
-@import 'ext/solarized-light';
+@import 'ext/zenburn';
 
 $fontFamilySans: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 
@@ -758,9 +758,6 @@ $darkModeVars: (
 .social a:hover .icon {
 	// Approximate $textColorLinkBase
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
-}
-pre.highlight code {
-	filter: brightness(2) saturate(0.5);
 }
 .post img {
 	filter: brightness(0.8) contrast(1.4) saturate(0.9);
