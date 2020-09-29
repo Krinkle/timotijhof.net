@@ -7,8 +7,6 @@ redirect_from:
 plainwhite:
   original_url: https://codepen.io/Krinkle/post/phantomjs-anno-2014
   original_label: CodePen
-  also_url: https://medium.com/@timotijhof/phantomjs-for-ci-anno-2014-589a3f0dec6b
-  also_label: Medium.com
 ---
 
 How did Apple create Safari, and what is PhantomJS?
