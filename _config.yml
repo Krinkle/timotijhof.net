@@ -65,7 +65,6 @@ plainwhite:
     mastodon:
       user: krinkle
       instance: mastodon.technology
-    twitter: TimoTijhof
   matomo:
     url: https://stats.timotijhof.net
     idsite: 8
