@@ -41,5 +41,5 @@ layout: default
     {%- assign tagtitle = tagpage.title | default: tag -%}
   <a class="post-tag" href="{% link {{ tag | prepend: 'tags/' | append: '.md' }} %}">{{ tagtitle | escape }}</a>
 {%- endfor -%}
-.</p>
+</p>
 {%- endif -%}
