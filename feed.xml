@@ -25,7 +25,12 @@ layout: null
 		{%- endif %}
 	<entry{% if post.lang %}{{" "}}xml:lang="{{ post.lang }}"{% endif %}>
 		<title type="html">{{ post.title | strip_html | normalize_whitespace | xml_escape }}</title>
+		{%- if post.plainwhite.linked_href %}
+		<link href="{{ post.plainwhite.linked_href }}" rel="alternate" type="text/html" />
+		<link href="{{ post.url | absolute_url }}" rel="related" type="text/html" />
+		{%- else %}
 		<link href="{{ post.url | absolute_url }}" rel="alternate" type="text/html" title="{{ post.title | strip_html | normalize_whitespace | xml_escape }}" />
+		{%- endif %}
 		<published>{{ post.date | date_to_xmlschema }}</published>
 		<updated>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</updated>
 		<id>{{ post.id | absolute_url | xml_escape }}</id>

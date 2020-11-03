@@ -11,7 +11,7 @@ plainwhite:
 {%- for post in site.tags[page.tag] -%}
 <div class="posts-row">
   {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
-  <a class="post-link" href="{{ post.url | relative_url }}">
+  <a class="post-link" href="{{ post.plainwhite.linked_href | default: post.url | relative_url }}">
     <h2 class="post-title">{{ post.title | escape }}</h2>
   </a>
   <a class="post-date" href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a>
@@ -19,7 +19,7 @@ plainwhite:
   <div class="post">
     {{- post.excerpt -}}
     {%- if post.excerpt != post.content -%}
-    <a class="screen-reader-text" href="{{ post.url | relative_url }}">Continue reading "{{ post.title | escape }}".</a>
+    <a class="screen-reader-text" href="{{ post.plainwhite.linked_href | default: post.url | relative_url }}">Continue reading "{{ post.title | escape }}".</a>
     {%- endif -%}
   </div>
   {%- endif -%}

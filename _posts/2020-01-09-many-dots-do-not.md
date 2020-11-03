@@ -3,6 +3,8 @@ layout: post
 title: "Many dots, do not a query make"
 tags: engineering-stories
 author_role: editor
+plainwhite:
+  index: minor
 ---
 
 How a long sequence of dots allowed a regex to reach its internal stack limit.

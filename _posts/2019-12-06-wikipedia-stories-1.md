@@ -7,6 +7,7 @@ redirect_from:
 - /posts/2018/wikipedia-stories-aug-2018/ # renamed
 - /posts/2019/wikipedia-stories-01/ # renamed
 plainwhite:
+  index: minor
   also_url: https://phabricator.wikimedia.org/phame/blog/view/1/
   also_label: Production Excellence at Wikipedia
 ---
