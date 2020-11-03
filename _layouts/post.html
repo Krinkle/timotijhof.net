@@ -6,7 +6,7 @@ plainwhite:
 {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
 <article>
 <header class="post-meta">
-  <a class="post-link" href="{{ page.url | relative_url }}"><h1>{{ page.title | escape }}</h1></a>
+  <a class="post-link" href="{{ page.plainwhite.linked_href | default: page.url | relative_url }}"><h1>{{ page.title | escape }}</h1></a>
   {%- comment -%}
   The `DIV.byline` element exists solely to please Safari Reader.
   I've tried dozens of variations but without this, Safari will only hoist
@@ -26,6 +26,7 @@ plainwhite:
 <div class="post">
   {{- content | fix_tooltip | fix_extlink -}}
 </div>
+{% unless layout.plainwhite.hide_contentinfo -%}
 <hr>
 <footer role="contentinfo">
 {%- if page.plainwhite.original_url or page.plainwhite.also_url -%}
@@ -50,4 +51,5 @@ plainwhite:
 {%- endif -%}
 <p><a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" title="Except where otherwise noted, this work is licensed under a Creative Commons license (CC BY 4.0)">Some rights reserved<span title="Except where otherwise noted, this work is licensed under a Creative Commons license (CC BY 4.0)" tabindex="0"></span></a>. {% if page.author_role == 'editor' %}Edited by{% else %}Written by{% endif %} <span rel="author">{{ page.author | escape }}<span>. Published on <time tabindex="0" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-e %B %Y' }}</time>.</p>
 </footer>
+{% endunless -%}
 </article>

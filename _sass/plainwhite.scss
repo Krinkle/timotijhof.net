@@ -380,6 +380,10 @@ header.post-meta {
 	.post-title {
 		display: inline;
 		font-size: inherit;
+		font-weight: normal;
+	}
+	.post-date {
+		font-size: smaller;
 	}
 }
 

@@ -4,6 +4,7 @@ title: "@browsehappy on Twitter"
 excerpt: <p>Six years ago, I was looking for a newsletter about browser releases.</p>
 tags: testing
 plainwhite:
+  index: minor
   original_url: https://twitter.com/TimoTijhof/status/996770174140321792
   original_label: Twitter
 ---
