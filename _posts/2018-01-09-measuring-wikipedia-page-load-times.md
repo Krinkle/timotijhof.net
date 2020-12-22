@@ -5,7 +5,7 @@ tags: wikipedia performance javascript
 redirect_from:
 - /2018/measuring-wikipedia-page-load-times/ # former WordPress site (deleted page)
 plainwhite:
-  original_url: https://phabricator.wikimedia.org/phame/live/7/post/83/measuring_wikipedia_page_load_times/
+  original_url: https://techblog.wikimedia.org/2018/01/09/measuring-wikipedia-page-load-times/
   original_label: wikimedia.org
   also_url: https://calendar.perfplanet.com/2018/measuring-wikipedia-page-load-times/
   also_label: Performance Calendar 2018
