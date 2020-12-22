@@ -55,8 +55,8 @@ layout: null
 		<category term="{{ tag | xml_escape }}" />
 		{%- endfor -%}
 
-		{%- if post.excerpt and post.excerpt != empty -%}
-		<summary type="html">{{ post.excerpt | strip_html | normalize_whitespace | xml_escape }}</summary>
+		{%- if post.excerpt and post.excerpt != post.content and post.excerpt != empty -%}
+		<summary type="text">{{ post.excerpt | strip_html | normalize_whitespace | xml_escape }}</summary>
 		{%- endif -%}
 	</entry>
 	{% endfor %}
