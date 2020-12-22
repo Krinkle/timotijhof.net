@@ -8,7 +8,7 @@ plainwhite:
   og_image_url: /assets/attachments/2019_wikipedia_figure1_chart.png
   og_image_alt: Chart going downwards
   og_image_align: aside
-  original_url: https://phabricator.wikimedia.org/phame/live/7/post/175/wikipedia_s_javascript_initialisation_on_a_budget/
+  original_url: https://techblog.wikimedia.org/2019/09/19/wikipedias-javascript-initialisation-on-a-budget/
   original_label: wikimedia.org
 ---
 
