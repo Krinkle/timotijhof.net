@@ -15,13 +15,14 @@ that program can do anything that you can do.
 
 **In a nutshell**: Imagine if your computer were to disappear in front of your eyes and re-appear in front of mine. Still open. Still unlocked. What could I do from this moment on? _That_ is what an unknown program could do.
 
-Upon running `npm install`, you may be downloading and executing hundreds of unknown programs.
+---
 
-1. What is at stake?
-2. How does it compare to other package managers?
-3. What can you do about it?
+<span class="screen-reader-text">Table of contents</span>
+
+1. [What is at stake?](#what-is-atstake)
+2. [How does it compare to other package managers?](#is-this-an-npmproblem)
+3. [What can you do about it?](#i-get-it-now-what-can-we-do-aboutit)
 {:class="md-toc"}
-
 
 ---
 
@@ -32,9 +33,11 @@ Photo by [Raysonho](https://commons.wikimedia.org/wiki/File:BlueSkyCCTV13.jpg#f
 </figcaption>
 </figure>
 
+Upon running `npm install`, you may be downloading and executing hundreds of programs.
+
 Programs from nice people sometimes ask for your permission. This is because a developer choose to do so.
 
-There may also be laws that could punish them if they get caught choosing differently.
+There may also be laws that could punish them if they get caught not doing so.
 
 
 ---
@@ -149,19 +152,25 @@ Finally, you can reduce risk by reducing the number of packages you depend on in
 
 Question yourself and question others before introducing new dependencies. Perhaps even encourage maintainers of your favourite packages to [Reduce the size of their dependency graph](https://github.com/qunitjs/qunit/issues/1342#show_issue)!
 
+-------
+
+**Update (6 Aug 2020)**: Check out *[Worrying about the NPM ecosystem](https://sambleckley.com/writing/npm.html)* by Sam Bleckley, which takes a more scientific look at the problem.
+
 
 ---
 
 ## See also
 
-### Further reading
+Further reading:
+{:id="further-reading"}
 
 * [I’m harvesting passwords from your site](https://medium.com/hackernoon/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5) by David Gilbertson.
 * [An idea for improving npm package permissions](https://medium.com/hackernoon/npm-package-permissions-an-idea-441a02902d9b) by David Gilbertson.
 * [Detect piped curl on the server-side](https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/) by Phil of idontplaydarts.com.
 * [Strange things after installing an NPM package](https://blog.usejournal.com/12-strange-things-that-can-happen-after-installing-an-npm-package-45de7fbf39f0) by Vladimir Tikhonov.
 
-### Sources
+Sources:
+{:id="sources"}
 
 * [When packages go bad](https://jakearchibald.com/2018/when-packages-go-bad/), Jake Archibald (Dec 2018).
 * [Malicious code on npm](https://snyk.io/blog/malicious-code-found-in-npm-package-event-stream/), Danny Grander, Snyk.io (Nov 2018).
@@ -170,7 +179,3 @@ Question yourself and question others before introducing new dependencies. Perha
 * [Apple removes Zoom's server](https://nakedsecurity.sophos.com/2019/07/15/apple-quietly-removes-zooms-hidden-web-server-from-macs/), John E Dunn, Naked Security (Jul 2019).
 * [Zoom 0-day: 4+ Million Webcams](https://medium.com/bugbountywriteup/zoom-zero-day-4-million-webcams-maybe-an-rce-just-get-them-to-visit-your-website-ac75c83f4ef5), Jonathan Leitschuh (Jul 2019).
 * [npm Install Hook Scripts](https://blog.alexwendland.com/2018-11-20-npm-install-scripts-intro/), Alex Wendland (Nov 2018).
-
--------
-
-**Update (6 Aug 2020)**: Check out *[Worrying about the NPM ecosystem](https://sambleckley.com/writing/npm.html)* by Sam Bleckley, which takes a more scientific look at the problem.
