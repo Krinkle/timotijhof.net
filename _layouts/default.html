@@ -42,14 +42,14 @@
   {%- endcapture -%}
 {%- endif -%}
 <script>
-DOCEL = document.documentElement; if (document.querySelector && DOCEL.classList && DOCEL.matches) (function () {
+if (document.body && document.body.matches) {
   document.body.addEventListener('ontouchstart' in window ? 'dblclick' : 'click', function (e) {
     if (e.target.nodeName === 'IMG' && !e.target.matches('a img')) window.open(e.target.src);
   });
   document.body.addEventListener('click', function (e) {
     if (e.target.nodeName === 'SPAN' && e.target.matches('a[title] > span[title]')) e.preventDefault() && e.stopPropagation();
   });
-}());
-{% if matomo_basic %}
+}
+{% if matomo_basic -%}
 if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
 {%- endif %}</script>
