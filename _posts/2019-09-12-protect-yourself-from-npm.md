@@ -8,7 +8,7 @@ plainwhite:
   og_image_alt: King Louis XIV with a red blindfold over his eyes.
 ---
 
-> What's the worst that could happen after `npm install`?
+What's the worst that could happen after `npm install`?
 
 When you open an app or execute a program from the terminal,
 that program can do anything that you can do.

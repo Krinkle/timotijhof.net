@@ -1,5 +1,8 @@
 @import 'ext/zenburn';
 
+// -apple-system: Firefox, Safari (macOS/iOS)
+// BlinkMacSystemFont: Chromium (macOS)
+// Roboto: Chromium (Android)
 $fontFamilySans: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 
 $sidebarWidth: 220px;
@@ -30,7 +33,6 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	// Prevent iOS text size adjust after orientation change, without disabling user zoom.
-	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
 
@@ -47,8 +49,8 @@ body {
 
 h1 {
 	font-size: 2.1em;
-	margin: $contentSpacing 0;
 	font-weight: 600;
+	margin: $contentSpacing 0;
 	@media screen and (max-width: $breakMicro) {
 		margin: $contentSpacingMicro 0;
 	}
@@ -65,16 +67,6 @@ h3,
 	font-family: $fontFamilySans;
 	font-weight: 600;
 	margin: 0.7em 0 0;
-}
-.md-toc {
-	font-style: italic;
-}
-ul.md-toc {
-	list-style: none;
-	padding-left: 1em;
-}
-ul.md-toc > li:before {
-	content: '§ ';
 }
 p {
 	margin: 1em 0;
@@ -487,12 +479,7 @@ header.post-meta {
 		font-size: 15px;
 		line-height: 1.5;
 	}
-}
 
-.post {
-	.md-box {
-		outline: 2px solid transparent;
-	}
 	figure,
 	.md-block {
 		text-align: center;
@@ -565,8 +552,6 @@ a[title] > [title]:focus:after {
 	cursor: default;
 	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.54));
 	@media screen and (max-width: $breakMobile) {
-	}
-	@media screen and (max-width: $breakMobile) {
 		position: fixed;
 		left: ($contentSpacing / 2);
 		bottom: ($contentSpacing / 2);
@@ -629,10 +614,6 @@ a[title] > [title]:focus:after {
 	.posts-label {
 		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorAccent");
-	}
-	.post .md-box {
-		outline-color: map-get($vars, "textColorAccentMinor");
-		box-shadow: 2px 2px 10px map-get($vars, "textColorAccentMinor");
 	}
 	hr {
 		background: map-get($vars, "textColorAccentMinor");
