@@ -8,7 +8,16 @@ What's the deal with these string methods, and how are they different?
 
 <!--more-->
 
-## substr()
+<span class="screen-reader-text">Table of contents</span>
+
+1. [String substr](#string-substr)
+2. [String substring](#string-substring)
+3. [String slice (recommended)](#string-slice)
+{:class="md-toc"}
+
+---
+
+## String substr()
 
 ```
 str.substr(start[, length])
@@ -80,7 +89,7 @@ The notion of negative offsets was confusing to me when I first learned it. But,
 
 ## Conclusion
 
-First, let us compare these methods once more:
+Let's compare these methods once more:
 
 ```js
 str = 'foobarb…z';
@@ -119,11 +128,11 @@ str.substr(3, 4); // 👀
 
 None of these seem unreasonable, in isolation. It's nice that `slice()` allows negative offsets. It's nice that `substring()` may limit the damage of accidentally negative offsets. It's nice that `substr()` allows extracting a specific number of characters without needing to add to the start index.
 
-But having all three? That can incur a very real cost on development in the form of doubt, confusion, and inevitably mistakes. I don't think any of these is worth that cost over some minute localised benefit.
+But having all three? That can incur a very real cost on development in the form of doubt, confusion, and — inevitably — mistakes. I don't think any of these is worth that cost over some minute localised benefit.
 
-I find `substr()` or `substring()` cast doubt on surrounding code. I need to second-guess the author's intentions when reviewing or debugging such code. Which is wasteful even, or especially, when they (or I) used one correctly.
+I find `substr()` or `substring()` cast doubt on surrounding code. I need to second-guess the author's intentions when reviewing or debugging such code. Which is wasteful even, or especially, when they (or I) use them correctly.
 
-_But what about unit tests?_ Well, there's sufficient overlap between the three that a couple of good tests may very well pass. It's easy to forget exercising every possible value for a parameter, especially one that is passed through to a built-in. The question isn't whether the built-in works. The question is – did we use the right one?
+_But what about unit tests?_ Well, there's sufficient overlap between the three that a couple of good tests may very well pass. It's easy to forget exercising every possible value for a parameter, especially one that is passed through to a built-in. We usually don't question whether the built-in method works. The question is – did we use the right method?
 
 This ubiquitous signature of `slice()` is well-understood. It is a de facto standard in technology, seen in virtually all programming languages. It is applies to strings, arrays, and sequences of all sorts. As such, that's the one I tend to prefer.
 
