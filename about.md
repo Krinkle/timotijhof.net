@@ -5,20 +5,16 @@ title: About me
 
 I'm Principal Engineer for [Wikimedia Foundation](https://www.wikimedia.org/), the non-profit behind Wikipedia and its [sister projects](https://meta.wikimedia.org/wiki/Our_projects) in the free knowledge and open data space. I focus primarily on [architecture](https://www.mediawiki.org/wiki/Architecture_committee) and [performance](https://performance.wikimedia.org/).
 
--------
-
-## Wikimedia Foundation
+### Wikimedia Foundation
 
 I started working with Wikimedia in 2011. I helped build and evolve [ResourceLoader](https://www.mediawiki.org/wiki/ResourceLoader/Architecture) (a delivery system for JavaScript, CSS, and localisation), [VisualEditor](https://github.com/wikimedia/VisualEditor/) (an HTML5 WYSIWYG editor), and the [continuous integration](https://www.mediawiki.org/wiki/Continuous_integration) infrastructure for frontend tooling (doc publishing, headless unit testing, integration testing).
 
-* [More about Wikimedia production infrastructure](https://wikitech.wikimedia.org/wiki/MediaWiki_at_WMF)
-* [More about Wikimedia open-source software](https://doc.wikimedia.org/)
-* [More about my team](https://www.mediawiki.org/wiki/Wikimedia_Performance_Team)
-* [More about other Wikimedia Engineering teams](https://diff.wikimedia.org/2018/01/09/technology-department-highlights/)
+More about:
+* [Wikimedia Site Infrastructure](https://wikitech.wikimedia.org/wiki/MediaWiki_at_WMF)
+* [Wikimedia Open Source](https://doc.wikimedia.org/)
+* [Wikimedia Performance Team](https://www.mediawiki.org/wiki/Wikimedia_Performance_Team)
 
--------
-
-## jQuery Foundation
+### jQuery Foundation
 
 I joined the jQuery Team in 2012.
 
@@ -38,5 +34,17 @@ I remain active as a volunteer in the QUnit Team and jQuery Infrastructure Team.
 <dt>GPG Fingerprint</dt>
 <dd markdown="span">`8925 D55A C638 9B43 745A  4090 0667 0C4D 66D1 7553`<br>[My public key](/key.asc)</dd>
 <dt>IRC</dt>
-<dd markdown="span">`Krinkle` on [Freenode](https://freenode.net/)</dd>
+<dd markdown="span">`Krinkle` on [Freenode](https://webchat.freenode.net/)</dd>
 </dl>
+
+-------
+
+## Colophon
+
+<figure markdown="block">
+![Timo Tijhof]({{ '/assets/profile.png' | file_version_query | relative_url }}){:class="no-filter" width="150" height="150" style="max-height: 150px;"}
+</figure>
+
+Portrait photo by [Niek Hidding](http://www.nhphotosholland.nl/).
+
+This website is built with Jekyll ([view source](https://github.com/Krinkle/timotijhof.net)), hosted in the Netherlands at [Antagonist](https://antagonist.nl/), and member of the [512KB Club](https://512kb.club/).
