@@ -9,7 +9,7 @@
 {%- endif -%}
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css?v=20201028' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | file_version_query: '/_sass/plainwhite.scss', '/_sass/ext/zenburn.scss', '/assets/css/style.scss' | relative_url }}">
 {% capture meta %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -20,7 +20,7 @@
 <div class="wrap">
   <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
     <a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
-      <img src="{{ '/assets/profile.png?v=20190922' | relative_url }}" alt="" width="192" height="192">
+      <img src="{{ '/assets/profile.png' | file_version_query | relative_url }}" alt="" width="192" height="192">
       <h2>{{ site.plainwhite.name | escape }}</h2>
     </a>
     <p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
