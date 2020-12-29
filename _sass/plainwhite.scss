@@ -419,6 +419,13 @@ header.post-meta {
 	li {
 		margin-top: 0.5em;
 	}
+	li:target {
+		// For footnotes, provide a minimum padding between the hard background
+		// of li:target::marker and the text content.
+		padding-left: 9px;
+		border-left: 1px solid transparent;
+		margin-left: -10px;
+	}
 	img {
 		object-fit: scale-down;
 		width: auto;
@@ -625,6 +632,19 @@ a[title] > [title]:focus:after {
 	}
 	.post a > code {
 		color: inherit;
+	}
+
+	// Footnotes
+	.post li:target {
+		// 35 = 40 - 5
+		// <ol> has 40px padding-left
+		// li:target has margin -5px as fake padding between this shade
+		// and the text content.
+		box-shadow: map-get($vars, "backgroundMarked") -35px 0px 0px;
+		border-left-color: map-get($vars, "textColorAccentMinor");
+	}
+	.post li:target::marker {
+		color: map-get($vars, "textColorMarked");
 	}
 
 	// Link styles
