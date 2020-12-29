@@ -765,6 +765,6 @@ $darkModeVars: (
 	// Approximate $textColorLinkBase
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 }
-.post img {
+.post img:not(.no-filter) {
 	filter: brightness(0.8) contrast(1.4) saturate(0.9);
 }
