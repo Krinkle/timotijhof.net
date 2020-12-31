@@ -5,7 +5,6 @@
 // Roboto: Chromium (Android)
 $fontFamilySans: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 
-$sidebarWidth: 220px;
 $contentSpacing: 20px;
 $contentSpacingMicro: 10px;
 
@@ -188,16 +187,15 @@ code.highlighter-rouge {
 .about {
 	display: flex;
 	flex: 0;
-	max-width: $sidebarWidth;
+	max-width: 220px;
 	justify-content: flex-start;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	margin: 10vh auto 0 auto;
 	// Ensure the About aligns with page header
 	// where 35px = content padding-top
 	$wideTop: 35px + $contentSpacing;
-	margin: #{"min("$wideTop", 10vh)"} auto 0 auto;
+	margin: $wideTop auto 0 auto;
 	img {
 		max-height: 150px;
 		width: auto;
@@ -243,6 +241,7 @@ code.highlighter-rouge {
 	.about {
 		height: auto;
 		margin-top: 5vh;
+		max-width: 175px;
 	}
 	.about-sm {
 		justify-content: space-between;
