@@ -6,7 +6,6 @@ tags:
 - wikipedia
 - performance
 plainwhite:
-  index: minor
   linked_href: https://calendar.perfplanet.com/2020/profiling-php-in-production-at-scale/
 ---
 
