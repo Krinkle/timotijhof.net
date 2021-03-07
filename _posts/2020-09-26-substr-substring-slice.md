@@ -2,6 +2,8 @@
 layout: post
 title: Should I substr(), substring(), or slice()?
 tags: javascript
+plainwhite:
+  index: minor
 ---
 
 What's the deal with these string methods, and how are they different?
