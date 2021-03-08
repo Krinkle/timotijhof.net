@@ -28,7 +28,7 @@ I remain active as a volunteer in the QUnit Team and jQuery Infrastructure Team.
 
 <dl>
 <dt>Email</dt>
-<dd markdown="span">`krinklemail@gmail.com`</dd>
+<dd markdown="span">`krinkle@fastmail.com`</dd>
 <dt>Matrix</dt>
 <dd markdown="span">[Message `@timotijhof:matrix.org`](https://matrix.to/#/@timotijhof:matrix.org)</dd>
 <dt>Fediverse</dt>
