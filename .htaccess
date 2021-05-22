@@ -16,3 +16,6 @@ Redirect 301 /feed/ https://timotijhof.net/feed.xml
 # Charset
 AddDefaultCharset utf-8
 AddCharset utf-8 .xml
+
+# FLoC
+Header always set Permissions-Policy: interest-cohort=()

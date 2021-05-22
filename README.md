@@ -92,6 +92,11 @@ Remember to mark the `post-receive` file as executable.
 ```
 #!/bin/sh
 export GIT_WORK_TREE=/home/deb35044/git-deploy/timotijhof-blog/
+
+# Workaround bad sshd/umask default (RHEL8, Antagonist).
+echo "[krinkle] setting umask to 0002..."
+umask 0002
+
 git checkout -f
 ```
 ```
