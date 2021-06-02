@@ -15,7 +15,7 @@ plainwhite:
   internally hardcoded by Safari as way to hint ignoring anything else
   in this block.
   {%- endcomment %}
-  <div class="byline"><time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time> • {% for tag in page.tags -%}
+  <div class="byline"><time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: date_format }}</time>{% if page.tags.first %} • {% endif %}{% for tag in page.tags -%}
     {%- if page.tags.first != tag %}, {% endif -%}
     {%- assign tagpage = site.pages | where: "tag", tag | first -%}
     {%- assign tagtitle = tagpage.title | default: tag -%}

@@ -18,7 +18,7 @@
 {% endcapture -%}
 {{ meta | strip_newlines }}
 <div class="wrap">
-  <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}" role="banner">
+  <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}">
     <a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
       <img src="{{ '/assets/profile.png' | file_version_query | relative_url }}" alt="" width="192" height="192">
       <h2>{{ site.plainwhite.name | escape }}</h2>
@@ -35,13 +35,7 @@
   <main class="content">
     {{- content -}}
   </main>
-</div>
-{%- if site.plainwhite.matomo.url and site.plainwhite.matomo.idsite -%}
-  {%- capture matomo_basic -%}
-  {{ site.plainwhite.matomo.url }}/matomo.php?idsite={{ site.plainwhite.matomo.idsite | url_encode }}&rec=1
-  {%- endcapture -%}
-{%- endif -%}
-<script>
+</div><script>
 if (document.body && document.body.matches) {
   document.body.addEventListener('ontouchstart' in window ? 'dblclick' : 'click', function (e) {
     if (e.target.nodeName === 'IMG' && !e.target.matches('a img')) window.open(e.target.src);
@@ -50,6 +44,4 @@ if (document.body && document.body.matches) {
     if (e.target.nodeName === 'SPAN' && e.target.matches('a[title] > span[title]')) e.preventDefault() && e.stopPropagation();
   });
 }
-{% if matomo_basic -%}
-if (navigator.sendBeacon) navigator.sendBeacon({{ matomo_basic | append: '&send_image=0&url=' | jsonify }} + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));
-{%- endif %}</script>
+</script>

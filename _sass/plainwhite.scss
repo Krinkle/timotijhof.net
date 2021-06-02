@@ -380,13 +380,11 @@ header.post-meta {
 }
 
 .post {
-	font-family: 'Georgia', sans-serif;
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 1.7;
 
-	@media screen and (min-width: $breakWide) {
-		font-size: 20px;
+	@media screen and (max-width: $breakWide) {
 		letter-spacing: -0.1px;
 	}
 
@@ -401,8 +399,7 @@ header.post-meta {
 		word-break: break-word;
 	}
 	strong {
-		letter-spacing: -0.3px;
-		font-size: 90%;
+		font-size: 92%;
 	}
 	a:hover {
 		border-bottom: 3px solid transparent;
@@ -421,9 +418,10 @@ header.post-meta {
 	li:target {
 		// For footnotes, provide a minimum padding between the hard background
 		// of li:target::marker and the text content.
-		padding-left: 9px;
-		border-left: 1px solid transparent;
-		margin-left: -10px;
+		margin-left: (-$contentSpacingMicro);
+		padding-left: ($contentSpacingMicro);
+		margin-right: (-$contentSpacingMicro);
+		padding-right: ($contentSpacingMicro);
 	}
 	img {
 		object-fit: scale-down;
@@ -637,10 +635,12 @@ a[title] > [title]:focus:after {
 	.post li:target {
 		// 35 = 40 - 5
 		// <ol> has 40px padding-left
-		// li:target has margin -5px as fake padding between this shade
+		// li:target has negative margin as fake padding between this shade
 		// and the text content.
-		box-shadow: map-get($vars, "backgroundMarked") -35px 0px 0px;
-		border-left-color: map-get($vars, "textColorAccentMinor");
+		box-shadow: map-get($vars, "textColorAccentMinor") -1px 0px 0px,
+			map-get($vars, "backgroundMarked") -35px 0px 0px,
+			map-get($vars, "textColorAccentMinor") 1px 0px 0px,
+			map-get($vars, "backgroundMarked") 35px 0px 0px;
 	}
 	.post li:target::marker {
 		color: map-get($vars, "textColorMarked");

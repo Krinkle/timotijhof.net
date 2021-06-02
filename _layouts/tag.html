@@ -4,14 +4,14 @@ plainwhite:
   small_header: true
 ---
 
-<p class="posts-label">‹ <a href="{{ '/' | relative_url }}#latest-posts" title="Back to the home page">View all posts</a></p>
+<p class="posts-label">‹ <a href="{{ '/' | relative_url }}" title="Back to the home page">View all posts</a></p>
 <h1>Tag: {{ page.title | escape }}</h1>
 <p class="posts-label">{%- if site.tags[page.tag].size == 1 -%} 1 post {%- else -%} {{ site.tags[page.tag].size }} posts {%- endif -%}</p>
 
 {%- for post in site.tags[page.tag] -%}
 <div class="posts-row">
   {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
-  <a class="post-link" href="{{ post.plainwhite.linked_href | default: post.url | relative_url }}">
+  <a class="post-link" href="{{ post.url | relative_url }}">
     <h2 class="post-title">{{ post.title | escape }}</h2>
   </a>
   <a class="post-date" href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a>

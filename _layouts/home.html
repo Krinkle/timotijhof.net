@@ -5,7 +5,6 @@ layout: default
 {{ content }}
 
 {%- if site.posts.size > 0 -%}
-<a name="latest-posts"></a>
 <p class="posts-label">Latest posts</p>
 {%- for post in site.posts -%}
   {%- assign _excluded = false -%}
@@ -19,7 +18,7 @@ layout: default
   {%- endif -%}
 <div class="posts-row {% if post.plainwhite.index == 'minor' %} posts-row-short{% endif %}">
   {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
-  <a class="post-link" href="{{ post.plainwhite.linked_href | default: post.url | relative_url }}"><h2 class="post-title">{{ post.title | escape }}</h2></a>
+  <a class="post-link" href="{{ post.url | relative_url }}"><h2 class="post-title">{{ post.title | escape }}</h2></a>
   <a class="post-date" href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a>
 </div>
 {%- endfor -%}
