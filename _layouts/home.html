@@ -1,12 +1,14 @@
 ---
 layout: default
+plainwhite:
+  home_intro: true
 ---
-
-{{ content }}
-
 {%- if site.posts.size > 0 -%}
-<p class="posts-label">Latest posts</p>
-{%- for post in site.posts -%}
+{% comment %}
+NOTE: The `div.posts` element exists in order for `.posts-row:last-child` to work as expected.
+{% endcomment %}
+<div class="posts">
+{% for post in site.posts -%}
   {%- assign _excluded = false -%}
   {%- for tag in site.plainwhite.exclude_tags -%}
     {%- if post.tags contains tag -%}
@@ -16,15 +18,16 @@ layout: default
   {%- if _excluded -%}
     {%- continue -%}
   {%- endif -%}
-<div class="posts-row {% if post.plainwhite.index == 'minor' %} posts-row-short{% endif %}">
+<div class="posts-row{% if post.plainwhite.index == 'minor' %} posts-row-short{% endif %}">
   {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
-  <a class="post-link" href="{{ post.url | relative_url }}"><h2 class="post-title">{{ post.title | escape }}</h2></a>
-  <a class="post-date" href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a>
+  <a class="post-link" href="{{ post.url | relative_url }}"><h2 class="post-title">{{ post.title | escape }}</h2></a> <a class="post-date" href="{{ post.url | relative_url }}" tabindex="-1"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: date_format }}</time></a>
+  {%- comment %}{% endcomment -%}
 </div>
-{%- endfor -%}
+{% endfor -%}
+</div>
 {%- endif -%}
 
-{%- if site.tags.size > 0 -%}
+{%- if site.tags.size > 0 %}
 <p class="posts-label">tags</p>
 <p>
 {%- capture tags_str -%}

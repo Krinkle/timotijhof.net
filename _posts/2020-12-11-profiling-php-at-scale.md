@@ -8,7 +8,6 @@ plainwhite:
   original_url: https://calendar.perfplanet.com/2020/profiling-php-in-production-at-scale/
   original_label: Performance Calendar 2020
   also_url: https://techblog.wikimedia.org/2021/03/03/profiling-php-in-production-at-scale/
-  also_label: wikimedia.org
 ---
 
 At Wikipedia, we built an efficient sampling profiler for PHP, and use it to instrument live requests. The trace logs and flame graphs are powered by a simple setup that involves only free open-source software, and runs at low infrastructure cost.

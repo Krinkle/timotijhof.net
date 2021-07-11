@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-<html{% if site.lang %} lang="{{ site.lang }}"{% endif %}>
+<html{% if site.lang %} lang="{{ site.lang }}"{% endif %}{% if layout.plainwhite.home_intro %} class="layout--home-intro"{% endif %}>
 <meta charset="UTF-8">
+{% capture meta %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | file_version_query: '/_sass/plainwhite.scss', '/_sass/ext/zenburn.scss', '/assets/css/style.scss' | relative_url }}">
+<link rel="icon" href="{{ '/assets/favicon.png' | file_version_query | relative_url }}">
+<link rel="me" href="https://mastodon.technology/@krinkle">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
+{% include opengraph.html %}
+{% endcapture -%}
+{{ meta | strip_newlines }}
 <title>
 {%- if page.title -%}
   {{ page.title | escape }} | {{ site.title | escape }}
@@ -8,40 +18,38 @@
   {{ site.title | escape }}
 {%- endif -%}
 </title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | file_version_query: '/_sass/plainwhite.scss', '/_sass/ext/zenburn.scss', '/assets/css/style.scss' | relative_url }}">
-{% capture meta %}
-<link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title | escape }}">
-<link rel="canonical" href="{{ page.url | absolute_url }}">
-<link rel="me" href="https://mastodon.technology/@krinkle">
-{% include opengraph.html %}
-{% endcapture -%}
-{{ meta | strip_newlines }}
+<header class="nav"><div class="nav-container">
+  <a href="{{ '/' | relative_url }}" class="nav-sitelink" title="Visit the home page">{{ site.plainwhite.name | escape }}</a>
+  <p><a href="{% link about.md %}">About</a> &bull; <a href="{% link about.md %}#colophon">Colophon</a></p>
+</div></header>
 <div class="wrap">
-  <header class="about{% if layout.plainwhite.small_header %} about-sm{% endif %}">
-    <a href="{{ '/' | relative_url }}" class="sitelink" title="Visit the home page">
-      <img src="{{ '/assets/profile.png' | file_version_query | relative_url }}" alt="" width="192" height="192">
-      <h2>{{ site.plainwhite.name | escape }}</h2>
-    </a>
-    <p class="tagline">{{ site.plainwhite.tagline | escape }}</p>
-    <ul class="social">
-      <li><a href="https://{{ site.plainwhite.social_links.mastodon.instance | escape }}/@{{ site.plainwhite.social_links.mastodon.user | escape }}" title="Fediverse: @{{ site.plainwhite.social_links.mastodon.user | escape }}@{{ site.plainwhite.social_links.mastodon.instance | escape }}"><i class="icon icon-mastodon"></i></a></li>
-      <li><a href="{{ site.url }}/feed.xml" title="RSS Feed"><i class="icon icon-rss-squared"></i></a></li>
-      <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="GitHub: {{ site.plainwhite.social_links.github | escape }}"><i class="icon icon-github-circled"></i></a></li>
-    </ul>
-    <p><a href="{% link about.md %}">About</a> &bull; <a href="{% link about.md %}#colophon">Colophon</a></p>
-    <p class="footer">&copy; 2011–2020</p>
-  </header>
-  <main class="content">
-    {{- content -}}
-  </main>
-</div><script>
+<main class="content">
+{{- content -}}
+</main>
+{% unless layout.plainwhite.hide_intro -%}
+<aside class="about {% if layout.plainwhite.home_intro %}about--home{% else %}about--foot{% endif %}">
+  <a href="{{ '/' | relative_url }}" class="about-sitelink" title="Visit the home page">
+    {%- if layout.plainwhite.home_intro -%}
+    <img src="{{ '/assets/profile.jpg' | file_version_query | relative_url }}" alt="" width="192" height="192">
+    {{- " " -}}
+    {%- endif -%}
+    <span>{{ site.plainwhite.name | escape }}</span></a>
+  <p class="about-tagline">{{ site.plainwhite.tagline | escape }}</p>
+  <ul class="about-social">
+    <li><a href="https://{{ site.plainwhite.social_links.mastodon.instance | escape }}/@{{ site.plainwhite.social_links.mastodon.user | escape }}" title="Fediverse: @{{ site.plainwhite.social_links.mastodon.user | escape }}@{{ site.plainwhite.social_links.mastodon.instance | escape }}"><i class="icon icon-mastodon"></i></a></li>
+    <li><a href="{{ site.url }}/feed.xml" title="RSS Feed"><i class="icon icon-rss-squared"></i></a></li>
+    <li><a href="https://github.com/{{ site.plainwhite.social_links.github | escape }}" title="GitHub: {{ site.plainwhite.social_links.github | escape }}"><i class="icon icon-github-circled"></i></a></li>
+  </ul>
+</aside>
+{%- endunless -%}
+</div>
+<script type="module">
 if (document.body && document.body.matches) {
-  document.body.addEventListener('ontouchstart' in window ? 'dblclick' : 'click', function (e) {
-    if (e.target.nodeName === 'IMG' && !e.target.matches('a img')) window.open(e.target.src);
+  document.body.addEventListener("ontouchstart" in window ? "dblclick" : "click", e => {
+    if (e.target.nodeName === "IMG" && !e.target.matches("a img")) window.open(e.target.src);
   });
-  document.body.addEventListener('click', function (e) {
-    if (e.target.nodeName === 'SPAN' && e.target.matches('a[title] > span[title]')) e.preventDefault() && e.stopPropagation();
+  document.body.addEventListener("click", e => {
+    if (e.target.matches("a[title] > span[title]")) e.preventDefault() && e.stopPropagation();
   });
 }
 </script>

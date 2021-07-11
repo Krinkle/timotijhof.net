@@ -9,7 +9,6 @@ plainwhite:
   og_image_alt: Chart going downwards
   og_image_align: aside
   original_url: https://techblog.wikimedia.org/2019/09/19/wikipedias-javascript-initialisation-on-a-budget/
-  original_label: wikimedia.org
 ---
 
 This week saw the conclusion of a project that I've been shepherding on and off since September of last year. The goal was for the initialisation of our asynchronous JavaScript pipeline (at the time, 36 kilobytes in size) to fit within a budget of 28 KB.

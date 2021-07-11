@@ -6,7 +6,6 @@ redirect_from:
 - /2015/qunit-anti-patterns/ # former WordPress site (deleted page)
 plainwhite:
   original_url: https://codepen.io/Krinkle/post/qunit-anti-patterns
-  original_label: CodePen
 ---
 
 Today, I’d like to challenge the `assert.ok` and `assert.not*` methods. I believe they may’ve become an anti-pattern.

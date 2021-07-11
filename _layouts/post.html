@@ -1,7 +1,5 @@
 ---
 layout: default
-plainwhite:
-  small_header: true
 ---
 {%- assign date_format = site.plainwhite.date_format | default: "%-e %b %Y" -%}
 <article>
@@ -33,7 +31,7 @@ plainwhite:
 <p>
   {% if page.plainwhite.original_url -%}
   Originally published {% if page.plainwhite.original_label -%}
-  on <a href="{{ page.plainwhite.original_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.original_label | escape }}</a>
+  in <a href="{{ page.plainwhite.original_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.original_label | escape }}</a>
   {%- else -%}
   on <a href="{{ page.plainwhite.original_url | escape }}" target="_blank" rel="noopener">{{ page.plainwhite.original_url | url_origin | escape }}</a>
   {%- endif -%}
@@ -41,7 +39,7 @@ plainwhite:
   {%- endif %}
   {% if page.plainwhite.also_url -%}
   Also published {% if page.plainwhite.also_label -%}
-  on <a href="{{ page.plainwhite.also_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.also_label | escape }}</a>
+  in <a href="{{ page.plainwhite.also_url | escape}}" target="_blank" rel="noopener">{{ page.plainwhite.also_label | escape }}</a>
   {%- else -%}
   on <a href="{{ page.plainwhite.also_url | escape }}" target="_blank" rel="noopener">{{ page.plainwhite.also_url | url_origin | escape }}</a>
   {%- endif -%}

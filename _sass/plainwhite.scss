@@ -8,6 +8,9 @@ $fontFamilySans: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 $contentSpacing: 20px;
 $contentSpacingMicro: 10px;
 
+$asideWidth: 220px;
+$contentWidth: 780px;
+
 // "Micro" widths:
 // - Nokia 8110 4G:     240px
 // - iPhone 5/SE:       320px (Portrait)
@@ -154,70 +157,97 @@ code.highlighter-rouge {
 }
 
 .wrap {
-	margin: 0 auto;
+	margin: 0 auto $contentSpacing;
 	display: flex;
 	height: 100%;
-	max-width: $breakWide;
-
-	@media screen and (max-width: $breakMobile) {
-		flex-direction: column;
-	}
+	max-width: $contentWidth;
+	flex-direction: column;
 }
 .content {
-	// Use border-box to make it easy to add padding
-	// inside, within the given width/max-width.
+	max-width: $contentWidth;
+	// Require border-box for width/max-width relations.
 	box-sizing: border-box;
-	padding: 35px $contentSpacing;
 	// For tooltip bubble sizing
 	position: relative;
+}
+.content,
+.about--foot {
+	padding: 0 $contentSpacing;
+}
 
-	@media screen and (max-width: $breakMobile) {
-		// Remove top padding
-		padding: 0 $contentSpacing;
-	}
-	@media screen and (max-width: $breakMicro) {
+.nav-container {
+	// Require border-box for width/max-width relations.
+	box-sizing: border-box;
+	max-width: $contentWidth;
+	margin: 0 auto;
+	padding: $contentSpacing;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.nav-sitelink {
+	display: flex;
+	justify-content: flex-start;
+	text-align: left;
+	align-items: center;
+
+	font-size: 22px;
+	font-weight: normal;
+}
+.nav p {
+	margin: $contentSpacingMicro 0;
+}
+
+@media screen and (max-width: $breakMicro) {
+	.content,
+	.about--foot {
 		padding: 0 $contentSpacingMicro;
 	}
-	@media screen and (min-width: $breakBeyondMobile) {
-		max-width: calc(100% - 220px);
-		flex: 1;
+	.nav-container {
+		padding: $contentSpacingMicro;
+	}
+	.nav-sitelink {
+		font-size: 18px;
 	}
 }
 
-.about {
+.about--home {
 	display: flex;
-	flex: 0;
-	max-width: 220px;
-	justify-content: flex-start;
 	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
+	flex: 0;
+	max-width: $asideWidth;
 	text-align: center;
-	// Ensure the About aligns with page header
-	// where 35px = content padding-top
-	$wideTop: 35px + $contentSpacing;
-	margin: $wideTop auto 0 auto;
-	img {
+	// For index pages on desktop, ensure sidebar aligns with page header
+	// where 24px = `.posts-row` margin-top
+	margin: 24px auto 0 auto;
+
+	.about-sitelink {
+		font-size: 22px;
+	}
+	.about-sitelink img {
 		max-height: 150px;
 		width: auto;
+		margin: 0 0 25px 0;
+		display: block; // Ensure site name is on its own line, even for `.about--foot`
 	}
-	h2 {
+	.about-tagline {
 		font-size: 22px;
-		margin: 25px 0 0 0;
-		font-weight: normal;
+		margin: 18px 0;
+	}
+	.about-social {
+		display: flex;
+		justify-content: space-around;
+		width: 100%;
+		margin: 0;
 	}
 }
-.tagline {
-	font-size: 22px;
-	margin: 18px 0;
-}
-
-.social {
+.about-social {
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
-	display: flex;
-	justify-content: space-around;
-	width: 100%;
 	li {
 		display: inline-block; // Fallback for browsers without flex
 	}
@@ -237,84 +267,78 @@ code.highlighter-rouge {
 		opacity: 1;
 	}
 }
-@media screen and (max-width: $breakMobile) {
-	.about {
-		height: auto;
-		margin-top: 5vh;
-		max-width: 175px;
+.about--foot {
+	text-align: center;
+	// Match `hr` style
+	padding-top: 1.5rem;
+	border-top: 1px solid transparent;
+	margin-top: 1.5rem;
+
+	.about-tagline {
+		display: inline;
 	}
-	.about-sm {
-		justify-content: space-between;
-		flex-direction: row;
-		flex-wrap: wrap;
-		max-width: initial;
-		margin: 0;
-		padding: $contentSpacing;
-		.sitelink {
+}
+
+@media screen and (max-width: $breakMobile) {
+	.about--home {
+		// For index pages on mobile, let about be a (somewhat) vertically-centered box.
+		max-width: 175px;
+		margin-top: 5vh;
+		margin-bottom: 5vh;
+	}
+}
+
+@media screen and (max-width: $breakMicro) {
+	.about--home {
+		.about-sitelink {
 			display: flex;
 			justify-content: flex-start;
-			text-align: left; // For micro widths
 			align-items: center;
+			font-size: 18px;
+			text-align: left;
 		}
-		img {
+		.about-sitelink img {
 			max-width: 50px;
-			max-height: 50px; // Support: KAIOS 2.5 / FF 48 (Fix aspect ratio)
+			max-height: 50px; // Support KaiOS 2.5, Firefox 48: Fix aspect ratio.
+			margin: 0 $contentSpacingMicro 0 0;
 		}
-		h2 {
-			margin: 0 0 0 $contentSpacing;
-		}
-		p {
+		.about-tagline {
+			font-size: 14px;
 			margin: $contentSpacingMicro 0;
 		}
-		.tagline,
-		.social,
-		.footer {
-			display: none;
+	}
+	.about-social a {
+		font-size: 28px;
+	}
+}
+
+@media screen and (min-width: $breakBeyondMobile) {
+	.about--home {
+		.about-tagline {
+			line-height: 1.6;
+			font-size: 18px;
+			margin: 1.2em 0;
 		}
 	}
 }
-@media screen and (max-width: $breakMicro) {
-	.about {
-		.sitelink {
-			display: flex;
-			justify-content: flex-start;
-			text-align: left; // For micro widths
-			align-items: center;
-		}
-		img {
-			max-width: 50px;
-			max-height: 50px; // Support: KAIOS 2.5 / FF 48 (Fix aspect ratio)
-		}
-		h2 {
-			font-size: 18px;
-			margin: 0 0 0 $contentSpacingMicro;
-		}
-	}
-	.footer {
-		display: none;
-	}
-	.tagline {
-		font-size: 14px;
-		margin: $contentSpacingMicro 0;
-	}
-	.social {
-		a {
-			font-size: 28px;
-		}
-	}
 
-	.about-sm {
-		padding: $contentSpacingMicro;
-		h2 {
-			margin: 0 0 0 $contentSpacingMicro;
-		}
+.layout--home-intro {
+	.about--home {
+		order: -1;
 	}
 }
 @media screen and (min-width: $breakBeyondMobile) {
-	.tagline {
-		font-size: 18px;
-		line-height: 1.6;
-		margin: 1.2em 0;
+	.layout--home-intro {
+		.nav-container,
+		.wrap {
+			max-width: #{$asideWidth + $contentWidth};
+		}
+		.wrap {
+			flex-direction: row;
+		}
+		.content {
+			flex: 1;
+		}
 	}
 }
 
@@ -330,7 +354,8 @@ code.highlighter-rouge {
 a {
 	color: inherit;
 }
-a.sitelink,
+a.nav-sitelink,
+a.about-sitelink,
 .post-link,
 .post-date,
 .post-tag {
@@ -351,6 +376,9 @@ a.sitelink,
 		margin-bottom: 0;
 	}
 }
+.posts-row:last-child {
+	border-bottom: 0;
+}
 header.post-meta {
 	// Match `hr` style
 	padding-bottom: 1.5rem;
@@ -365,7 +393,7 @@ header.post-meta {
 	border-bottom: 1px solid transparent;
 }
 .post-title {
-	margin: 0.7em 0;
+	margin: 20px 0;
 	font-size: 28px;
 }
 .posts-row-short {
@@ -379,16 +407,29 @@ header.post-meta {
 	}
 }
 
+// Pulled blocks
+.post figure,
+.post table,
+.post > p:not(.md-block) > img,
+.post .md-block,
+.post pre.highlight,
+article > hr // line between post and footer
+{
+	margin-left: -$contentSpacing;
+	margin-right: -$contentSpacing;
+	@media screen and (max-width: $breakMicro) {
+		margin-left: -$contentSpacingMicro;
+		margin-right: -$contentSpacingMicro;
+	}
+}
+
 .post {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 1.7;
 
-	@media screen and (max-width: $breakWide) {
-		letter-spacing: -0.1px;
-	}
-
 	@media screen and (max-width: $breakMobile) {
+		letter-spacing: -0.1px;
 		font-size: 17px;
 	}
 
@@ -458,18 +499,6 @@ header.post-meta {
 	}
 	a img {
 		cursor: inherit;
-	}
-	figure,
-	table,
-	> p:not(.md-block) > img,
-	.md-block,
-	pre.highlight {
-		margin-left: -$contentSpacing;
-		margin-right: -$contentSpacing;
-		@media screen and (max-width: $breakMicro) {
-			margin-left: -$contentSpacingMicro;
-			margin-right: -$contentSpacingMicro;
-		}
 	}
 	figure > p {
 		// No easy way in Kramdown to have <figcaption> and <img> in the
@@ -598,18 +627,20 @@ a[title] > [title]:focus:after {
 	}
 
 	// Muted styles and shades
+	.nav,
 	.about {
 		color: map-get($vars, "textColorMuted");
+	}
+	.nav {
+		background: map-get($vars, "backgroundPanel");
+	}
+	.about--foot {
+		border-color: map-get($vars, "textColorAccentMinor");
 	}
 	header.post-meta,
 	.posts-row {
 		border-color: map-get($vars, "textColorAccentMinor");
 		color: map-get($vars, "textColorMuted");
-	}
-	.about-sm {
-		@media screen and (max-width: $breakMobile) {
-			background: map-get($vars, "backgroundPanel");
-		}
 	}
 	blockquote {
 		border-color: map-get($vars, "textColorAccentMinor");
@@ -652,7 +683,8 @@ a[title] > [title]:focus:after {
 		color: map-get($vars, "textColorLinkBase");
 	}
 	.post-link,
-	.sitelink {
+	.nav-sitelink,
+	.about-sitelink {
 		color: map-get($vars, "textColorLinkRoot");
 	}
 	.post a {
@@ -663,7 +695,7 @@ a[title] > [title]:focus:after {
 		border-color: map-get($vars, "textColorLinkBase");
 	}
 	.post a:hover,
-	.social a:hover {
+	.about-social a:hover {
 		background: map-get($vars, "backgroundLinkBase");
 		text-decoration-color: map-get($vars, "textColorLinkBase");
 		outline-color: map-get($vars, "backgroundLinkBase");
@@ -678,9 +710,10 @@ a[title] > [title]:focus:after {
 	}
 	.post a:hover {
 		box-shadow: 0px 0px 0px 5px map-get($vars, "backgroundLinkBase");
+		box-decoration-break: clone; /* https://bugzilla.mozilla.org/show_bug.cgi?id=1715888 */
 	}
 	[title]:focus:before,
-	.social a:hover {
+	.about-social a:hover {
 		box-shadow: 0px 0px 0px 20px map-get($vars, "backgroundLinkBase");
 	}
 
@@ -760,7 +793,7 @@ $darkModeVars: (
 	// Approximate $textColorMuted
 	filter: invert(1) contrast(0.1) sepia(2) hue-rotate(200deg);
 }
-.social a:hover .icon {
+.about-social a:hover .icon {
 	// Approximate $textColorLinkBase
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 }

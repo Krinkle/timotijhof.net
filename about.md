@@ -44,7 +44,7 @@ I remain active as a volunteer in the QUnit Team and jQuery Infrastructure Team.
 ## Colophon
 
 <figure markdown="block">
-![Timo Tijhof]({{ '/assets/profile.png' | file_version_query | relative_url }}){:class="no-filter" width="150" height="150" style="max-height: 150px;"}
+![Timo Tijhof]({{ '/assets/profile.jpg' | file_version_query | relative_url }}){:class="no-filter" width="150" height="150" style="max-height: 150px;"}
 </figure>
 
 Portrait photo by [Niek Hidding](http://www.nhphotosholland.nl/).

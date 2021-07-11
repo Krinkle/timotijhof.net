@@ -6,7 +6,6 @@ tags: testing
 plainwhite:
   index: minor
   original_url: https://twitter.com/TimoTijhof/status/996770174140321792
-  original_label: Twitter
 ---
 
 > Six years ago (in 2012), I was looking for a newsletter about browser releases. At the time, my motivation was to test and update the jQuery TestSwarm framework for each new browser release. I found a simple overview at [browsehappy.com](https://browsehappy.com/), by [@WordPress](https://twitter.com/WordPress).  <small>(1/)</small>

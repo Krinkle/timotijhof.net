@@ -1,12 +1,11 @@
 ---
 layout: default
 plainwhite:
-  small_header: true
+  hide_intro: true
 ---
 
-<p class="posts-label">‹ <a href="{{ '/' | relative_url }}" title="Back to the home page">View all posts</a></p>
 <h1>Tag: {{ page.title | escape }}</h1>
-<p class="posts-label">{%- if site.tags[page.tag].size == 1 -%} 1 post {%- else -%} {{ site.tags[page.tag].size }} posts {%- endif -%}</p>
+<p class="posts-label">{%- if site.tags[page.tag].size == 1 -%} 1 post {%- else -%} {{ site.tags[page.tag].size }} posts {%- endif %} • <a href="{{ '/' | relative_url }}" title="Back to the home page">View all posts</a></p>
 
 {%- for post in site.tags[page.tag] -%}
 <div class="posts-row">
