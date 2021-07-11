@@ -1,4 +1,4 @@
-@import 'ext/zenburn';
+@import 'pygments-monokai';
 
 // -apple-system: Firefox, Safari (macOS/iOS)
 // BlinkMacSystemFont: Chromium (macOS)
@@ -798,5 +798,5 @@ $darkModeVars: (
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 }
 .post img:not(.no-filter) {
-	filter: brightness(0.8) contrast(1.4) saturate(0.9);
+	filter: brightness(0.9) contrast(1.2);
 }

@@ -1,0 +1,82 @@
+/**
+ * From https://github.com/jwarby/jekyll-pygments-themes
+ *
+ * This is free and unencumbered software released into the public domain.
+ *
+ * @license Unlicense
+ */
+
+.highlight .k , // Keyword
+.highlight .kc, // Keyword.Constant
+.highlight .kd, // Keyword.Declaration
+.highlight .kp, // Keyword.Pseudo
+.highlight .kr, // Keyword.Reserved
+.highlight .kt, // Keyword.Type
+.highlight .no  // Name.Constant
+{ color: #66d9ef }
+
+.highlight .c , // Comment
+.highlight .cm, // Comment.Multiline
+.highlight .cp, // Comment.Preproc
+.highlight .c1, // Comment.Single
+.highlight .cs, // Comment.Special
+.highlight .gu  // Generic.Subheading & Diff Unified/Comment
+{ color: #75715e; }
+
+.highlight .na, // Name.Attribute
+.highlight .nc, // Name.Class
+.highlight .nd, // Name.Decorator
+.highlight .ne, // Name.Exception
+.highlight .nf, // Name.Function
+.highlight .nx, // Name.Other
+.highlight .gi  // Generic.Inserted & Diff Inserted
+{ color: #a6e22e; }
+
+.highlight .l , // Literal
+.highlight .m , // Literal.Number
+.highlight .mf, // Literal.Number.Float
+.highlight .mh, // Literal.Number.Hex
+.highlight .mi, // Literal.Number.Integer
+.highlight .il, // Literal.Number.Integer.Long
+.highlight .mo, // Literal.Number.Oct
+.highlight .se  // Literal.String.Escape
+{ color: #ae81ff; }
+
+.highlight .ld, // Literal.Date
+.highlight .s , // Literal.String
+.highlight .sb, // Literal.String.Backtick
+.highlight .sc, // Literal.String.Char
+.highlight .sd, // Literal.String.Doc
+.highlight .s2, // Literal.String.Double
+.highlight .sh, // Literal.String.Heredoc
+.highlight .si, // Literal.String.Interpol
+.highlight .sx, // Literal.String.Other
+.highlight .sr, // Literal.String.Regex
+.highlight .s1, // Literal.String.Single
+.highlight .ss  // Literal.String.Symbol
+{ color: #e6db74 }
+
+.highlight .n , // Name
+.highlight .nb, // Name.Builtin
+.highlight .bp, // Name.Builtin.Pseudo
+.highlight .ni, // Name.Entity
+.highlight .nl, // Name.Label
+.highlight .nn, // Name.Namespace
+.highlight .py, // Name.Property
+.highlight .nv, // Name.Variable
+.highlight .vc, // Name.Variable.Class
+.highlight .vg, // Name.Variable.Global
+.highlight .vi, // Name.Variable.Instance
+.highlight .p, // Punctuation
+.highlight .w  // Text.Whitespace
+{ color: #f8f8f2 }
+
+.highlight .kn, // Keyword.Namespace
+.highlight .nt, // Name.Tag
+.highlight .o , // Operator
+.highlight .ow, // Operator.Word
+.highlight .gd  // Generic.Deleted & Diff Deleted
+{ color: #f92672; }
+
+.highlight .ge { font-style: italic } // Generic.Emph
+.highlight .gs { font-weight: bold } // Generic.Strong

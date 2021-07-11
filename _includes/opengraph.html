@@ -21,8 +21,8 @@
 <meta property="og:title" content="{{ page.plainwhite.og_title | default: page.title | default: site.title | strip_html | normalize_whitespace | escape }}">
 
 {% if page.excerpt and page.excerpt != empty %}
-<meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
-<meta name="description" content="{{ page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
+<meta property="og:description" content="{{ page.plainwhite.og_description | default: page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
+<meta name="description" content="{{ page.plainwhite.og_description | default: page.excerpt | strip_html | truncate: 210 | normalize_whitespace | escape }}">
 {% endif %}
 
 {% if page.plainwhite.og_image_url and page.plainwhite.og_image_alt %}
