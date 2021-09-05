@@ -24,6 +24,16 @@ I remain active as a volunteer in the QUnit Team and jQuery Infrastructure Team.
 
 -------
 
+## Elsewhere
+
+* [Microblog](https://mastodon.technology/@krinkle)
+* [Wikipedia](https://en.wikipedia.org/wiki/User:Krinkle)
+* [GitHub](https://github.com/Krinkle)
+* [Stack Overflow](https://stackoverflow.com/users/319266/timo-tijhof)
+* [Twitter](https://twitter.com/TimoTijhof)
+
+-------
+
 ## Contact
 
 <dl>
@@ -36,7 +46,7 @@ I remain active as a volunteer in the QUnit Team and jQuery Infrastructure Team.
 <dt>GPG Fingerprint</dt>
 <dd markdown="span">`8925 D55A C638 9B43 745A  4090 0667 0C4D 66D1 7553`<br>[My public key](/key.asc)</dd>
 <dt>IRC</dt>
-<dd markdown="span">`Krinkle` on [irc.libera.chat](https://libera.chat/) ([webchat](https://kiwiirc.com/nextclient/irc.libera.chat/))</dd>
+<dd markdown="span">`Krinkle` on [irc.libera.chat](https://libera.chat/) ([webchat](https://web.libera.chat/#wikimedia-tech))</dd>
 </dl>
 
 -------
