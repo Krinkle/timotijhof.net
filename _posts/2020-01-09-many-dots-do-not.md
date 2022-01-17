@@ -50,13 +50,14 @@ Such an odd query might not need to yield a useful response, but it is important
 
 [David Causse](https://phabricator.wikimedia.org/p/dcausse/) (Search Platform team) led the investigation ([task #236419](https://phabricator.wikimedia.org/T236419 "[CirrusSearch] Fatal RuntimeException: Cannot consume query at offset 0")).
 
-This RuntimeException has been added as a safeguard in the parser for incoming search queries. This check exists toward the end of the parsing code, and should never be reached. It is an indication that a problem appeared previously. The problem was narrowed down to a failure executing the following regex
+The RuntimeException comes from a safeguard, in the parser for incoming search queries. The guard exists toward the end of the parsing code, and should never be reached. It is an indication that a problem appeared previously. The problem was narrowed down to a failure executing the following regex:
 
 ```js
 /\G(?<negated>[-!](?=[\w]))?(?<word>(?:\\\\.|[!-](?!")|[^"!\pZ\pC-])+)/u
 ```
 
 This regex looks complex, but it can actually be simplified to:
+
 ```js
 /(?:ab|c)+/
 ```

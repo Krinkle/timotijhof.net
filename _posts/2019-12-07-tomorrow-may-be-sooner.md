@@ -15,19 +15,21 @@ These are stories from bug hunts and incident investigations at Wikipedia.
 
 <!--more-->
 
-
 ### Impact
+
 After developers submit code to Gerrit, they eagerly await the result from Jenkins, an automated test runner.
 
 Every day during the 15 minute window before 5 PM in San Francisco, code changes submitted for code review would have mysteriously failing tests. Jenkins would wrongly inform developers that their proposed changes cause a problem with the MergeHistory feature of MediaWiki.
 
 ### Background
-The test in question assumed that it would finish by "_tomorrow_". At first glance, it seems fair to assume that by tomorrow, a given test will have finished. We know our our test suite generally only take a few minutes to run (with a time limit of 30 minutes, to ensure tests report back even if they are stuck).
+
+The test in question assumed that it would finish by "_tomorrow_". At first glance, it seems fair to assume that by tomorrow, a given test will have finished. We know our test suite generally only take a few minutes to run (with a time limit of 30 minutes, to ensure tests report back even if they are stuck).
 
 ### Investigation
-Unfortunately…, the programming utility `strtotime` in PHP, does not interpret "tomorrow" as "this time tomorrow".
 
-Instead, it takes it to mean "the start of tomorrow". In other words, the next strike of midnight!
+Unfortunately…, the `strtotime` utility function in PHP, does not interpret "tomorrow" as "this time tomorrow".
+
+Rather, it takes it to mean "the start of tomorrow". In other words, the next strike of midnight!
 
 For example, on 14 August 23:59:59, `strtotime("tomorrow")` would evaluate to a timestamp merely one second into the future — 15 August 00:00:00.
 
