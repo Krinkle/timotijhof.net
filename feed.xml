@@ -6,13 +6,15 @@ layout: null
 	<generator>Jekyll</generator>
 	<link href="{{ page.url | absolute_url }}" rel="self" type="application/atom+xml" />
 	<link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html" {% if site.lang %}hreflang="{{ site.lang }}" {% endif %}/>
-	<updated>{{ site.time | date_to_xmlschema }}</updated>
 	<id>{{ page.url | absolute_url | xml_escape }}</id>
 	<title type="html">{{ site.title | xml_escape }}</title>
 	<subtitle>{{ site.description | xml_escape }}</subtitle>
+	{%- assign posts = site.posts | sort: "date" | reverse -%}
+	{%- assign last_post = posts | first -%}
+	{%- assign last_updated = last_post.date | default: site.time %}
+	<updated>{{ last_updated | date_to_xmlschema }}</updated>
 
 	{%- assign matomo_cvar = '{"1":["Via","RSS"]}' -%}
-	{% assign posts = site.posts | sort: "date" | reverse %}
 	{% for post in posts -%}
 		{%- assign _excluded = false -%}
 		{%- for tag in site.plainwhite.exclude_tags -%}
