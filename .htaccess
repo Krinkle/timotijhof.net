@@ -1,21 +1,23 @@
 RewriteEngine On
 
-# Enforce canonical domain
-RewriteCond %{HTTP_HOST} ^www.timotijhof.net [NC]
-RewriteRule ^(.*)$ https://timotijhof.net/$1 [R=301,L]
-
-# Enforce HTTPS
+# The use of absolute URLs in <link rel="canonical"> should suffice
+# for search enginess to crawl and prefer the canonical domain (non-www)
+# and over HTTPS. But, for convenience (don't care for downgrade attack)
+# also try to redirect in modern browsers.
+#
+# https://jcs.org/2021/01/06/plaintext
+RewriteCond %{HTTP:Upgrade-Insecure-Requests} ^1$
 RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://timotijhof.net/$1 [R=301,L]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www.timotijhof.net [NC]
+RewriteRule ^ https://timotijhof.net%{REQUEST_URI} [R=301,L]
 
 # Compatibility with former WordPress site
-Redirect 301 /category/tools/feed/ https://timotijhof.net/feed.xml
-Redirect 301 /category/toolserver/feed/ https://timotijhof.net/feed.xml
-Redirect 301 /feed/ https://timotijhof.net/feed.xml
+Redirect 301 /category/tools/feed/ /feed.xml
+Redirect 301 /category/toolserver/feed/ /feed.xml
+Redirect 301 /feed/ /feed.xml
 
 # Charset
 AddDefaultCharset utf-8
 AddCharset utf-8 .xml
-
-# FLoC
-Header always set Permissions-Policy: interest-cohort=()
