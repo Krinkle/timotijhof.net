@@ -1,0 +1,776 @@
+/*
+Theme Name: ttnet
+Description: Theme for timotijhof.net as of 2022.
+Author: Timo Tijhof
+Author URI: https://timotijhof.net/
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+*/
+
+/**
+ * Variables
+ * -------
+ */
+
+:root {
+	--contentSpacing: 20px;
+	--contentSpacingMicro: 10px;
+
+	--edgeWidth: 5px;
+	--asideWidth: 220px;
+	--contentWidth: 780px;
+
+	/**
+	 * The max-width query for "micro"
+	 * - Nokia 8110 4G:     240px
+	 * - iPhone 5/SE:       320px (Portrait)
+	 */
+	--breakMicro: 320px;
+
+	/**
+	 * The max-width query for "mobile"
+	 * - iPhone 6/7/8:      375px (Portrait)
+	 * - iPhone 6/7/8 Plus: 414px (Portrait)
+	 * - iPad: 768px (Portait)
+	 */
+	--breakMobile: 770px;
+
+	/**
+	 * The min-width query for "beyond mobile"
+	 * - iPad:              1024px (Landscape)
+	 * - Generic Desktop:   771px-1000px (Custom)
+	 */
+	--breakBeyondMobile: calc(var(--breakMobile) + 1px);
+
+	/**
+	 * The min-width query for "wide"
+	 * - Generic Desktop:   1000px or wider (Custom)
+	 */
+	--breakWide: 1000px;
+
+	--backgroundRoot: #100e17;
+	--backgroundPanel: #000;
+	--textColorRoot: rgba(255, 255, 255, 0.90);
+	--textColorBase: #bcbaca;
+	--textColorMinor: #bcbaca;
+	--textColorMuted: #837f9c;
+	--textColorLinkRoot: rgba(255, 255, 255, 0.92);
+	--textColorAccentMinor: #473e66; /* lighten(--backgroundRoot, 25%); */
+	--textColorAccent: #c5b5fc;
+
+	--backgroundLinkBase: hsla(210, 89%, 53%, 0.2);
+	--textColorLinkBase: #5ea8f8;
+
+	--backgroundSelected: #5ea8f8;
+	--textColorSelected: #fff;
+
+	--backgroundMarked: #201c29;
+	--textColorMarked: #c5b5fc;
+
+	--backgroundButton: #201c29;
+	--textColorButton: rgba(255, 255, 255, 0.90);
+	--backgroundButtonActive: hsla(258, 19%, 25%, 0.9);
+	--textColorButtonActive: #fff;
+}
+@media screen and (max-width: 320px /* breakMicro */) {
+	:root {
+		--contentSpacing: 10px;
+		--edgeWidth: 3px;
+	}
+}
+
+/**
+ * Element styles
+ * -------
+ */
+
+html {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	/**
+	 * Prevent iOS text size adjust after orientation change, without disabling user zoom.
+	 */
+	-webkit-text-size-adjust: 100%;
+}
+
+html,
+button {
+	/**
+	 * -apple-system: Firefox, Safari (macOS/iOS)
+	 * BlinkMacSystemFont: Chromium (macOS)
+	 * Roboto: Chromium (Android)
+	 */
+	font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+	font-size: 16px;
+	line-height: 1.2;
+}
+
+body {
+	margin: 0;
+	background: var(--backgroundRoot);
+	color: var(--textColorBase);
+}
+
+h1 {
+	font-size: 2.1em;
+	font-weight: 600;
+	margin: var(--contentSpacing) 0;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-weight: 600;
+	margin: 0.7em 0 0.3em;
+}
+h3 {
+	font-size: 1.17em;
+	font-weight: 600;
+	margin: 0.7em 0 0;
+}
+
+p,
+.footnotes li,
+figure {
+	margin: 1em 0;
+}
+
+h2 + p,
+h3 + p {
+	margin-top: 0;
+}
+
+blockquote {
+	color: var(--textColorMinor);
+	/* account for nesting inside a figure, which has text-align center */
+	text-align: left;
+	font-size: 0.8em;
+
+	margin: 1em 0;
+	border-left: var(--edgeWidth) solid var(--textColorAccentMinor);
+	padding: 0.5em var(--contentSpacing) 0.5em calc(var(--contentSpacing) - var(--edgeWidth));
+}
+
+blockquote > p:first-child {
+	margin-top: 0;
+}
+blockquote > p:last-child {
+	margin-bottom: 0;
+}
+figure > blockquote {
+	background: var(--backgroundPanel);
+}
+
+hr {
+	clear: both;
+	border: 0;
+	margin: 1.5rem auto;
+	height: 1px;
+
+	background: var(--textColorAccentMinor);
+}
+
+dt {
+	margin-top: 1rem;
+}
+
+code:not(.hljs) {
+	font-family: Menlo, Monaco, monospace;
+	padding: 0.3em 0.4em;
+	font-size: 0.8em;
+
+	background: var(--backgroundMarked);
+	color: var(--textColorMarked);
+}
+
+/* Link styles */
+a {
+	color: inherit;
+}
+a.nav-sitelink,
+a.about-sitelink,
+.post-link,
+.post-date {
+	text-decoration: none;
+}
+a:hover {
+	color: var(--textColorLinkBase);
+}
+a:hover {
+	border-color: var(--textColorLinkBase);
+}
+/* Link to post from listing (home, tag) */
+.posts-row .post-link:hover {
+	text-decoration: underline;
+}
+.post-link,
+.nav-sitelink,
+.about-sitelink {
+	color: var(--textColorLinkRoot);
+}
+.post a {
+	text-decoration: none;
+	color: var(--textColorLinkRoot);
+	border-bottom: 0.5px solid var(--textColorLinkRoot);
+}
+.post a:hover {
+	background: var(--backgroundLinkBase);
+	text-decoration-color: var(--textColorLinkBase);
+	outline-color: var(--backgroundLinkBase);
+
+	border-bottom: 3px solid var(--textColorLinkBase);
+	box-shadow: 0px 0px 0px 5px var(--backgroundLinkBase);
+	box-decoration-break: clone; /* https://bugzilla.mozilla.org/show_bug.cgi?id=1715888 */
+}
+.about-social a:hover {
+	background: var(--backgroundLinkBase);
+	text-decoration-color: var(--textColorLinkBase);
+	outline-color: var(--backgroundLinkBase);
+
+	box-shadow: 0px 0px 0px 20px var(--backgroundLinkBase);
+}
+
+::selection {
+	color: var(--textColorSelected);
+	background-color: var(--backgroundSelected);
+}
+
+/**
+ * Utilities
+ * -------
+ */
+
+.icon {
+  speak: none;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  vertical-align: top;
+
+	/* Dark mode: Approximate --textColorMuted */
+	filter: invert(1) contrast(0.1) sepia(2) hue-rotate(200deg);
+}
+.icon-github-circled {
+	background-image: url(images/icon-github-circled.svg);
+}
+.icon-mastodon {
+	background-image: url(images/icon-mastodon.svg);
+}
+.icon-rss-squared {
+	background-image: url(images/icon-rss-squared.svg);
+}
+
+/**
+ * Layout
+ * -------
+ */
+
+.nav {
+	background: var(--backgroundPanel);
+	color: var(--textColorMuted);
+}
+.nav p {
+	margin: var(--contentSpacingMicro) 0;
+}
+.nav-container {
+	/* Require border-box for width/max-width relations. */
+	box-sizing: border-box;
+	max-width: var(--contentWidth);
+	margin: 0 auto;
+	padding: var(--contentSpacing);
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.nav-sitelink {
+	display: flex;
+	justify-content: flex-start;
+	text-align: left;
+	align-items: center;
+
+	font-size: 22px;
+	font-weight: normal;
+}
+@media screen and (max-width: 320px /* breakMicro */) {
+	.nav-sitelink {
+		font-size: 18px;
+	}
+}
+
+.wrap {
+	margin: 0 auto var(--contentSpacing);
+	display: flex;
+	height: 100%;
+	max-width: var(--contentWidth);
+	flex-direction: column;
+}
+
+.content {
+	max-width: var(--contentWidth);
+	/* Require border-box for width/max-width relations. */
+	box-sizing: border-box;
+	padding: 0 var(--contentSpacing);
+}
+
+.about {
+	color: var(--textColorMuted);
+}
+
+/**
+ * Sidebar
+ * -------
+ */
+
+.about--home {
+	order: -1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex: 0;
+	max-width: var(--asideWidth);
+	text-align: center;
+	/**
+	 * For index pages on desktop, ensure sidebar aligns with page header
+	 * where 24px = `.posts-row` margin-top.
+	 */
+	margin: 24px auto 0 auto;
+}
+.about--home .about-sitelink {
+	font-size: 22px;
+}
+.about--home .about-sitelink img {
+	max-height: 150px;
+	width: auto;
+	margin: 0 0 25px 0;
+	/* Ensure site name is on its own line, even for `.about--foot` */
+	display: block;
+}
+.about--home .about-tagline {
+	font-size: 22px;
+	margin: 18px 0;
+}
+.about--home .about-social {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	margin: 0;
+}
+
+.about-social {
+	list-style-type: none;
+	padding: 0;
+}
+.about-social li {
+	/* Fallback for flex */
+	display: inline-block;
+}
+.about-social a {
+	display: inline-block;
+	border-radius: 100%;
+	font-size: 34px;
+	line-height: 1;
+}
+.about-social .icon {
+	opacity: 0.5;
+}
+.about-social .icon-mastodon {
+	/* It just ain't right. */
+	margin-top: 0.05em;
+}
+.about-social a:hover .icon {
+	opacity: 1;
+	/*  Approximate --textColorLinkBase */
+	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
+}
+
+.about--foot {
+	text-align: center;
+	padding: 0 var(--contentSpacing);
+	/* Match hr style */
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--textColorAccentMinor);
+	margin-top: 1.5rem;
+}
+.about--foot .about-sitelink,
+.about--foot .about-tagline {
+	display: inline;
+}
+
+@media screen and (max-width: 770px /* breakMobile */) {
+	.about--home {
+		/* For index pages on mobile, let about be a (somewhat) vertically-centered box. */
+		max-width: 175px;
+		margin-top: 5vh;
+		margin-bottom: 5vh;
+	}
+}
+
+@media screen and (max-width: 320px /* breakMicro */) {
+	.about--home .about-sitelink {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		font-size: 18px;
+		text-align: left;
+	}
+	.about--home .about-sitelink img {
+		max-width: 50px;
+		/* Support KaiOS 2.5, Firefox 48: Fix aspect ratio. */
+		max-height: 50px;
+		margin: 0 var(--contentSpacingMicro) 0 0;
+	}
+	.about--home .about-tagline {
+		font-size: 14px;
+		margin: var(--contentSpacingMicro) 0;
+	}
+	.about-social a {
+		font-size: 28px;
+	}
+}
+
+@media screen and (min-width: 771px /* breakBeyondMobile */) {
+	.about--home .about-tagline {
+		line-height: 1.6;
+		font-size: 18px;
+		margin: 1.2em 0;
+	}
+}
+
+@media screen and (min-width: 771px /* breakBeyondMobile */) {
+	.layout--home-intro .nav-container,
+	.layout--home-intro .wrap {
+		max-width: calc(var(--asideWidth) + var(--contentWidth));
+	}
+	.layout--home-intro .wrap {
+		flex-direction: row;
+	}
+	.layout--home-intro .content {
+		flex: 1;
+	}
+}
+
+.posts-label {
+	border-bottom: 1px solid var(--textColorAccentMinor);
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	padding-bottom: 10px;
+	font-weight: normal;
+	color: var(--textColorAccent);
+}
+
+.posts-row {
+	/* Match `hr` style */
+	margin-top: 1.5rem;
+	border-bottom: 1px solid transparent;
+	padding-bottom: 1.5rem;
+
+	border-color: var(--textColorAccentMinor);
+	color: var(--textColorMuted);
+}
+/* For excerpts on tag pages */
+.posts-row .post p:last-of-type {
+	margin-bottom: 0;
+}
+.posts-row:last-child {
+	border-bottom: 0;
+}
+.post-meta {
+	/* Match `hr` style */
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid transparent;
+	margin-bottom: 1.5rem;
+
+	border-color: var(--textColorAccentMinor);
+	color: var(--textColorMuted);
+}
+.post-date {
+	text-transform: uppercase;
+}
+.post-title {
+	margin: 20px 0;
+	font-size: 28px;
+}
+.posts-row-short .post-title {
+	display: inline;
+	font-size: inherit;
+	font-weight: normal;
+}
+.posts-row-short .post-date {
+	font-size: smaller;
+}
+
+
+/**
+ * Content
+ * -------
+ */
+
+.post .md-block, /* TODO */
+.post > .wp-block-group,
+.post > blockquote, /* Avoid double pulling (blockquote may be inside a figure) */
+.post > figure, /* Avoid pulling blocks in a wp-block-group container row */
+.post .alignleft, /* Do pull figures in a pointless wp-block-image wrapper */
+.post .alignright,
+.post > hr,
+.post > p:not(.md-block) > img,
+.post > pre,
+.post > table {
+	margin-left: calc(0px - var(--contentSpacing));
+	margin-right: calc(0px - var(--contentSpacing));
+}
+
+.post {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1.7;
+}
+@media screen and (max-width: 770px /* breakMobile */) {
+	.post {
+		letter-spacing: -0.1px;
+		font-size: 17px;
+	}
+}
+
+.post pre {
+	overflow: auto;
+	font-family: Menlo, Monaco, monospace;
+	line-height: 1.4;
+	font-size: 17px;
+	tab-size: 4;
+	white-space: pre-wrap;
+	white-space: break-spaces;
+	overflow-wrap: break-word;
+
+	padding: 1em var(--contentSpacing);
+
+	background: var(--backgroundMarked);
+	color: var(--textColorMarked);
+}
+.post pre .language-plaintext {
+	/* Make plaintext actually plain. Match color of inline <code>. */
+	color: inherit;
+}
+
+.post a {
+	/* Avoid scrollbars on mobile due to longer urls */
+	word-break: break-word;
+}
+.post a > code {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-position: under;
+}
+.post a:hover > code {
+	background-color: transparent;
+	text-decoration: none;
+}
+.post h2,
+.post h3 {
+	color: var(--textColorRoot);
+}
+.post strong {
+	color: var(--textColorRoot);
+	font-size: 92%;
+}
+.post li {
+	margin-top: 0.5em;
+}
+
+/**
+ * TODO: combination with md-block-left
+ * TODO: alignleft
+ */
+.post img {
+	/**
+	 * If an image's width/height attributes are smaller than the available
+	 * space, don't scale up. Hence, we reset only one dimension, and then
+	 * limit the other dimension, letting the browser scale down as-needed
+	 * but not up.
+	 */
+	height: auto;
+	max-width: 100%;
+	/* never distort the aspect ratio */
+	object-fit: scale-down;
+}
+.post img:not(.no-filter) {
+	/* Dark mode */
+	filter: brightness(0.9) contrast(1.2);
+}
+@media screen and (max-width: 770px /* breakMobile */) {
+	/**
+	 * On small screens, also make sure the image also isn't taller
+	 * than the viewport. By ignoring both dimensions, this can in
+	 * theory cause a very small image to scale up.
+	 */
+	.post img {
+		width: auto;
+		height: auto;
+		max-width: 100% !important;
+		max-height: 100vh !important;
+	}
+}
+@media screen and (min-width: 771px /* breakBeyondMobile */) {
+	.post img {
+		cursor: zoom-in;
+	}
+}
+
+.post a img {
+	cursor: inherit;
+}
+.post figure > p {
+	/**
+	 * TODO: No easy way in Kramdown to have <figcaption> and <img> in the
+	 * same box without the <img> getting a magic paragraph. This is
+	 * fine in un-floated contexts where the figure's margin and p's
+	 * margin collapse together. But when floated, they add up.
+	 */
+	margin: 0;
+}
+.post figcaption {
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+.post figure,
+.post .md-block /* TODO */ {
+	text-align: center;
+}
+
+.post .has-small-font-size {
+	font-size: smaller;
+	margin: 0.5em 0 0 0;
+}
+
+@media screen and (min-width: 771px /* breakBeyondMobile */) {
+	.post .alignleft {
+		clear: left;
+		float: left;
+		margin-top: 0;
+		margin-bottom: 1em;
+		margin-right: 0.75em;
+	}
+	.post .alignright {
+		clear: right;
+		float: right;
+		margin-top: 0;
+		margin-bottom: 1em;
+		margin-left: 0.75em;
+	}
+}
+
+/* TODO */ .post table.md-block {
+	border-spacing: 4px;
+}
+/* TODO */ .post .md-right {
+	clear: right;
+	text-align: right;
+}
+
+/* Footnotes */
+.footnote:before {
+	content: " ";
+}
+.post	li:target {
+	/**
+	 * For footnotes, provide a minimum padding between the hard background
+	 * of li:target::marker and the text content.
+	 */
+	margin-left: calc(0px - var(--contentSpacingMicro));
+	padding-left: var(--contentSpacingMicro);
+	margin-right: calc(0px - var(--contentSpacingMicro));
+	padding-right: var(--contentSpacingMicro);
+
+	/**
+	 * 35 = 40 - 5
+	 * <ol> has 40px padding-left
+	 * li:target has negative margin as fake padding between this shade
+	 * and the text content.
+	 */
+	box-shadow: var(--textColorAccentMinor) -1px 0px 0px,
+		var(--backgroundMarked) -35px 0px 0px,
+		var(--textColorAccentMinor) 1px 0px 0px,
+		var(--backgroundMarked) 35px 0px 0px;
+}
+.post li:target::marker {
+	color: var(--textColorMarked);
+}
+
+/**
+ * Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
+ *
+ * https://github.com/westonruter/syntax-highlighting-code-block/tree/1.3.1
+ * https://github.com/scrivo/highlight.php/blob/v9.18.1.9/styles/monokai-sublime.css
+ */
+.hljs {
+  display: block;
+  overflow-x: auto;
+}
+.hljs,
+.hljs-tag,
+.hljs-subst {
+  color: #f8f8f2;
+}
+.hljs-strong,
+.hljs-emphasis {
+  color: #a8a8a2;
+}
+.hljs-bullet,
+.hljs-quote,
+.hljs-number,
+.hljs-regexp,
+.hljs-literal,
+.hljs-link {
+  color: #ae81ff;
+}
+.hljs-code,
+.hljs-title,
+.hljs-section,
+.hljs-selector-class {
+  color: #a6e22e;
+}
+.hljs-strong {
+  font-weight: bold;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-attr {
+  color: #f92672;
+}
+.hljs-symbol,
+.hljs-attribute {
+  color: #66d9ef;
+}
+.hljs-params,
+.hljs-class .hljs-title {
+  color: #f8f8f2;
+}
+.hljs-string,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-variable {
+  color: #e6db74;
+}
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e;
+}
