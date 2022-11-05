@@ -645,28 +645,6 @@ a:hover {
 	text-align: center;
 }
 
-.post .has-small-font-size {
-	font-size: smaller;
-	margin: 0.5em 0 0 0;
-}
-
-@media screen and (min-width: 771px /* breakBeyondMobile */) {
-	.post .alignleft {
-		clear: left;
-		float: left;
-		margin-top: 0;
-		margin-bottom: 1em;
-		margin-right: 0.75em;
-	}
-	.post .alignright {
-		clear: right;
-		float: right;
-		margin-top: 0;
-		margin-bottom: 1em;
-		margin-left: 0.75em;
-	}
-}
-
 /* TODO */ .post table.md-block {
 	border-spacing: 4px;
 }
@@ -705,6 +683,46 @@ a:hover {
 }
 
 /**
+ * WordPress blocks
+ * -------
+ */
+
+.post .has-small-font-size {
+	font-size: smaller;
+	margin: 0.5em 0 0 0;
+}
+
+.post .is-layout-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.post .is-layout-flex figure {
+	/* avoid double margin, flex un-collapses margin between P and flex child */
+	margin: 0;
+}
+
+@media screen and (min-width: 771px /* breakBeyondMobile */) {
+	.post .alignleft {
+		clear: left;
+		float: left;
+		margin-top: 0;
+		margin-bottom: 1em;
+		margin-right: 0.75em;
+	}
+	.post .alignright {
+		clear: right;
+		float: right;
+		margin-top: 0;
+		margin-bottom: 1em;
+		margin-left: 0.75em;
+	}
+}
+
+/**
+ * Code block
+ * -------
+ *
  * Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
  *
  * https://github.com/westonruter/syntax-highlighting-code-block/tree/1.3.1
