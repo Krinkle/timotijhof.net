@@ -149,15 +149,11 @@ blockquote {
 	border-left: var(--edgeWidth) solid var(--textColorAccentMinor);
 	padding: 0.5em var(--contentSpacing) 0.5em calc(var(--contentSpacing) - var(--edgeWidth));
 }
-
 blockquote > p:first-child {
 	margin-top: 0;
 }
 blockquote > p:last-child {
 	margin-bottom: 0;
-}
-figure > blockquote {
-	background: var(--backgroundPanel);
 }
 
 hr {
@@ -513,14 +509,12 @@ a:hover {
  * -------
  */
 
-.post .md-block, /* TODO */
 .post > .wp-block-group,
-.post > blockquote, /* Avoid double pulling (blockquote may be inside a figure) */
+.post > blockquote,
 .post > figure, /* Avoid pulling blocks in a wp-block-group container row */
 .post .alignleft, /* Do pull figures in a pointless wp-block-image wrapper */
 .post .alignright,
 .post > hr,
-.post > p:not(.md-block) > img,
 .post > pre,
 .post > table {
 	margin-left: calc(0px - var(--contentSpacing));
@@ -584,10 +578,6 @@ a:hover {
 	margin-top: 0.5em;
 }
 
-/**
- * TODO: combination with md-block-left
- * TODO: alignleft
- */
 .post img {
 	/**
 	 * If an image's width/height attributes are smaller than the available
@@ -601,8 +591,10 @@ a:hover {
 	object-fit: scale-down;
 }
 .post img:not(.no-filter) {
-	/* Dark mode */
 	filter: brightness(0.9) contrast(1.2);
+}
+.post figure.no-filter img {
+	filter: none;
 }
 @media screen and (max-width: 770px /* breakMobile */) {
 	/**
@@ -624,33 +616,15 @@ a:hover {
 }
 
 .post a img {
+	/* undo zoom-in */
 	cursor: inherit;
 }
-.post figure > p {
-	/**
-	 * TODO: No easy way in Kramdown to have <figcaption> and <img> in the
-	 * same box without the <img> getting a magic paragraph. This is
-	 * fine in un-floated contexts where the figure's margin and p's
-	 * margin collapse together. But when floated, they add up.
-	 */
-	margin: 0;
+.post figure {
+	text-align: center;
 }
 .post figcaption {
 	font-size: 15px;
 	line-height: 1.5;
-}
-
-.post figure,
-.post .md-block /* TODO */ {
-	text-align: center;
-}
-
-/* TODO */ .post table.md-block {
-	border-spacing: 4px;
-}
-/* TODO */ .post .md-right {
-	clear: right;
-	text-align: right;
 }
 
 /* Footnotes */
@@ -696,10 +670,13 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: 1em;
 }
 .post .is-layout-flex figure {
 	/* avoid double margin, flex un-collapses margin between P and flex child */
 	margin: 0;
+	/* workaround layout bug inside flex due to spaces in generated markup */
+	line-height: 0;
 }
 
 @media screen and (min-width: 771px /* breakBeyondMobile */) {
