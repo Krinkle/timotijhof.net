@@ -1,18 +1,32 @@
 RewriteEngine On
 
-# Thanks https://stackoverflow.com/a/8806785/319266
-# - Versioned
-RewriteCond %{QUERY_STRING} (^|&)v=
-RewriteRule .* - [E=IS_STATIC:1]
-# - Unversioned
+# All theme assets are served with long-expiry/immutable cache control.
+#
+# For resources that are tied to the HTML output (like CSS) the URL
+# is versioned by the referring code, which ensures instant
+# propagation on "new" content, yet also avoid breaking cached content.
+#
+# For resources where the exact version doesn't matter, the URL
+# is left unversioned, ensuring a consistent experience between pageviews
+# from the same browser regardless of whether any individual reference
+# from a page was cached or not. It's fine for these to rollover slowly
+# over time.
+#
+# A previous strategy employed here was to check whether the query string
+# contained a version, and only then issue the long-expiry, and have a
+# list of known resources where we want to long-expiry without. This is
+# now the responsibility of the caller instead.
+#
+# --krinkle 2022-11-05
+#
+# PS: Thanks to https://stackoverflow.com/a/8806785/319266
+#
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f
-RewriteCond %{REQUEST_URI} images/(profile\.jpg|icon-[^/]+\.svg)$
 RewriteRule .* - [E=IS_STATIC:1]
 Header set Cache-Control "max-age=31536000, public, immutable" env=IS_STATIC
 
-# Temporary to avoid clash with main site that isn't WordPress (yet)
-RewriteRule "/feed/?" "-" [L]
-
-# Redirect former Jekyll artefacts
-Redirect 301 /feed.xml /feed/
-Redirect 301 /assets/attachments/ /wp-content/uploads/
+# # Document root .htaccess:
+#
+# # Redirect former Jekyll artefacts
+# Redirect 301 /assets/attachments/ /wp-content/uploads/
+# Redirect 301 /assets/profile.jpg /wp-content/themes/ttnet/images/profile.jpg
