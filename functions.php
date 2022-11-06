@@ -1,8 +1,8 @@
 <?php
 
 define('TTNET_GITHUB', 'Krinkle');
-define('TTNET_MASTO_INSTANCE', 'mastodon.technology');
 define('TTNET_MASTO_USER', 'krinkle');
+define('TTNET_MASTO_INSTANCE', 'fosstodon.org');
 define('TTNET_BIO', 'Principal Engineer, Wikimedia&nbsp;Foundation.');
 
 define('TTNET_VERSIONED', 1);
