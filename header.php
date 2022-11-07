@@ -35,30 +35,32 @@
 		 * - og:image:alt: Used as image alt, naturally (must be under 420 characters).
 		 */
 
-		// {% if page.plainwhite.og_image_url and page.plainwhite.og_image_alt %}
-		// {% if page.plainwhite.og_image_align != "aside" %}
-		// <meta property="twitter:card" content="summary_large_image">
-		// {% endif %}
-		// <meta property="og:image" content="{{ page.plainwhite.og_image_url | absolute_url }}">
-		// <meta property="og:image:alt" content="{{ page.plainwhite.og_image_alt | escape }}">
-		// {% endif %}
-
-		// the_post_thumbnail( 'full' );
-
 		$postTitle = single_post_title('', false);
 		$authorName = get_the_author_meta('display_name', get_post_field('post_author'));
 		echo sprintf(
 			'<meta property="og:type" content="article">'
 				. '<meta property="og:title" content="%1$s">'
-				. '<meta property="article:published_time" content="%3$s">'
 				. '<meta name="author" content="%2$s">'
 				. '<meta name="description" content="%4$s">'
-				. '<meta property="og:description" content="%4$s">',
+				. '<meta property="og:description" content="%4$s">'
+				. '<meta property="article:published_time" content="%3$s">',
 			esc_attr($postTitle),
 			esc_attr($authorName),
 			esc_attr(mysql2date('Y-m-d\TH:i:s\Z', get_post_field('post_date_gmt'))),
-			esc_attr(wp_strip_all_tags(get_the_excerpt(), true))
+			esc_attr(wp_strip_all_tags(krinkle_get_proper_excerpt(), true))
 		);
+		$thumbURL = get_the_post_thumbnail_url(null, 'full');
+		$attachmentID = $thumbURL ? get_post_thumbnail_id() : null;
+		$thumbAlt = $attachmentID ? get_post_meta($attachmentID,'_wp_attachment_image_alt', true) : null;
+		if ($thumbURL && $thumbAlt) {
+			echo sprintf(
+				'<meta property="twitter:card" content="summary_large_image">'
+				. '<meta property="og:image" content="%s">'
+				. '<meta property="og:image:alt" content="%s">',
+				esc_attr($thumbURL),
+				esc_attr($thumbAlt)
+			);
+		}
 	}
 
 	// Preload

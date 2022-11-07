@@ -98,7 +98,7 @@ function krinkle_on_content_remove_shcb($content) {
 	return $content;
 }
 
-add_filter('the_feed_content', 'krinkle_on_feed_content_add_footer');
+add_filter('the_content_feed', 'krinkle_on_feed_content_add_footer');
 function krinkle_on_feed_content_add_footer($content) {
 	$content .= '<hr/><p>'
 		. 'This post appeared on <a href="' . esc_attr(get_permalink()) . '">'
@@ -120,6 +120,50 @@ function krinkle_on_feed_content_add_footer($content) {
 		. '.</p>';
 
 	return $content;
+}
+
+add_filter('excerpt_more', 'krinkle_excerpt_more');
+function krinkle_excerpt_more($more) {
+	return '…';
+}
+
+function krinkle_get_proper_excerpt($post = null) {
+	// get_the_excerpt() normally has the following chain:
+	//
+	// 1. post_excerpt (if defined),
+	// 2. post_content upto the `<!--more-->` marker (if present),
+	// 3. post_content trimmed to threshold with ellipsis (fallback).
+	//
+	// But, this only works when called on index/home/archive/etc.
+	//
+	// When calling get_the_excerpt() from requests for a singular 'page' or 'post',
+	// WP_Query internally sets $more=1 for unknown reasons, and thus skips option 2,
+	// with no apparent way to get at the more-based excerpt that is displayed everywhere
+	// else in WordPress by default. This has the ugly side-effect that if you output
+	// a meta description based on the excerpt, the options are to either:
+	//
+	// A. Manually copy the first paragraph into the excerpt in wp-admin, or;
+	// B. Call it anyway and accept that you get the uglier option 3 with an arbitrary
+	//    cut into the content.
+	//
+	// So... let's use the unrelated get_extended() function intended for WP-XMLRPC
+	// which appears to be the only other built-in function apart from get_the_content()
+	// that contains logic for `<!--more-->`, except in a way that is reusable.
+	//
+	// --krinkle 2022-11-20
+	$post = $post ?? get_post();
+	$excerpt = $post->post_excerpt ?: '';
+	if ($excerpt === '') {
+		$extended = get_extended($post->post_content);
+		if ($extended['main'] && $extended['extended']) {
+			$excerpt = $extended['main'];
+		} else {
+			// If there is no "more" marker, get_extended places the entire content
+			// in "main". Fallback to option 3 (trimmed content) in that case.
+			$excerpt = wp_trim_excerpt('', $post);
+		}
+	}
+	return $excerpt;
 }
 
 function krinkle_get_resource_query($filepath) {
