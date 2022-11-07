@@ -24,9 +24,3 @@ RewriteEngine On
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f
 RewriteRule .* - [E=IS_STATIC:1]
 Header set Cache-Control "max-age=31536000, public, immutable" env=IS_STATIC
-
-# # Document root .htaccess:
-#
-# # Redirect former Jekyll artefacts
-# Redirect 301 /assets/attachments/ /wp-content/uploads/
-# Redirect 301 /assets/profile.jpg /wp-content/themes/ttnet/images/profile.jpg

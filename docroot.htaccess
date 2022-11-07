@@ -1,0 +1,71 @@
+# Charset
+AddDefaultCharset utf-8
+AddCharset utf-8 .xml
+
+RewriteEngine On
+
+# The use of absolute URLs in <link rel="canonical"> should suffice
+# for search enginess to crawl and prefer the canonical domain (non-www)
+# and over HTTPS. But, for convenience (don't care for downgrade attack)
+# also try to redirect in modern browsers.
+#
+# https://jcs.org/2021/01/06/plaintext
+RewriteCond %{HTTP:Upgrade-Insecure-Requests} ^1$
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www.timotijhof.net [NC]
+RewriteRule ^ https://timotijhof.net%{REQUEST_URI} [R=301,L]
+
+# Compatibility with former WordPress site (2011-2018)
+Redirect 301 /category/english/ /tags/english-language/
+Redirect 301 /category/tools/ /tags/wiki-tools/
+Redirect 301 /category/tools/feed/ /feed/
+Redirect 301 /category/tools/page/2/ /tags/wiki-tools/
+Redirect 301 /category/toolserver/ /tags/wiki-tools/
+Redirect 301 /category/toolserver/feed/ /feed/
+Redirect 301 /category/toolserver/page/2/ /tags/wiki-tools/
+Redirect 301 /tag/blankpages/ /tags/wiki-tools/
+Redirect 301 /tag/intuition/ /tags/wiki-tools/
+Redirect 301 /tag/orphantalk/ /tags/wiki-tools/
+Redirect 301 /tag/snapshots/ /tags/wiki-tools/
+Redirect 301 /tag/tool-new/ /tags/wiki-tools/
+Redirect 301 /tags/qunit/ /tags/testing/
+Redirect 301 /2011/01/ /
+Redirect 301 /2011/02/ /
+Redirect 301 /2011/03/ /
+Redirect 301 /2012/05/ /
+Redirect 301 /2012/08/ /
+Redirect 301 /2013/10/ /
+Redirect 301 /2013/12/ /
+Redirect 301 /2014/02/ /
+Redirect 301 /2014/05/ /
+Redirect 301 /2011/new-orphantalk2/ /posts/2011/new-orphantalk2/
+Redirect 301 /2011/orphantalk2-redesign/ /posts/2011/orphantalk2-redesign/
+Redirect 301 /2011/new-intuition/ /posts/2011/new-intuition/
+Redirect 301 /2011/new-toolserver-intuition/ /posts/2011/new-intuition/
+Redirect 301 /2012/tools-moving-from-svn-to-git/ /posts/2012/tools-moving-from-svn-to-git/
+Redirect 301 /2012/new-mwsnapshots/ /posts/2012/new-mwsnapshots/
+Redirect 301 /2012/new-tools-and-more-open-source/ /posts/2012/various-new-tools/
+Redirect 301 /2013/intuition-migrated-to-tool-labs/ /posts/2013/intuition-migrated-to-tool-labs/
+Redirect 301 /2014/intuition-migrated-to-tool-labs/ /posts/2013/intuition-migrated-to-tool-labs/
+Redirect 301 /2013/the-word-rebuke/ /posts/2013/the-word-rebuke/
+Redirect 301 /2014/snapshots-migrated-to-tool-labs/ /posts/2014/snapshots-migrated-to-tool-labs/
+Redirect 301 /2014/blankpages-migrated-to-tool-labs/ /posts/2014/blankpages-migrated-to-tool-labs/
+Redirect 301 /2014/list-utilities-migrated-to-tool-labs/ /posts/2014/list-utilities-migrated-to-tool-labs/
+Redirect 301 /2014/fileusage-migrated-to-tool-labs/ /posts/2014/fileusage-migrated-to-tool-labs/
+Redirect 301 /2014/phantomjs-for-ci-anno-2014/ /posts/2014/phantomjs-for-ci/
+Redirect 301 /2015/qunit-anti-patterns/ /posts/2015/qunit-anti-patterns/
+Redirect 301 /2018/measuring-wikipedia-page-load-times/ /posts/2018/measuring-wikipedia-page-load-times/
+
+# Compatibility with former Jelyll site (2018-2021)
+Redirect 301 /posts/2018/production-excellence-aug-2018/ /posts/2019/wikipedia-stories-1/
+Redirect 301 /posts/2018/wikipedia-stories-aug-2018/ /posts/2019/wikipedia-stories-1/
+Redirect 301 /posts/2019/wikipedia-stories-01/ /posts/2019/wikipedia-stories-1/
+Redirect 301 /posts/2019/wikipedia-stories-02/ /posts/2019/tomorrow-may-be-sooner/
+Redirect 301 /posts/2019/wikipedia-stories-2/ /posts/2019/tomorrow-may-be-sooner/
+Redirect 301 /posts/2019/wikipedia-stories-3/ /posts/2019/to-throw-or-not/
+Redirect 301 /assets/attachments/ /wp-content/uploads/
+Redirect 301 /assets/profile.jpg /wp-content/themes/ttnet/images/profile.jpg
+Redirect 301 /feed.xml /feed/

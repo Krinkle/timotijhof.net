@@ -36,7 +36,7 @@ if (!$hideIntro):
   </ul>
 </aside>
 <?php endif; ?>
-</div><!-- .wrap -->
+</div>
 <script type="module">
 if (document.body.matches) {
   document.body.addEventListener("ontouchstart" in window ? "dblclick" : "click", e => {
