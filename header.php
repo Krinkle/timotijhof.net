@@ -5,6 +5,17 @@
 <?php
 	wp_head();
 
+	// Output RSS discovery
+	//
+	// Same as built-in `feed_links()` from theme support 'automatic-feed-links',
+	// but without the odd "- Feed" suffix in the title.
+	printf(
+		'<link rel="alternate" type="%s" title="%s" href="%s">' . "\n",
+		feed_content_type(),
+		esc_attr(get_bloginfo('name')),
+		esc_url(get_feed_link())
+	);
+
 	if (is_single()) {
 		/**
 		 * Twitter Card (as of 9 Oct 2019).

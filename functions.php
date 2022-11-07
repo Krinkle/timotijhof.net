@@ -14,9 +14,6 @@ add_action('after_setup_theme', function () {
 	// Let wp_head() handle <title>
 	add_theme_support('title-tag');
 
-	// Let wp_head() handle RSS feed
-	add_theme_support('automatic-feed-links');
-
 	// Let wp_head() use HTML5
 	add_theme_support('html5',['search-form', 'gallery', 'caption', 'style', 'script']);
 
@@ -32,6 +29,7 @@ add_action('init', function () {
 	remove_action('wp_head', 'feed_links_extra', 3);
 	remove_action('wp_head', 'rsd_link');
 	remove_action('wp_head', 'wlwmanifest_link');
+	remove_action('wp_head', 'rest_output_link_wp_head');
 	add_action('wp_enqueue_scripts', function () {
 		wp_dequeue_style('wp-block-library');
 		wp_dequeue_style('classic-theme-styles');
