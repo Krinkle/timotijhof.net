@@ -83,7 +83,7 @@
 ?>
 <link rel="stylesheet" href="<?php echo krinkle_get_resource_uri('/style.css'); ?>">
 <link rel="icon" href="<?php echo krinkle_get_resource_uri('/images/favicon.png'); ?>">
-<link rel="me" href="https://mastodon.technology/@krinkle">
+<link rel="me" href="<?php echo esc_attr('https://' . TTNET_MASTO_INSTANCE . '/@' . TTNET_MASTO_USER); ?>">
 <body<?php if (is_home()): ?> class="layout--home-intro"<?php endif; ?>>
 <header class="nav"><div class="nav-container">
 	<a href="/" class="nav-sitelink" title="Visit the home page">Timo Tijhof</a>
