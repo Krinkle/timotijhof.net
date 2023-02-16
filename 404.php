@@ -31,5 +31,3 @@ a {
 </style>
 <h2>404</h2>
 <p>Page not found. <a href="/">Go back</a></p>
-
-<script>if (navigator.sendBeacon) navigator.sendBeacon("https://stats.timotijhof.net/matomo.php?idsite=8&rec=1&send_image=0&_cvar=%7B%222%22%3A%5B%22Status%22%2C%22404%22%5D%7D&url=" + encodeURIComponent('https://' + location.host + location.pathname) + '&urlref=' + encodeURIComponent(document.referrer));</script>
