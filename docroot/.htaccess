@@ -18,6 +18,11 @@ RewriteCond %{HTTPS} on
 RewriteCond %{HTTP_HOST} ^www.timotijhof.net [NC]
 RewriteRule ^ https://timotijhof.net%{REQUEST_URI} [R=301,L]
 
+# WebFinger (for Fediverse/Mastodon)
+RewriteRule ^\.well-known/webfinger$ /.well-known/webfinger-redirect.php [QSA,L]
+Redirect 307 /@krinkle https://fosstodon.org/@krinkle
+Redirect 307 /@krinkle.rss https://fosstodon.org/@krinkle.rss
+
 # Compatibility with former WordPress site (2011-2018)
 Redirect 301 /category/english/ /tags/english-language/
 Redirect 301 /category/tools/ /tags/wiki-tools/
@@ -69,3 +74,32 @@ Redirect 301 /posts/2019/wikipedia-stories-3/ /posts/2019/to-throw-or-not/
 Redirect 301 /assets/attachments/ /wp-content/uploads/
 Redirect 301 /assets/profile.jpg /wp-content/themes/ttnet/images/profile.jpg
 Redirect 301 /feed.xml /feed/
+
+# Block the include-only files.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^wp-admin/includes/ - [F,L]
+RewriteRule !^wp-includes/ - [S=3]
+RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
+RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
+RewriteRule ^wp-includes/theme-compat/ - [F,L]
+</IfModule>
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+# Skip on subdomains avoid HTTP500
+RewriteCond %{HTTP_HOST} ^timotijhof.net
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
