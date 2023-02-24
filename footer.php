@@ -25,7 +25,7 @@ if (!$hideIntro):
 <aside class="about <?php echo (is_home() ? 'about--home': 'about--foot'); ?>">
 	<a href="/" class="about-sitelink" title="Visit the home page"><?php
 		if ( is_home() ) :
-	?><img src="<?php echo esc_attr(krinkle_get_resource_uri('/images/profile.jpg', TTNET_UNVERSIONED)); ?>" alt="" width="192" height="192"><?php
+	?><img src="<?php echo esc_attr(krinkle_get_resource_uri('/images/profile.jpg', TTNET_UNVERSIONED)); ?>" alt="" width="150" height="150"><?php
 		endif;
 	?><span>Timo Tijhof</span></a>
 	<p class="about-tagline"><?php echo esc_html(TTNET_BIO); ?></p>
