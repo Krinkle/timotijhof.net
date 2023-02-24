@@ -7,68 +7,53 @@ License: MIT
 License URI: https://opensource.org/licenses/MIT
 */
 
-/**
- * Variables
- * -------
- */
-
 :root {
 	--contentSpacing: 20px;
 	--contentSpacingMicro: 10px;
-
 	--edgeWidth: 5px;
 	--asideWidth: 220px;
 	--contentWidth: 780px;
-
 	/**
-	 * The max-width query for "micro"
-	 * - Nokia 8110 4G:     240px
-	 * - iPhone 5/SE:       320px (Portrait)
+	 * max-width, includes:
+	 * - Nokia 8110 4G, 240px
+	 * - iPhone 5/SE, 320px (Portrait)
 	 */
 	--breakMicro: 320px;
-
 	/**
-	 * The max-width query for "mobile"
-	 * - iPhone 6/7/8:      375px (Portrait)
-	 * - iPhone 6/7/8 Plus: 414px (Portrait)
-	 * - iPad: 768px (Portait)
+	 * max-width, includes:
+	 * - iPhone 6/7/8, 375px (Portrait)
+	 * - iPhone 6/7/8 Plus, 414px (Portrait)
+	 * - iPad, 768px (Portait)
 	 */
 	--breakMobile: 770px;
-
 	/**
-	 * The min-width query for "beyond mobile"
-	 * - iPad:              1024px (Landscape)
-	 * - Generic Desktop:   771px-1000px (Custom)
+	 * min-width, includes:
+	 * - iPad, 1024px (Landscape)
+	 * - Generic Desktop, 771px-1000px
 	 */
 	--breakBeyondMobile: calc(var(--breakMobile) + 1px);
-
 	/**
-	 * The min-width query for "wide"
-	 * - Generic Desktop:   1000px or wider (Custom)
+	 * min-width, includes:
+	 * - Generic Desktop, 1000px and wider
 	 */
 	--breakWide: 1000px;
-
 	--backgroundRoot: #100e17;
 	--backgroundPanel: #000;
-	--textColorRoot: rgba(255, 255, 255, 0.90);
+	--textColorRoot: rgba(255, 255, 255, 0.9);
+	--textColorLinkRoot: rgba(255, 255, 255, 0.9);
 	--textColorBase: #bcbaca;
 	--textColorMinor: #bcbaca;
 	--textColorMuted: #837f9c;
-	--textColorLinkRoot: rgba(255, 255, 255, 0.92);
-	--textColorAccentMinor: #473e66; /* lighten(--backgroundRoot, 25%); */
 	--textColorAccent: #c5b5fc;
-
+	--textColorAccentMinor: #473e66; /* lighten(--backgroundRoot, 25%); */
 	--backgroundLinkBase: hsla(210, 89%, 53%, 0.2);
 	--textColorLinkBase: #5ea8f8;
-
 	--backgroundSelected: #5ea8f8;
 	--textColorSelected: #fff;
-
 	--backgroundMarked: #201c29;
 	--textColorMarked: #c5b5fc;
-
 	--backgroundButton: #201c29;
-	--textColorButton: rgba(255, 255, 255, 0.90);
+	--textColorButton: rgba(255, 255, 255, 0.9);
 	--backgroundButtonActive: hsla(258, 19%, 25%, 0.9);
 	--textColorButtonActive: #fff;
 }
@@ -79,20 +64,14 @@ License URI: https://opensource.org/licenses/MIT
 	}
 }
 
-/**
- * Element styles
- * -------
- */
+/* ## Element styles */
 
 html {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	/**
 	 * Prevent iOS text size adjust after orientation change, without disabling user zoom.
 	 */
 	-webkit-text-size-adjust: 100%;
 }
-
 html,
 button {
 	/**
@@ -104,7 +83,6 @@ button {
 	font-size: 16px;
 	line-height: 1.2;
 }
-
 body {
 	margin: 0;
 	background: var(--backgroundRoot);
@@ -116,7 +94,6 @@ h1 {
 	font-weight: 600;
 	margin: var(--contentSpacing) 0;
 }
-
 h2 {
 	font-size: 1.5em;
 	font-weight: 600;
@@ -133,7 +110,6 @@ p,
 figure {
 	margin: 1em 0;
 }
-
 h2 + p,
 h3 + p {
 	margin-top: 0;
@@ -144,7 +120,6 @@ blockquote {
 	/* account for nesting inside a figure, which has text-align center */
 	text-align: left;
 	font-size: 0.8em;
-
 	margin: 1em 0;
 	border-left: var(--edgeWidth) solid var(--textColorAccentMinor);
 	padding: 0.5em var(--contentSpacing) 0.5em calc(var(--contentSpacing) - var(--edgeWidth));
@@ -161,7 +136,6 @@ hr {
 	border: 0;
 	margin: 1.5rem auto;
 	height: 1px;
-
 	background: var(--textColorAccentMinor);
 }
 
@@ -173,7 +147,6 @@ code:not(.hljs) {
 	font-family: Menlo, Monaco, monospace;
 	padding: 0.3em 0.4em;
 	font-size: 0.8em;
-
 	background: var(--backgroundMarked);
 	color: var(--textColorMarked);
 }
@@ -212,7 +185,6 @@ a:hover {
 	background: var(--backgroundLinkBase);
 	text-decoration-color: var(--textColorLinkBase);
 	outline-color: var(--backgroundLinkBase);
-
 	border-bottom: 3px solid var(--textColorLinkBase);
 	box-shadow: 0px 0px 0px 5px var(--backgroundLinkBase);
 	box-decoration-break: clone; /* https://bugzilla.mozilla.org/show_bug.cgi?id=1715888 */
@@ -221,7 +193,6 @@ a:hover {
 	background: var(--backgroundLinkBase);
 	text-decoration-color: var(--textColorLinkBase);
 	outline-color: var(--backgroundLinkBase);
-
 	box-shadow: 0px 0px 0px 20px var(--backgroundLinkBase);
 }
 
@@ -230,21 +201,17 @@ a:hover {
 	background-color: var(--backgroundSelected);
 }
 
-/**
- * Utilities
- * -------
- */
+/* ## Utilities */
 
 .icon {
-  speak: none;
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: contain;
-  vertical-align: top;
-
+	speak: none;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	vertical-align: top;
 	/* Dark mode: Approximate --textColorMuted */
 	filter: invert(1) contrast(0.1) sepia(2) hue-rotate(200deg);
 }
@@ -258,10 +225,7 @@ a:hover {
 	background-image: url(images/icon-rss-squared.svg);
 }
 
-/**
- * Layout
- * -------
- */
+/* ## Layout */
 
 .nav {
 	background: var(--backgroundPanel);
@@ -276,19 +240,16 @@ a:hover {
 	max-width: var(--contentWidth);
 	margin: 0 auto;
 	padding: var(--contentSpacing);
-
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-
 .nav-sitelink {
 	display: flex;
 	justify-content: flex-start;
 	text-align: left;
 	align-items: center;
-
 	font-size: 22px;
 	font-weight: normal;
 }
@@ -297,7 +258,6 @@ a:hover {
 		font-size: 18px;
 	}
 }
-
 .wrap {
 	margin: 0 auto var(--contentSpacing);
 	display: flex;
@@ -305,26 +265,20 @@ a:hover {
 	max-width: var(--contentWidth);
 	flex-direction: column;
 }
-
 .content {
 	max-width: var(--contentWidth);
 	/* Require border-box for width/max-width relations. */
 	box-sizing: border-box;
 	padding: 0 var(--contentSpacing);
 }
-
 .about {
 	color: var(--textColorMuted);
 }
 
-/**
- * Sidebar
- * -------
- */
+/* ## Sidebar */
 
 .about--home {
 	order: -1;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -358,7 +312,6 @@ a:hover {
 	width: 100%;
 	margin: 0;
 }
-
 .about-social {
 	list-style-type: none;
 	padding: 0;
@@ -382,10 +335,9 @@ a:hover {
 }
 .about-social a:hover .icon {
 	opacity: 1;
-	/*  Approximate --textColorLinkBase */
+	/* Approximate --textColorLinkBase */
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 }
-
 .about--foot {
 	text-align: center;
 	padding: 0 var(--contentSpacing);
@@ -451,7 +403,6 @@ a:hover {
 		flex: 1;
 	}
 }
-
 .posts-label {
 	border-bottom: 1px solid var(--textColorAccentMinor);
 	font-size: 15px;
@@ -462,12 +413,13 @@ a:hover {
 	color: var(--textColorAccent);
 }
 
+/* ## Content */
+
 .posts-row {
 	/* Match `hr` style */
 	margin-top: 1.5rem;
 	border-bottom: 1px solid transparent;
 	padding-bottom: 1.5rem;
-
 	border-color: var(--textColorAccentMinor);
 	color: var(--textColorMuted);
 }
@@ -483,7 +435,6 @@ a:hover {
 	padding-bottom: 1.5rem;
 	border-bottom: 1px solid transparent;
 	margin-bottom: 1.5rem;
-
 	border-color: var(--textColorAccentMinor);
 	color: var(--textColorMuted);
 }
@@ -502,13 +453,6 @@ a:hover {
 .posts-row-short .post-date {
 	font-size: smaller;
 }
-
-
-/**
- * Content
- * -------
- */
-
 .post > .wp-block-group,
 .post > blockquote,
 .post > figure, /* Avoid pulling blocks in a wp-block-group container row */
@@ -520,7 +464,6 @@ a:hover {
 	margin-left: calc(0px - var(--contentSpacing));
 	margin-right: calc(0px - var(--contentSpacing));
 }
-
 .post {
 	font-weight: 400;
 	font-size: 18px;
@@ -542,9 +485,7 @@ a:hover {
 	white-space: pre-wrap;
 	white-space: break-spaces;
 	overflow-wrap: break-word;
-
 	padding: 1em var(--contentSpacing);
-
 	background: var(--backgroundMarked);
 	color: var(--textColorMarked);
 }
@@ -552,7 +493,6 @@ a:hover {
 	/* Make plaintext actually plain. Match color of inline <code>. */
 	color: inherit;
 }
-
 .post a {
 	/* Avoid scrollbars on mobile due to longer urls */
 	word-break: break-word;
@@ -577,7 +517,6 @@ a:hover {
 .post li {
 	margin-top: 0.5em;
 }
-
 .post img {
 	/**
 	 * If an image's width/height attributes are smaller than the available
@@ -614,7 +553,6 @@ a:hover {
 		cursor: zoom-in;
 	}
 }
-
 .post a img {
 	/* undo zoom-in */
 	cursor: inherit;
@@ -627,27 +565,19 @@ a:hover {
 	line-height: 1.5;
 }
 
-/* Footnotes */
+/* ## Footnotes */
+
 .footnote:before {
 	content: " ";
 }
 .post	li:target {
-	/**
-	 * For footnotes, provide a minimum padding between the hard background
-	 * of li:target::marker and the text content.
-	 */
+	/* For footnotes, ensure padding between the background of li:target::marker and the text */
 	margin-left: calc(0px - var(--contentSpacingMicro));
 	padding-left: var(--contentSpacingMicro);
 	margin-right: calc(0px - var(--contentSpacingMicro));
 	padding-right: var(--contentSpacingMicro);
-
-	/**
-	 * 35 = 40 - 5
-	 * <ol> has 40px padding-left
-	 * li:target has negative margin as fake padding between this shade
-	 * and the text content.
-	 */
 	box-shadow: var(--textColorAccentMinor) -1px 0px 0px,
+		/* 35px = 40 (<ol> padding-left) - 5 (half contentSpacingMicro) */
 		var(--backgroundMarked) -35px 0px 0px,
 		var(--textColorAccentMinor) 1px 0px 0px,
 		var(--backgroundMarked) 35px 0px 0px;
@@ -656,21 +586,17 @@ a:hover {
 	color: var(--textColorMarked);
 }
 
-/**
- * WordPress blocks
- * -------
- */
+/* ## WordPress blocks */
 
 .post .has-small-font-size {
 	font-size: smaller;
 	margin: 0.5em 0 0 0;
 }
-
 .post .is-layout-flex {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1em;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1em;
 }
 .post .is-layout-flex figure {
 	/* avoid double margin, flex un-collapses margin between P and flex child */
@@ -697,8 +623,7 @@ a:hover {
 }
 
 /**
- * Code block
- * -------
+ * ## Code block
  *
  * Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
  *
@@ -706,17 +631,17 @@ a:hover {
  * https://github.com/scrivo/highlight.php/blob/v9.18.1.9/styles/monokai-sublime.css
  */
 .hljs {
-  display: block;
-  overflow-x: auto;
+	display: block;
+	overflow-x: auto;
 }
 .hljs,
 .hljs-tag,
 .hljs-subst {
-  color: #f8f8f2;
+	color: #f8f8f2;
 }
 .hljs-strong,
 .hljs-emphasis {
-  color: #a8a8a2;
+	color: #a8a8a2;
 }
 .hljs-bullet,
 .hljs-quote,
@@ -724,33 +649,33 @@ a:hover {
 .hljs-regexp,
 .hljs-literal,
 .hljs-link {
-  color: #ae81ff;
+	color: #ae81ff;
 }
 .hljs-code,
 .hljs-title,
 .hljs-section,
 .hljs-selector-class {
-  color: #a6e22e;
+	color: #a6e22e;
 }
 .hljs-strong {
-  font-weight: bold;
+	font-weight: bold;
 }
 .hljs-emphasis {
-  font-style: italic;
+	font-style: italic;
 }
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-name,
 .hljs-attr {
-  color: #f92672;
+	color: #f92672;
 }
 .hljs-symbol,
 .hljs-attribute {
-  color: #66d9ef;
+	color: #66d9ef;
 }
 .hljs-params,
 .hljs-class .hljs-title {
-  color: #f8f8f2;
+	color: #f8f8f2;
 }
 .hljs-string,
 .hljs-type,
@@ -762,10 +687,10 @@ a:hover {
 .hljs-addition,
 .hljs-variable,
 .hljs-template-variable {
-  color: #e6db74;
+	color: #e6db74;
 }
 .hljs-comment,
 .hljs-deletion,
 .hljs-meta {
-  color: #75715e;
+	color: #75715e;
 }

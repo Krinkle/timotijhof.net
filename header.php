@@ -10,9 +10,8 @@
 	// Same as built-in `feed_links()` from theme support 'automatic-feed-links',
 	// but without the odd "- Feed" suffix in the title.
 	printf(
-		'<link rel="alternate" type="%s" title="%s" href="%s">' . "\n",
+		'<link rel="alternate" type="%s" href="%s">' . "\n",
 		feed_content_type(),
-		esc_attr(get_bloginfo('name')),
 		esc_url(get_feed_link())
 	);
 
@@ -66,7 +65,6 @@
 	// Preload
 	$links = [];
 	foreach ([
-		krinkle_get_resource_uri('/style.css') => [ 'as' => 'style' ],
 		krinkle_get_resource_uri('/images/icon-github-circled.svg', TTNET_UNVERSIONED) => [ 'as' => 'image' ],
 		krinkle_get_resource_uri('/images/icon-mastodon.svg', TTNET_UNVERSIONED )=> [ 'as' => 'image' ],
 		krinkle_get_resource_uri('/images/icon-rss-squared.svg', TTNET_UNVERSIONED) => [ 'as' => 'image' ],
