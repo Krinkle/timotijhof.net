@@ -416,27 +416,25 @@ a:hover {
 /* ## Content */
 
 .posts-row {
-	/* Match `hr` style */
 	margin-top: 1.5rem;
-	border-bottom: 1px solid transparent;
-	padding-bottom: 1.5rem;
-	border-color: var(--textColorAccentMinor);
 	color: var(--textColorMuted);
+	/* Match `hr` style */
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid var(--textColorAccentMinor);
+}
+.posts-row:last-child {
+	border-bottom: 0;
 }
 /* For excerpts on tag pages */
 .posts-row .post p:last-of-type {
 	margin-bottom: 0;
 }
-.posts-row:last-child {
-	border-bottom: 0;
-}
 .post-meta {
-	/* Match `hr` style */
-	padding-bottom: 1.5rem;
-	border-bottom: 1px solid transparent;
-	margin-bottom: 1.5rem;
-	border-color: var(--textColorAccentMinor);
 	color: var(--textColorMuted);
+	/* Match `hr` */
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid var(--textColorAccentMinor);
+	margin-bottom: 1.5rem;
 }
 .post-date {
 	text-transform: uppercase;
@@ -458,7 +456,6 @@ a:hover {
 .post > figure, /* Avoid pulling blocks in a wp-block-group container row */
 .post .alignleft, /* Do pull figures in a pointless wp-block-image wrapper */
 .post .alignright,
-.post > hr,
 .post > pre,
 .post > table {
 	margin-left: calc(0px - var(--contentSpacing));
