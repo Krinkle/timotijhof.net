@@ -23,7 +23,11 @@ $hideIntro = is_page() || is_tag();
 if (!$hideIntro):
 ?>
 <aside class="about <?php echo (is_home() ? 'about--home': 'about--foot'); ?>">
-	<a href="/" class="about-sitelink" title="Visit the home page"><?php
+	<?php
+		if (is_single()):
+	?><p class="about-reply"><?php echo krinkle_get_post_email_reply_link(); ?></p><?php
+		endif;
+	?><a href="/" class="about-sitelink" title="Visit the home page"><?php
 		if ( is_home() ) :
 	?><img src="<?php echo esc_attr(krinkle_get_resource_uri('/images/profile.jpg', TTNET_UNVERSIONED)); ?>" alt="" width="150" height="150"><?php
 		endif;

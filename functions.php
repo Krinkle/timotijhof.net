@@ -105,19 +105,8 @@ function krinkle_on_feed_content_add_footer($content) {
 		. esc_html(parse_url(get_site_url(), PHP_URL_HOST))
 		. '</a>'
 		. '. '
-		// Inspired by Ru Singh (2022)
-		// <https://rusingh.com/adding-a-comment-via-email-convenience-link/>
-		. '<a target="_blank" href="mailto:'
-		. get_the_author_meta('user_email')
-			. '?subject='
-			// Avoid get_the_title() as titles can contain HTML markup,
-			// and are otherwise html-escaped. We prefer tagless plain text,
-			// and not html-escaped, to (first) URL-encode.
-			. rawurlencode('RE: ' . the_title_attribute([ 'echo' => false ]))
-			. '&body='
-			. rawurlencode("\n\n\nPermalink: " . get_permalink())
-		. '">Reply via email</a>'
-		. '.</p>';
+		. krinkle_get_post_email_reply_link()
+		. '</p>';
 
 	return $content;
 }
@@ -125,6 +114,24 @@ function krinkle_on_feed_content_add_footer($content) {
 add_filter('excerpt_more', 'krinkle_excerpt_more');
 function krinkle_excerpt_more($more) {
 	return '…';
+}
+
+/**
+ * Inspired by Ru Singh (2022)
+ * <https://rusingh.com/adding-a-comment-via-email-convenience-link/>
+ */
+function krinkle_get_post_email_reply_link() {
+	return '<a target="_blank" href="mailto:'
+		. get_the_author_meta('user_email')
+			. '?subject='
+			// Avoid get_the_title() as titles can contain HTML markup,
+			// and are otherwise html-escaped. Prefer the_title_attribute(),
+			// which returns tagless plain text, which we can URL encode first,
+			// before HTML escaping.
+			. rawurlencode('RE: ' . the_title_attribute([ 'echo' => false ]))
+			. '&body='
+			. rawurlencode("\n\n\nPermalink: " . get_permalink())
+		. '">Reply via email</a>';
 }
 
 function krinkle_get_proper_excerpt($post = null) {

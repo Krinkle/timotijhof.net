@@ -338,6 +338,9 @@ a:hover {
 	/* Approximate --textColorLinkBase */
 	filter: contrast(0.2) sepia(2) saturate(4) hue-rotate(170deg);
 }
+.about-reply {
+	margin-top: 0;
+}
 .about--foot {
 	text-align: center;
 	padding: 0 var(--contentSpacing);
@@ -451,6 +454,7 @@ a:hover {
 .posts-row-short .post-date {
 	font-size: smaller;
 }
+
 .post > .wp-block-group,
 .post > blockquote,
 .post > figure, /* Avoid pulling blocks in a wp-block-group container row */
@@ -567,7 +571,7 @@ a:hover {
 .footnote:before {
 	content: " ";
 }
-.post	li:target {
+.post li:target {
 	/* For footnotes, ensure padding between the background of li:target::marker and the text */
 	margin-left: calc(0px - var(--contentSpacingMicro));
 	padding-left: var(--contentSpacingMicro);
