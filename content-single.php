@@ -16,16 +16,17 @@
 	*/
 	?>
 	<div class="byline"><?php
+		$sep = ' • ';
+
 		$timeHtml = '<time class="post-date" datetime="%1$s">%2$s</time>';
 		echo sprintf(
 			$timeHtml,
 			esc_attr( get_the_date( 'Y-m-d' ) ),
 			get_the_date( 'j M Y' )
 		);
+		echo $sep . krinkle_get_reading_time();
 
-		$sep = ' • ';
-		$join = ', ';
-		$tags_list = get_the_tag_list( '', $join );
+		$tags_list = get_the_tag_list( '', ', ' );
 		if ( $tags_list ) {
 			echo $sep . $tags_list;
 		}

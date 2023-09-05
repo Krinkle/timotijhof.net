@@ -439,9 +439,6 @@ a:hover {
 	border-bottom: 1px solid var(--textColorAccentMinor);
 	margin-bottom: 1.5rem;
 }
-.post-date {
-	text-transform: uppercase;
-}
 .post-title {
 	margin: 20px 0;
 	font-size: 28px;

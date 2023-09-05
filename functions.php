@@ -116,6 +116,22 @@ function krinkle_excerpt_more($more) {
 	return '…';
 }
 
+function krinkle_get_reading_time() {
+	// Inspired by https://birchtree.me/blog/reading-time-wp-php/
+	//
+	// Data: https://www.sciencedirect.com/science/article/abs/pii/S0749596X19300786
+	// Data: https://scholarwithin.com/average-reading-speed
+	//
+	// Optimization: Use raw unfiltered content instead of get_the_content()
+	// Optimization: Aggregate spaces instead of words (off by one)
+	// Optimization: Use preg_match_all return value instead of count(preg_split()).
+	$words = preg_match_all('/\s+/', strip_tags(get_post()->post_content));
+	$minutes = ceil($words / 250);
+	return '<abbr title="' . esc_attr("$words words, $minutes minute read") . '">'
+		. esc_html("$minutes min read")
+		. '</abbr>';
+}
+
 /**
  * Inspired by Ru Singh (2022)
  * <https://rusingh.com/adding-a-comment-via-email-convenience-link/>
