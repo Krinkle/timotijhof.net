@@ -1,7 +1,7 @@
 <article>
 <header class="post-meta">
 	<a class="post-link" href="<?php echo esc_url( get_permalink() ); ?>">
-		<h1><?php the_title(); ?></h2>
+		<h1><?php the_title(); ?></h1>
 	</a>
 	<?php
 	/**

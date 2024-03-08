@@ -1,6 +1,6 @@
 <article>
 <header class="post-meta">
-	<h1><?php the_title(); ?></h2>
+	<h1><?php the_title(); ?></h1>
 	<?php
 	/**
 	* The `div.byline` element exists solely to please Safari Reader.
