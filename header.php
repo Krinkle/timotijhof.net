@@ -42,12 +42,15 @@
 				. '<meta name="author" content="%2$s">'
 				. '<meta name="description" content="%4$s">'
 				. '<meta property="og:description" content="%4$s">'
-				. '<meta property="article:published_time" content="%3$s">',
+				. '<meta property="article:published_time" content="%3$s">'
+				. '<meta name="fediverse:creator" content="%5$s">',
 			esc_attr($postTitle),
 			esc_attr($authorName),
 			esc_attr(mysql2date('Y-m-d\TH:i:s\Z', get_post_field('post_date_gmt'))),
-			esc_attr(wp_strip_all_tags(krinkle_get_proper_excerpt(), true))
+			esc_attr(wp_strip_all_tags(krinkle_get_proper_excerpt(), true)),
+			esc_attr(TTNET_MASTO_USER . '@' . TTNET_MASTO_INSTANCE)
 		);
+
 		$thumbURL = get_the_post_thumbnail_url(null, 'full');
 		$attachmentID = $thumbURL ? get_post_thumbnail_id() : null;
 		$thumbAlt = $attachmentID ? get_post_meta($attachmentID,'_wp_attachment_image_alt', true) : null;
