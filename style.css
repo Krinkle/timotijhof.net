@@ -124,6 +124,9 @@ blockquote {
 	border-left: var(--edgeWidth) solid var(--textColorAccentMinor);
 	padding: 0.5em var(--contentSpacing) 0.5em calc(var(--contentSpacing) - var(--edgeWidth));
 }
+blockquote .has-large-font-size {
+	font-style: italic;
+}
 blockquote > p:first-child {
 	margin-top: 0;
 }
@@ -588,6 +591,10 @@ a:hover {
 
 .post .has-small-font-size {
 	font-size: smaller;
+	margin: 0.5em 0 0 0;
+}
+.post .has-large-font-size {
+	font-size: 1.5em;
 	margin: 0.5em 0 0 0;
 }
 .post .is-layout-flex {
